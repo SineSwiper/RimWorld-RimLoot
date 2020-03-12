@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <RimLoot.LootAffixDef>
+        <defName>Tough</defName>
+        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixCategory_StatDefChange">
+                <affectedStat>MaxHitPoints</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>AFFIX_adjective->Tough</li>
+                <li>AFFIX_noun->Toughness</li>
+                <li>AFFIXPROP_noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+</Defs>

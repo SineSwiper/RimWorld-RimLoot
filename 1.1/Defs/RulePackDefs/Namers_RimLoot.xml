@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RimLoot.LootAffixNamerConfigDef>
+    <defName>RimLoot_LootAffixNamer_Config</defName>
+    <maxWordClasses>
+      <li>
+        <key>possessive</key>
+        <value>1</value>
+      </li>
+      <li>
+        <key>adjective</key>
+        <value>3</value>
+      </li>
+      <li>
+        <key>noun</key>
+        <value>1</value>
+      </li>
+      <li>
+        <key>verb</key>
+        <value>1</value>
+      </li>
+    </maxWordClasses>
+    <disallowedAffixCombos>
+        <li>
+            <li>possessive</li>
+            <li>adjective</li>
+            <li>adjective</li>
+        </li>
+        <li>
+            <li>adjective</li>
+            <li>adjective</li>
+            <li>adjective</li>
+        </li>
+        <li>
+            <li>possessive</li>
+            <li>adjective</li>
+            <li>adjective</li>
+            <li>adjective</li>
+        </li>
+    </disallowedAffixCombos>
+  </RimLoot.LootAffixNamerConfigDef>
+
+  <RulePackDef>
+    <defName>RimLoot_LootAffixNamer</defName>
+    <rulePack>
+      <rulesStrings>
+        <!--
+            Variables given to the namer:
+            (all of these are already translated)
+
+            Only given as many of this AFFIX_* words as configured above.  Only one affix (word class) is chosen
+            per LootAffixDef.
+
+            AFFIX_possessive#  = Translated possessive word from the LootAffixDef (ie: Pirate's)
+            AFFIX_adjective#   = Translated adjective word from the LootAffixDef
+            AFFIX_noun#        = Translated noun word from the LootAffixDef
+            AFFIX_verb#        = Translated verb word from the LootAffixDef
+            AFFIXPROP_noun#_is_singular = True/False if the noun# should have an article or not (ie: "the Butcher" vs. "Butchery")
+
+            STUFF_label       = The material label given (ie: "Plasteel" or "" for non-material items)
+            THING_defLabel    = The ThingDef label (ie: "Knife")
+            THING_stuffLabel  = The stuffLabel without any quality or stackCount strings (ie: "Plasteel Knife")
+                Provided for completeness, but the postExtra part will probably be in the way for your language.
+        -->
+
+        <!--
+            Basic English rules for affix naming:
+                1. Possessives always go on the either the beginning or to modify a noun/verb.
+                   Never in the middle of other adjectives.  Limit 1 possessive.
+                2. Noun/verbs always go on the end.
+                3. Adjectives can go anywhere else, including before the noun/verb.
+                4. Limit 2 parts each to the prefix/suffix of the item.
+
+            To help improve efficiency with all of these combinations, each half is broken into its own tree
+            (see below).
+        -->
+
+        <!--
+            Affix Namers
+        -->
+
+        <!-- One Affix -->
+        <li>r_affix1->[possess_adject] [THING_stuffLabel]</li>
+        <li>r_affix1->[THING_stuffLabel] of [nounverb]</li>
+
+        <!-- Two Affixes -->
+        <li>r_affix2->[prefix_half] [THING_stuffLabel]</li>
+        <li>r_affix2->[possess_adject] [THING_stuffLabel] of [nounverb]</li>
+        <li>r_affix2->[THING_stuffLabel] of [suffix_possess_half]</li>
+        <li>r_affix2->[THING_stuffLabel] of [suffix_adject1_half]</li>
+        <li>r_affix2->[THING_stuffLabel] of [suffix_nounverb_half]</li>
+
+        <!-- Three Affixes, a-ha-haaa! -->
+
+        <!-- Prefix-loaded -->
+        <!-- PAN, PAV, AAN, AAV -->
+        <li>r_affix3->[prefix_half] [THING_stuffLabel] of [nounverb]</li>
+
+        <!-- Suffix-loaded -->
+        <!-- PAN, PAV, AAN, AAV -->
+        <li>r_affix3->[AFFIX_possessive1] [THING_stuffLabel] of [suffix_adject1_half]</li>
+        <li>r_affix3->[AFFIX_adjective1] [THING_stuffLabel] of [suffix_adject2_half]</li>
+        <li>r_affix3(p=0.5)->[AFFIX_adjective1] [THING_stuffLabel] of [suffix_possess_half]</li>
+
+        <!-- PNV, ANV -->
+        <li>r_affix3->[possess_adject] [THING_stuffLabel] of [suffix_nounverb_half]</li>
+
+        <!-- Four Affixes -->
+
+        <!-- PANV, AANV -->
+        <li>r_affix4->[prefix_half] [THING_stuffLabel] of [suffix_nounverb_half]</li>
+
+        <!-- PAAN, PAAV -->
+        <li>r_affix4->[prefix_possess_half] [THING_stuffLabel] of [suffix_adject2_half]</li>
+        <li>r_affix4(p=0.5)->[prefix_adjects_half] [THING_stuffLabel] of [suffix_possess_half]</li>
+
+        <!-- AAAN, AAAV -->
+        <li>r_affix4->[prefix_adjects_half] [THING_stuffLabel] of [suffix_adject3_half]</li>
+
+
+        <!--
+            Prefix/Suffix Helper Trees
+        -->
+
+        <!-- One-part Rules -->
+
+        <!-- Possessive or adjective -->
+        <li>possess_adject->[AFFIX_possessive1]</li>
+        <li>possess_adject->[AFFIX_adjective1]</li>
+
+        <!-- Noun or verb -->
+        <li>nounverb->[article][AFFIX_noun1]</li>
+        <li>nounverb->[AFFIX_verb1]</li>
+
+        <li>article(AFFIXPROP_noun1_is_singular==False)-></li>
+        <li>article(AFFIXPROP_noun1_is_singular==True)->the </li>
+
+        <!-- Two-part Rules -->
+
+        <!-- Prefix halves (optional either) -->
+        <li>prefix_half->[AFFIX_possessive1] [AFFIX_adjective1]</li>
+        <li>prefix_half->[AFFIX_adjective1] [AFFIX_adjective2]</li>
+
+        <!-- Prefix halves (required possessive) -->
+        <li>prefix_possess_half->[AFFIX_possessive1] [AFFIX_adjective1]</li>
+
+        <!-- Prefix halves (required adjectives) -->
+        <li>prefix_adjects_half->[AFFIX_adjective1] [AFFIX_adjective2]</li>
+
+        <!-- Suffix halves (with possessive) -->
+        <li>suffix_possess_half->[AFFIX_possessive1] [AFFIX_noun1]</li>
+        <li>suffix_possess_half->[AFFIX_possessive1] [AFFIX_verb1]</li>
+
+        <!-- Suffix halves (with adjective1) -->
+        <li>suffix_adject1_half->[article][AFFIX_adjective1] [AFFIX_noun1]</li>
+        <li>suffix_adject1_half->[AFFIX_adjective1] [AFFIX_verb1]</li>
+
+        <!-- Suffix halves (with adjective2) -->
+        <li>suffix_adject2_half->[article][AFFIX_adjective2] [AFFIX_noun1]</li>
+        <li>suffix_adject2_half->[AFFIX_adjective1] [AFFIX_verb1]</li>
+
+        <!-- Suffix halves (with adjective3) -->
+        <li>suffix_adject3_half->[article][AFFIX_adjective3] [AFFIX_noun1]</li>
+        <li>suffix_adject3_half->[AFFIX_adjective3] [AFFIX_verb1]</li>
+
+        <!-- Suffix halves (with noun+verb) -->
+        <li>suffix_nounverb_half->[article][AFFIX_verb1] [AFFIX_noun1]</li>
+
+      </rulesStrings>
+    </rulePack>
+
+  </RulePackDef>
+</Defs>

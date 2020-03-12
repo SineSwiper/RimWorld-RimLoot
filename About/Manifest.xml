@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+    <identifier>RimLoot</identifier>
+    <version>1.0.0</version>
+    <dependencies>
+        <li>Harmony</li>
+        <li>HugsLib</li>
+    </dependencies>
+    <loadAfter>
+        <li>Harmony</li>
+        <li>HugsLib</li>
+    </loadAfter>
+    <manifestUri>https://raw.githubusercontent.com/SineSwiper/RimWorld-RimLoot/master/About/Manifest.xml</manifestUri>
+</Manifest>

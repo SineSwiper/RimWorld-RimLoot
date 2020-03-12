@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
+		<modNameReadable>RimLoot</modNameReadable>
+		<modIdentifier>RimLoot</modIdentifier>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>Dummy</defName>
+		<assemblyVersion>1.0.0</assemblyVersion>
+		<content>
+        </content>
+	</HugsLib.UpdateFeatureDef>
+</Defs>
