@@ -7,7 +7,7 @@ using Verse.Grammar;
 namespace RimLoot {
     public class LootAffixDef : Def {
         public string groupName;
-        public List<LootAffixCategory> modifiers = new List<LootAffixCategory> ();
+        public List<LootAffixModifier> modifiers = new List<LootAffixModifier> ();
         public float affixCost = 1;
         public RulePack affixRulePack;
 
@@ -33,14 +33,14 @@ namespace RimLoot {
 
         public override void ResolveReferences() {
             base.ResolveReferences();
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 modifier.ResolveReferences(this);
             }
         }
 
         public override void PostLoad() {
             base.PostLoad();
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 modifier.PostLoadSpecial(this);
             }
         }
@@ -54,7 +54,7 @@ namespace RimLoot {
 
         public bool CanBeAppliedToThing (ThingWithComps thing) {
             // If any of the modifiers can apply it, then it passes
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 if (modifier.CanBeAppliedToThing(thing)) return true;
             }
 
@@ -64,7 +64,7 @@ namespace RimLoot {
         // FIXME: CanBeAppliedToThing (ThingDef thing) ?
 
         public void PostApplyAffix (ThingWithComps parentThing) {
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 modifier.PostApplyAffix(parentThing, this);
             }
         }
@@ -74,38 +74,38 @@ namespace RimLoot {
 
             // Find a word class rule from the list of affixes
             Rule pickedWordClassRule = fullRules.Where( r =>
-                r.keyword.StartsWith("AFFIX_") && r.keyword.Substring(6) is string pwc &&
-                curWordClasses[pwc] < maxWordClasses[pwc]
+                maxWordClasses.ContainsKey(r.keyword) &&
+                curWordClasses[r.keyword] < maxWordClasses[r.keyword]
             ).RandomElementWithFallback();
 
             if (pickedWordClassRule == null) {
                 Log.Error(
-                    "Did not find an appropriate AFFIX_* rule for " + defName + ".  Either ran out of word classes or affixRulePack is bugged."
+                    "Did not find an appropriate affix rule for " + defName + ".  Either ran out of word classes or affixRulePack is bugged."
                 );
                 yield break;
             }
 
             // Increment the word class count 
-            string pickedWordClass = pickedWordClassRule.keyword.Substring(6);
+            string pickedWordClass = pickedWordClassRule.keyword;
             curWordClasses[pickedWordClass]++;
             int suffixInt = curWordClasses[pickedWordClass];
 
             // Add rule and increment the word class count 
             pickedWordClassRule = pickedWordClassRule.DeepCopy();
-            pickedWordClassRule.keyword += suffixInt.ToString();
+            pickedWordClassRule.keyword = "AFFIX_" + pickedWordClass + suffixInt.ToString();
             yield return pickedWordClassRule;
 
             // Add any extra affix property rules
-            foreach ( Rule rule in fullRules.Where(r => r.keyword.StartsWith("AFFIXPROP_" + pickedWordClass) ) ) {
+            foreach ( Rule rule in fullRules.Where(r => r.keyword.StartsWith(pickedWordClass) && r.keyword != pickedWordClass ) ) {
                 Rule ruleCopy = rule.DeepCopy();
                 string prefix = "AFFIXPROP_" + pickedWordClass + suffixInt.ToString();  // eg: AFFIXPROP_wordclass2_some_prop
-                ruleCopy.keyword = prefix + ruleCopy.keyword.Substring(prefix.Length - 1);
+                ruleCopy.keyword = prefix + ruleCopy.keyword.Substring(pickedWordClass.Length);
                 yield return ruleCopy;
             }
 
             // If it doesn't fit either of those two prefixes, just add it in verbatim
             foreach ( Rule rule in fullRules.Where(r =>
-                !r.keyword.StartsWith("AFFIX_") && !r.keyword.StartsWith("AFFIXPROP_")
+                !maxWordClasses.Keys.Any(k => r.keyword.StartsWith(k))
             ) ) yield return rule;
         }
 
@@ -113,14 +113,14 @@ namespace RimLoot {
             if (preLabel == null) preLabel = FullAffixLabel;  // fallback
 
             string str = preLabel + ":\n";                
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 str += "    " + modifier.ModifierChangeLabel + "\n";
             }
             return str;
         }
 
         public IEnumerable<Dialog_InfoCard.Hyperlink> GetModifierHyperlinks (ThingWithComps parentThing) {
-            foreach (LootAffixCategory modifier in modifiers) {
+            foreach (LootAffixModifier modifier in modifiers) {
                 foreach (var hyperlink in modifier.GetHyperlinks(parentThing, this)) {
                     yield return hyperlink;
                 }

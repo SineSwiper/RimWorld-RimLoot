@@ -4,7 +4,7 @@
         <defName>Tough</defName>
         <groupName>LootAffixes_MaxHitPoints</groupName>
         <modifiers>
-            <li Class="RimLoot.LootAffixCategory_StatDefChange">
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
                 <multiplier>2</multiplier>
             </li>
@@ -12,9 +12,63 @@
         <affixCost>1</affixCost>
         <affixRulePack>
             <rulesStrings>
-                <li>AFFIX_adjective->Tough</li>
-                <li>AFFIX_noun->Toughness</li>
-                <li>AFFIXPROP_noun_is_singular->False</li>
+                <li>adjective->Tough</li>
+                <li>noun->Toughness</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+    <RimLoot.LootAffixDef>
+        <defName>Unbreakable</defName>
+        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>MaxHitPoints</affectedStat>
+                <multiplier>4</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Flammability</affectedStat>
+                <maxValue>0</maxValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>DeteriorationRate</affectedStat>
+                <maxValue>0</maxValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Unbreakable</li>
+                <li>noun->Unbreakability</li>
+                <li>verb->Everlasting</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+    <RimLoot.LootAffixDef>
+        <defName>Brittle</defName>
+        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>MaxHitPoints</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Flammability</affectedStat>
+                <preMinValue>0.2</preMinValue>
+                <multiplier>4</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>DeteriorationRate</affectedStat>
+                <multiplier>4</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Brittle</li>
+                <li>verb->Breaking</li>
+                <li>noun_is_singular->False</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
     <RimLoot_LootAffixModifiers>Loot Affix Modifiers</RimLoot_LootAffixModifiers>
-    <RimLoot_AffixStatExplanationPart>{0} Affix: {1}</RimLoot_AffixStatExplanationPart>
+    <RimLoot_AffixStatExplanationPart>{0} affix</RimLoot_AffixStatExplanationPart>
 </LanguageData>

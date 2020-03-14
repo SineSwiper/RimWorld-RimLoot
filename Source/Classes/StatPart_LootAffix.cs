@@ -7,7 +7,7 @@ using Verse;
 
 namespace RimLoot {
     class StatPart_LootAffix : StatPart {
-        public LootAffixCategory_StatDefChange parentStatChanger;
+        public LootAffixModifier_StatDefChange parentStatChanger;
         public LootAffixDef                    parentLootAffix;
 
         public override void TransformValue (StatRequest req, ref float val) {
@@ -22,10 +22,10 @@ namespace RimLoot {
             var comp  = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return null;
 
-            return "RimLoot_AffixStatExplanationPart".Translate(
-                comp.AllAffixesByAffixDefs[parentLootAffix],
+            return
+                "RimLoot_AffixStatExplanationPart".Translate(comp.AllAffixesByAffixDefs[parentLootAffix]) + ": " +
                 parentStatChanger.ModifierChangeString
-            );
+            ;
         }
 
         // FIXME: MarketValue affix adjustments within the main MarketValue class

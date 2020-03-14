@@ -30,15 +30,16 @@ namespace RimLoot {
             // Add CompLootAffixableThing to all apparel and weapons
             foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where( t => 
                 // Basic checks
-                t.category == ThingCategory.Item && t.selectable && t.alwaysHaulable && (
+                t.category == ThingCategory.Item && t.selectable && t.alwaysHaulable &&
+                t.HasComp(typeof(CompQuality)) && (
                     // Apparel check
                     t.IsApparel ||
                     // Weapons check 
                     (
                         (t.IsMeleeWeapon || t.IsRangedWeapon) &&
+                        t.equipmentType == EquipmentType.Primary && t.HasComp(typeof(CompEquippable)) &&
                         // No beer bottles or resource-acquired weapons (like Thrumbo horns)
-                        t.equipmentType == EquipmentType.Primary &&
-                        t.HasComp(typeof(CompEquippable)) && t.HasComp(typeof(CompBiocodableWeapon))
+                        !t.IsIngestible  // FIXME: Check Thrumbo Horn!
                     )
                 )
             ) ) {

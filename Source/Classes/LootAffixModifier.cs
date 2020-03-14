@@ -11,7 +11,7 @@ namespace RimLoot {
         VerbTarget
     };
 
-    public abstract class LootAffixCategory {
+    public abstract class LootAffixModifier : Editable {
         public float chance = 1f;
         public ModifierTarget appliesTo;
 
@@ -45,8 +45,13 @@ namespace RimLoot {
             var comp = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return false;
 
-            var self = comp.AllAffixDefs.FirstOrFallback( lad => lad.modifiers.Contains(this) );
-            return self != null;
+            // This may sometimes get ran too early in the process for AllModifiers
+            if (comp.fullStuffLabel == null) {
+                var self = comp.AllAffixDefs.FirstOrFallback( lad => lad.modifiers.Contains(this) );
+                return self != null;
+            }
+
+            return comp.AllModifiers.Contains<LootAffixModifier>(this);
         }
 
         public bool ShouldActivate (ThingWithComps thing) {

@@ -4,7 +4,7 @@ using UnityEngine;
 using Verse;
 
 namespace RimLoot {
-    public class LootAffixCategory_StatDefChange : LootAffixCategory {
+    public class LootAffixModifier_StatDefChange : LootAffixModifier {
         public StatDef affectedStat;
         public float   preMinValue = -9999999f;  // mostly used if value was originally zero or too low for multiplication
         public float   addValue    = 0;
@@ -30,6 +30,7 @@ namespace RimLoot {
             }
         }
 
+        // FIXME: Some way to combine StatParts for multiple LADs?
         public override void ResolveReferences (LootAffixDef parentDef) {
             var statPart = new StatPart_LootAffix {
                 parentStat        = affectedStat,
@@ -58,6 +59,11 @@ namespace RimLoot {
         }
 
         public override bool CanBeAppliedToThing (ThingWithComps thing) {
+            if (affectedStat == StatDefOf.MaxHitPoints) {
+                // ShouldShowFor doesn't show Max HP, so force it in
+                return thing.def.useHitPoints;
+            }
+
             StatRequest req = StatRequest.For(thing);
             return affectedStat.Worker.ShouldShowFor(req);
         }
@@ -72,9 +78,9 @@ namespace RimLoot {
         public bool AppliedOn (StatRequest req) {
             if (req == null)       return false;
             if (req.Thing == null) return false;
-            if (req.Thing.GetType() != typeof(ThingWithComps)) return false;
+            if ( !typeof(ThingWithComps).IsAssignableFrom(req.Thing.GetType()) ) return false;
 
-            return AppliedOn( (ThingWithComps)req.Thing );
+            return this.AppliedOn( (ThingWithComps)req.Thing );
         }
 
         public float ChangeValue (float oldVal) {

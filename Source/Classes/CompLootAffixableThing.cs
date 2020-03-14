@@ -7,14 +7,17 @@ using Verse.Grammar;
 
 namespace RimLoot {
     class CompLootAffixableThing : ThingComp {
-        private string fullStuffLabel = null;
+        internal string fullStuffLabel = null;
 
         private List<LootAffixDef> affixes    = new List<LootAffixDef>();
         private List<Rule>         affixRules = new List<Rule>();
 
+        // Cached values
         private List<string>                     affixStringsCached;
         private Dictionary<string, LootAffixDef> affixDefDictCached;
         private Dictionary<LootAffixDef, string> affixStringsDictCached;
+
+        private HashSet<LootAffixModifier>       modifiersCached;
 
         public List<LootAffixDef> AllAffixDefs {
             get { return affixes; }
@@ -44,25 +47,32 @@ namespace RimLoot {
             }
         }
 
+        public HashSet<LootAffixModifier> AllModifiers {
+            get {
+                if (modifiersCached != null) return modifiersCached;
+                MakeAffixCaches();
+                return modifiersCached;
+            }
+        }
+
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
             affixDefDictCached     = new Dictionary<string, LootAffixDef> {};
             affixStringsDictCached = new Dictionary<LootAffixDef, string> {};
+            modifiersCached        = new HashSet<LootAffixModifier>       {};
             for (int i = 0; i < affixes.Count; i++) {
                 affixDefDictCached    [ AffixStrings[i] ] = affixes[i];
                 affixStringsDictCached[ affixes[i] ] = AffixStrings[i];
+                modifiersCached.AddRange(affixes[i].modifiers);
             }
         }
 
-        public override void PostPostMake() {
-            // DEBUG - Fix with real system later
-            if (0.50f < Random.Range(0.0f, 1.0f)) affixes.Add( DefDatabase<LootAffixDef>.GetNamed("Tough") );
-
-            // NOT DEBUG: Keep this
-            foreach (LootAffixDef affix in affixes) {
-                affix.PostApplyAffix(parent);
-            }
+        private void ClearAffixCaches() {
+            affixStringsCached?.Clear();
+            affixDefDictCached?.Clear();
+            affixStringsDictCached?.Clear();
+            modifiersCached?.Clear();
         }
 
         public override void PostExposeData() {
@@ -83,12 +93,109 @@ namespace RimLoot {
             
         }
 
+        public override void ReceiveCompSignal(string signal) {
+            if (signal == "SetQuality") InitializeAffixes();
+        }
+    
         public override void CompTick() {
             // FIXME
         }
 
         public override void CompTickRare() {
             // FIXME
+        }
+
+        public void InitializeAffixes(float affixPoints = 0, int ttlAffixes = 0) {  // options for debug only
+            affixes.Clear();
+            AddNewAffixes(affixPoints, ttlAffixes);
+            PostAffixCleanup();
+        }
+
+        public void PostAffixCleanup() {
+            ClearAffixCaches();
+            affixRules.Clear();
+
+            fullStuffLabel = null;
+            string name = parent.LabelNoCount;
+            name = TransformLabel(name);
+
+            foreach (LootAffixDef affix in affixes) {
+                affix.PostApplyAffix(parent);
+            }
+        }
+
+        // FIXME: Test the ratio system
+        public void AddNewAffixes(float affixPoints = 0, int ttlAffixes = 0) {  // options for debug only
+            affixes.Clear();
+            if (affixPoints == 0) affixPoints = CalculateTotalLootAffixPoints();
+
+            if (ttlAffixes == 0) {
+                for (int i = 1; i <= 4; i++) {
+                    // 25% chance for each affix (compounded)
+                    if (0.25f < Random.Range(0.0f, 1.0f)) break;
+                    ttlAffixes = i;
+                }
+            }
+            if (ttlAffixes == 0) return;
+
+            // Baseline of affixes that can be used (since affixPoints could change upward or downward)
+            List<LootAffixDef> baseAffixDefs = 
+                DefDatabase<LootAffixDef>.AllDefsListForReading.
+                FindAll( lad => lad.CanBeAppliedToThing(parent) )
+            ;
+            List<LootAffixDef> filteredAffixDefs = baseAffixDefs.FindAll( lad => lad.affixCost <= affixPoints );
+
+            // First affix: Random pool of anything (within the cost)
+            LootAffixDef firstAffix = filteredAffixDefs.RandomElementWithFallback();
+            if (firstAffix == null) return;
+
+            affixes.Add(firstAffix);
+            affixPoints -= firstAffix.affixCost;
+            baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+
+            // Remaining affixes: rebalance the weight priorities to better reflect the current point total
+            for (int curAffixes = 2; curAffixes <= 4; curAffixes++) {
+                if (curAffixes > ttlAffixes) return;
+                int remainAffixes = ttlAffixes - curAffixes + 1;
+
+                float paRatio = remainAffixes > 1 ? affixPoints / remainAffixes : affixPoints * 0.70f;
+                
+                filteredAffixDefs     = baseAffixDefs.FindAll(lad => lad.affixCost <= affixPoints);
+                LootAffixDef newAffix = filteredAffixDefs.RandomElementByWeightWithFallback(lad =>
+                    // eg: p=2 for cost right at the average, p=1/3 for one that's 3 away from the average, including negatives
+                    1 / Mathf.Max(Mathf.Abs(lad.affixCost - paRatio), 0.5f)
+                );
+                if (newAffix == null) return;
+
+                affixes.Add(newAffix);
+                affixPoints -= newAffix.affixCost;
+                baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+            }
+        }
+
+        public int CalculateTotalLootAffixPoints() {
+            float ptsF = 0f;
+
+            // Up to 4 points based on total wealth (1M max)
+            float wealth = 0f;
+            if (Current.ProgramState == ProgramState.Playing) {  // don't bother while initializing
+                if      (parent.Map      != null && parent.Map.wealthWatcher      != null) wealth = parent.Map.wealthWatcher.WealthTotal;
+                else if (Find.CurrentMap != null && Find.CurrentMap.wealthWatcher != null) wealth = Find.CurrentMap.wealthWatcher.WealthTotal;
+                else if (Find.World      != null)                                          wealth = Find.World.PlayerWealthForStoryteller;
+            }
+
+            ptsF += Mathf.Min(wealth, 1_000_000) / 250_000;
+
+            // Up to 8 points based on item quality
+            QualityCategory qc;
+            parent.TryGetQuality(out qc);
+
+            // Normal = 1, Good = 2, Excellent = 4, Masterwork = 6, Legendary = 8
+            ptsF += Mathf.Pow((int)qc, 2f) / 4.5f;
+
+            Log.Message("Affix Points: " + string.Join("/", wealth, qc, (int)qc, (float)qc));
+
+            return Mathf.RoundToInt(ptsF);
         }
 
         public override string TransformLabel(string label) {
@@ -125,6 +232,7 @@ namespace RimLoot {
                 // Add in the affixes
                 foreach (LootAffixDef affix in affixes) {
                     foreach (Rule rule in affix.PickAffixRulesForLabeling(curWordClasses, maxWordClasses)) {
+                        Log.Message("affix rule: " + rule);
                         if (rule.keyword.StartsWith("AFFIX_")) affixRules.Add(rule);
                         request.Rules.Add(rule);
                         if (rule.keyword.StartsWith("AFFIXPROP_")) request.Constants.Add(rule.keyword, rule.Generate());
@@ -137,6 +245,14 @@ namespace RimLoot {
                     affixRules.Clear();
                     continue;
                 }
+            }
+
+            if (affixRules.Count != affixes.Count) {
+                Log.Error("Chosen affix words for " + parent + " don't match the number of affixes:\n" + string.Join(
+                    "\nvs.\n", 
+                    string.Join(" | ", affixRules), 
+                    string.Join(", ", affixes)
+                ));
             }
 
             // Add a few types of labels for maximum language flexibility
