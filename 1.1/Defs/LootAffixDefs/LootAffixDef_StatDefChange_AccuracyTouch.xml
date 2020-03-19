@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Precise</defName>
+        <label>Precise</label>
+        <groupName>StatDefChange_AccuracyTouch</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyTouch</affectedStat>
+                <addValue>0.2</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyShort</affectedStat>
+                <addValue>0.2</addValue>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Precise</li>
+                <li>noun->Precision</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Deadeye</defName>
+        <label>Deadeye</label>
+        <groupName>StatDefChange_AccuracyTouch</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyTouch</affectedStat>
+                <addValue>0.4</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyShort</affectedStat>
+                <addValue>0.4</addValue>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Ranger's</li>
+                <li>adjective->Deadeye</li>
+                <li>noun->Gunslinger</li>
+                <li>verb->Gunslinging</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Imprecise</defName>
+        <label>Imprecise</label>
+        <groupName>StatDefChange_AccuracyTouch</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyTouch</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyShort</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Imprecise</li>
+                <li>noun->Imprecision</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

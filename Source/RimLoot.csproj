@@ -71,14 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DebugToolsLootAffixes.cs" />
-    <Compile Include="Classes\LootAffixNamerConfigDef.cs" />
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_EquippedStatDefChange.cs" />
+    <Compile Include="Classes\LootAffixNamerRulePackDef.cs" />
+    <Compile Include="Classes\StatPart_LootAffix_Equipped.cs" />
+    <Compile Include="Classes\StatPart_LootAffix_MarketValue.cs" />
     <Compile Include="Classes\StatPart_LootAffix.cs" />
-    <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="Overrides\HarmonyPatches.cs" />
     <Compile Include="RimLoot.cs" />
     <Compile Include="Classes\CompProperties_LootAffixableThing.cs" />
     <Compile Include="Classes\CompLootAffixableThing.cs" />
-    <Compile Include="Classes\LootAffixModifier_StatDefChange.cs" />
-    <Compile Include="Classes\LootAffixModifier.cs" />
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_StatDefChange.cs" />
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier.cs" />
     <Compile Include="Classes\LootAffixDef.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

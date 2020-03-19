@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Sanely</defName>
+        <label>Sanely</label>
+        <groupName>EquippedStatDefChange_MentalBreakThreshold</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MentalBreakThreshold</affectedStat>
+                <addValue>-0.05</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Sanely</li>
+                <li>noun->Sane</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Balanced</defName>
+        <label>Balanced</label>
+        <groupName>EquippedStatDefChange_MentalBreakThreshold</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MentalBreakThreshold</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Balanced</li>
+                <li>noun->Balanced</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Insanely</defName>
+        <label>Insanely</label>
+        <groupName>EquippedStatDefChange_MentalBreakThreshold</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MentalBreakThreshold</affectedStat>
+                <addValue>0.10</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Insanely</li>
+                <li>noun->Insane</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

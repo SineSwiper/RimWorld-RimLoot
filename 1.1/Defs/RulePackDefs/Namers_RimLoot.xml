@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <RimLoot.LootAffixNamerConfigDef>
-    <defName>RimLoot_LootAffixNamer_Config</defName>
+  <RimLoot.LootAffixNamerRulePackDef>
+    <defName>RimLoot_LootAffixNamer</defName>
     <maxWordClasses>
       <li>
         <key>possessive</key>
@@ -38,10 +38,6 @@
             <li>adjective</li>
         </li>
     </disallowedAffixCombos>
-  </RimLoot.LootAffixNamerConfigDef>
-
-  <RulePackDef>
-    <defName>RimLoot_LootAffixNamer</defName>
     <rulePack>
       <rulesStrings>
         <!--
@@ -157,7 +153,7 @@
 
         <!-- Suffix halves (with adjective2) -->
         <li>suffix_adject2_half->[article][AFFIX_adjective2] [AFFIX_noun1]</li>
-        <li>suffix_adject2_half->[AFFIX_adjective1] [AFFIX_verb1]</li>
+        <li>suffix_adject2_half->[AFFIX_adjective2] [AFFIX_verb1]</li>
 
         <!-- Suffix halves (with adjective3) -->
         <li>suffix_adject3_half->[article][AFFIX_adjective3] [AFFIX_noun1]</li>
@@ -169,5 +165,5 @@
       </rulesStrings>
     </rulePack>
 
-  </RulePackDef>
+  </RimLoot.LootAffixNamerRulePackDef>
 </Defs>

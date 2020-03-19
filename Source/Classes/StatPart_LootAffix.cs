@@ -27,8 +27,5 @@ namespace RimLoot {
                 parentStatChanger.ModifierChangeString
             ;
         }
-
-        // FIXME: MarketValue affix adjustments within the main MarketValue class
-
     }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Energizing</defName>
+        <label>Energizing</label>
+        <groupName>StatDefChange_EnergyShieldEnergyMax</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldEnergyMax</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldRechargeRate</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Energizing</li>
+                <li>noun->Energy</li>
+                <li>verb->Energizing</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Enfused</defName>
+        <label>Enfused</label>
+        <groupName>StatDefChange_EnergyShieldEnergyMax</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldEnergyMax</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldRechargeRate</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Static's</li>
+                <li>adjective->Enfused</li>
+                <li>noun->Fusion</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Lethargic</defName>
+        <label>Lethargic</label>
+        <groupName>StatDefChange_EnergyShieldEnergyMax</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldEnergyMax</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EnergyShieldRechargeRate</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Lethargic</li>
+                <li>noun->Lethargy</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

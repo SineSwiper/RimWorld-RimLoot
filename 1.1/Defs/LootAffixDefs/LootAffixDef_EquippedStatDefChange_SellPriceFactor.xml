@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Duchessy</defName>
+        <label>Duchessy</label>
+        <groupName>EquippedStatDefChange_SellPriceFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SellPriceFactor</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RoyalFavorValue</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Duke's</li>
+                <li>adjective->Duchessy</li>
+                <li>noun->Duke</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Princely</defName>
+        <label>Princely</label>
+        <groupName>EquippedStatDefChange_SellPriceFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SellPriceFactor</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RoyalFavorValue</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Prince's</li>
+                <li>adjective->Princely</li>
+                <li>noun->Prince</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Guerilla</defName>
+        <label>Guerilla</label>
+        <groupName>EquippedStatDefChange_SellPriceFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SellPriceFactor</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RoyalFavorValue</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Rebel's</li>
+                <li>adjective->Guerilla</li>
+                <li>noun->Rebel</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

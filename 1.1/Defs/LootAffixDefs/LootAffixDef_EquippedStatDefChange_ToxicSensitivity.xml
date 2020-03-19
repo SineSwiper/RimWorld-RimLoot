@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Resistant</defName>
+        <label>Resistant</label>
+        <groupName>EquippedStatDefChange_ToxicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ToxicSensitivity</affectedStat>
+                <addValue>-0.5</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ImmunityGainSpeed</affectedStat>
+                <addValue>0.25</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PainShockThreshold</affectedStat>
+                <addValue>0.05</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Resistant</li>
+                <li>noun->Resistant</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Resilient</defName>
+        <label>Resilient</label>
+        <groupName>EquippedStatDefChange_ToxicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ToxicSensitivity</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ImmunityGainSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PainShockThreshold</affectedStat>
+                <addValue>0.10</addValue>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Resilient</li>
+                <li>noun->Resilient</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Sickly</defName>
+        <label>Sickly</label>
+        <groupName>EquippedStatDefChange_ToxicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ToxicSensitivity</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ImmunityGainSpeed</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PainShockThreshold</affectedStat>
+                <multiplier>0.25</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Sickly</li>
+                <li>noun->Sickling</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

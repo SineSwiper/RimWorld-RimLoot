@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Armored</defName>
+        <label>Armored</label>
+        <groupName>StatDefChange_ArmorRating_Sharp</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Sharp</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Blunt</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Armored</li>
+                <li>noun->Shield</li>
+                <li>verb->Shielding</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Fortified</defName>
+        <label>Fortified</label>
+        <groupName>StatDefChange_ArmorRating_Sharp</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Sharp</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Blunt</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Titan's</li>
+                <li>adjective->Fortified</li>
+                <li>noun->Bulwark</li>
+                <li>verb->Fortifying</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Unshielded</defName>
+        <label>Unshielded</label>
+        <groupName>StatDefChange_ArmorRating_Sharp</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Sharp</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>ArmorRating_Blunt</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Unshielded</li>
+                <li>noun->Unshielded</li>
+                <li>verb->Unshielding</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

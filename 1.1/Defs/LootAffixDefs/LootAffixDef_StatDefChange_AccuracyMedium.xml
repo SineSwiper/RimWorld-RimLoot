@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Accurate</defName>
+        <label>Accurate</label>
+        <groupName>StatDefChange_AccuracyMedium</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyMedium</affectedStat>
+                <addValue>0.2</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyLong</affectedStat>
+                <addValue>0.2</addValue>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Accurate</li>
+                <li>noun->Accuracy</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Bulleye</defName>
+        <label>Bulleye</label>
+        <groupName>StatDefChange_AccuracyMedium</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyMedium</affectedStat>
+                <addValue>0.4</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyLong</affectedStat>
+                <addValue>0.4</addValue>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Eagle's</li>
+                <li>adjective->Bulleye</li>
+                <li>noun->Sharpshooter</li>
+                <li>verb->Sharpshooting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Inaccurate</defName>
+        <label>Inaccurate</label>
+        <groupName>StatDefChange_AccuracyMedium</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyMedium</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyLong</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Inaccurate</li>
+                <li>noun->Inaccuracy</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

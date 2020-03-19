@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Learning</defName>
+        <label>Learning</label>
+        <groupName>EquippedStatDefChange_GlobalLearningFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GlobalLearningFactor</affectedStat>
+                <addValue>0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Learner's</li>
+                <li>adjective->Learning</li>
+                <li>noun->Learner</li>
+                <li>verb->Learning</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Teaching</defName>
+        <label>Teaching</label>
+        <groupName>EquippedStatDefChange_GlobalLearningFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GlobalLearningFactor</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Teacher's</li>
+                <li>adjective->Teaching</li>
+                <li>noun->Teacher</li>
+                <li>verb->Teaching</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Duncy</defName>
+        <label>Duncy</label>
+        <groupName>EquippedStatDefChange_GlobalLearningFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GlobalLearningFactor</affectedStat>
+                <addValue>-0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Dunce's</li>
+                <li>adjective->Duncy</li>
+                <li>noun->Dunce</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

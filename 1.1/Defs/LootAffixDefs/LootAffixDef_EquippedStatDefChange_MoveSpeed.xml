@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Jogging</defName>
+        <label>Jogging</label>
+        <groupName>EquippedStatDefChange_MoveSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MoveSpeed</affectedStat>
+                <addValue>0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Jogger's</li>
+                <li>adjective->Jogging</li>
+                <li>noun->Jogger</li>
+                <li>verb->Jogging</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Running</defName>
+        <label>Running</label>
+        <groupName>EquippedStatDefChange_MoveSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MoveSpeed</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Runner's</li>
+                <li>adjective->Running</li>
+                <li>noun->Runner</li>
+                <li>verb->Running</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Walking</defName>
+        <label>Walking</label>
+        <groupName>EquippedStatDefChange_MoveSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MoveSpeed</affectedStat>
+                <addValue>-0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Walker's</li>
+                <li>adjective->Walking</li>
+                <li>noun->Walker</li>
+                <li>verb->Walking</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

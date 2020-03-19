@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Proletarian</defName>
+        <label>Proletarian</label>
+        <groupName>EquippedStatDefChange_GeneralLaborSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GeneralLaborSpeed</affectedStat>
+                <addValue>0.25</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Proletarian's</li>
+                <li>adjective->Proletarian</li>
+                <li>noun->Proletarian</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Industrial</defName>
+        <label>Industrial</label>
+        <groupName>EquippedStatDefChange_GeneralLaborSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GeneralLaborSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Industrialist's</li>
+                <li>adjective->Industrial</li>
+                <li>noun->Industrialist</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Unemployed</defName>
+        <label>Unemployed</label>
+        <groupName>EquippedStatDefChange_GeneralLaborSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>GeneralLaborSpeed</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Unemployer's</li>
+                <li>adjective->Unemployed</li>
+                <li>noun->Unemployer</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

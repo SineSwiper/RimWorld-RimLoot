@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Building</defName>
+        <label>Building</label>
+        <groupName>EquippedStatDefChange_ConstructionSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructionSpeed</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructSuccessChance</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SmoothingSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>FixBrokenDownBuildingSuccessChance</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Builder's</li>
+                <li>adjective->Building</li>
+                <li>noun->Builder</li>
+                <li>verb->Building</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Architectural</defName>
+        <label>Architectural</label>
+        <groupName>EquippedStatDefChange_ConstructionSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructionSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructSuccessChance</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SmoothingSpeed</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>FixBrokenDownBuildingSuccessChance</affectedStat>
+                <multiplier>4</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Architect's</li>
+                <li>adjective->Architectural</li>
+                <li>noun->Architect</li>
+                <li>verb->Architecting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Wreckful</defName>
+        <label>Wreckful</label>
+        <groupName>EquippedStatDefChange_ConstructionSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructionSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ConstructSuccessChance</affectedStat>
+                <multiplier>0.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SmoothingSpeed</affectedStat>
+                <multiplier>0.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>FixBrokenDownBuildingSuccessChance</affectedStat>
+                <multiplier>0.25</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-3.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Wrecker's</li>
+                <li>adjective->Wreckful</li>
+                <li>noun->Wrecker</li>
+                <li>verb->Wrecking</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

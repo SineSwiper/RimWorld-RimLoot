@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Speed-loaded</defName>
+        <label>Speed-loaded</label>
+        <groupName>StatDefChange_RangedWeapon_Cooldown</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>RangedWeapon_Cooldown</affectedStat>
+                <multiplier>0.8</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Speed-loaded</li>
+                <li>verb->Speed-loading</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Instant-loaded</defName>
+        <label>Instant-loaded</label>
+        <groupName>StatDefChange_RangedWeapon_Cooldown</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>RangedWeapon_Cooldown</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Captain's</li>
+                <li>adjective->Instant-loaded</li>
+                <li>verb->Instant-loading</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Slow-loaded</defName>
+        <label>Slow-loaded</label>
+        <groupName>StatDefChange_RangedWeapon_Cooldown</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>RangedWeapon_Cooldown</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Slow-loaded</li>
+                <li>verb->Slow-loading</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

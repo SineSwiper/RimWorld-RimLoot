@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Light</defName>
+        <label>Light</label>
+        <groupName>StatDefChange_Mass</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Mass</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EquipDelay</affectedStat>
+                <multiplier>0.3</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Light</li>
+                <li>noun->Agility</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Heavy</defName>
+        <label>Heavy</label>
+        <groupName>StatDefChange_Mass</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Mass</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>EquipDelay</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Heavy</li>
+                <li>noun->Weight</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

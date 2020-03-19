@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Slumbering</defName>
+        <label>Slumbering</label>
+        <groupName>EquippedStatDefChange_RestRateMultiplier</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RestRateMultiplier</affectedStat>
+                <addValue>0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Slumberer's</li>
+                <li>adjective->Slumbering</li>
+                <li>noun->Slumberer</li>
+                <li>verb->Slumbering</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Hibernating</defName>
+        <label>Hibernating</label>
+        <groupName>EquippedStatDefChange_RestRateMultiplier</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RestRateMultiplier</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Hibernator's</li>
+                <li>adjective->Hibernating</li>
+                <li>noun->Hibernator</li>
+                <li>verb->Hibernating</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Insomnolent</defName>
+        <label>Insomnolent</label>
+        <groupName>EquippedStatDefChange_RestRateMultiplier</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>RestRateMultiplier</affectedStat>
+                <addValue>-0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Insomniac's</li>
+                <li>adjective->Insomnolent</li>
+                <li>noun->Insomniac</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

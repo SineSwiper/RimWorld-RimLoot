@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Smoking</defName>
+        <label>Smoking</label>
+        <groupName>StatDefChange_SmokepopBeltRadius</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>SmokepopBeltRadius</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Smoking</li>
+                <li>noun->Smoke</li>
+                <li>verb->Smoking</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Cloaking</defName>
+        <label>Cloaking</label>
+        <groupName>StatDefChange_SmokepopBeltRadius</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>SmokepopBeltRadius</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Ninja's</li>
+                <li>adjective->Cloaking</li>
+                <li>noun->Smokescreens</li>
+                <li>verb->Cloaking</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Fizzling</defName>
+        <label>Fizzling</label>
+        <groupName>StatDefChange_SmokepopBeltRadius</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>SmokepopBeltRadius</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Fizzling</li>
+                <li>noun->Fizzle</li>
+                <li>verb->Fizzling</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

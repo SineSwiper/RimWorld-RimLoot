@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Mental</defName>
+        <label>Mental</label>
+        <groupName>EquippedStatDefChange_PsychicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicSensitivity</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyMax</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyRecoveryRate</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyGain</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Mentalist's</li>
+                <li>adjective->Mental</li>
+                <li>noun->Mentalist</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Psychic</defName>
+        <label>Psychic</label>
+        <groupName>EquippedStatDefChange_PsychicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicSensitivity</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyMax</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyRecoveryRate</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyGain</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Psychic's</li>
+                <li>adjective->Psychic</li>
+                <li>noun->Psychic</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Myopic</defName>
+        <label>Myopic</label>
+        <groupName>EquippedStatDefChange_PsychicSensitivity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicSensitivity</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyMax</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyRecoveryRate</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PsychicEntropyGain</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Myopic's</li>
+                <li>adjective->Myopic</li>
+                <li>noun->Myopic</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

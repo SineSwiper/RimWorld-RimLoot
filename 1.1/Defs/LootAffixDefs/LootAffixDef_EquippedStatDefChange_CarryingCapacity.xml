@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Backpacking</defName>
+        <label>Backpacking</label>
+        <groupName>EquippedStatDefChange_CarryingCapacity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>CarryingCapacity</affectedStat>
+                <addValue>25</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Backpacker's</li>
+                <li>adjective->Backpacking</li>
+                <li>noun->Backpacker</li>
+                <li>verb->Backpacking</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Traveling</defName>
+        <label>Traveling</label>
+        <groupName>EquippedStatDefChange_CarryingCapacity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>CarryingCapacity</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Traveler's</li>
+                <li>adjective->Traveling</li>
+                <li>noun->Traveler</li>
+                <li>verb->Traveling</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Resident</defName>
+        <label>Resident</label>
+        <groupName>EquippedStatDefChange_CarryingCapacity</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>CarryingCapacity</affectedStat>
+                <addValue>-25</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Resident's</li>
+                <li>adjective->Resident</li>
+                <li>noun->Resident</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

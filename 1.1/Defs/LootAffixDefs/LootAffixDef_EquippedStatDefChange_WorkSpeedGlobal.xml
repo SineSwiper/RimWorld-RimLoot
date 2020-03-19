@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Tinkering</defName>
+        <label>Tinkering</label>
+        <groupName>EquippedStatDefChange_WorkSpeedGlobal</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>WorkSpeedGlobal</affectedStat>
+                <addValue>0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Tinker's</li>
+                <li>adjective->Tinkering</li>
+                <li>noun->Tinker</li>
+                <li>verb->Tinkering</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Handy</defName>
+        <label>Handy</label>
+        <groupName>EquippedStatDefChange_WorkSpeedGlobal</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>WorkSpeedGlobal</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Handyman's</li>
+                <li>adjective->Handy</li>
+                <li>noun->Handyman</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Neophyte</defName>
+        <label>Neophyte</label>
+        <groupName>EquippedStatDefChange_WorkSpeedGlobal</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>WorkSpeedGlobal</affectedStat>
+                <addValue>-0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Neophyte's</li>
+                <li>adjective->Neophyte</li>
+                <li>noun->Neophyte</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

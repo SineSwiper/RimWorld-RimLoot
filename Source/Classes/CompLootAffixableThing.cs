@@ -6,7 +6,7 @@ using Verse;
 using Verse.Grammar;
 
 namespace RimLoot {
-    class CompLootAffixableThing : ThingComp {
+    public class CompLootAffixableThing : ThingComp {
         internal string fullStuffLabel = null;
 
         private List<LootAffixDef> affixes    = new List<LootAffixDef>();
@@ -18,6 +18,8 @@ namespace RimLoot {
         private Dictionary<LootAffixDef, string> affixStringsDictCached;
 
         private HashSet<LootAffixModifier>       modifiersCached;
+
+        private float?                           ttlAffixPoints;
 
         public List<LootAffixDef> AllAffixDefs {
             get { return affixes; }
@@ -55,16 +57,27 @@ namespace RimLoot {
             }
         }
 
+        public float TotalAffixPoints {
+            get {
+                if (ttlAffixPoints != null) return (float)ttlAffixPoints;
+                MakeAffixCaches();
+                return (float)ttlAffixPoints;
+            }
+        }
+
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
             affixDefDictCached     = new Dictionary<string, LootAffixDef> {};
             affixStringsDictCached = new Dictionary<LootAffixDef, string> {};
             modifiersCached        = new HashSet<LootAffixModifier>       {};
+            ttlAffixPoints         = 0;
+
             for (int i = 0; i < affixes.Count; i++) {
                 affixDefDictCached    [ AffixStrings[i] ] = affixes[i];
                 affixStringsDictCached[ affixes[i] ] = AffixStrings[i];
                 modifiersCached.AddRange(affixes[i].modifiers);
+                ttlAffixPoints += affixes[i].affixCost;
             }
         }
 
@@ -73,6 +86,7 @@ namespace RimLoot {
             affixDefDictCached?.Clear();
             affixStringsDictCached?.Clear();
             modifiersCached?.Clear();
+            ttlAffixPoints = null;
         }
 
         public override void PostExposeData() {
@@ -136,6 +150,9 @@ namespace RimLoot {
                     ttlAffixes = i;
                 }
             }
+
+            Log.Message("Affix/Points: " + string.Join("/", ttlAffixes, affixPoints));
+
             if (ttlAffixes == 0) return;
 
             // Baseline of affixes that can be used (since affixPoints could change upward or downward)
@@ -152,24 +169,33 @@ namespace RimLoot {
             affixes.Add(firstAffix);
             affixPoints -= firstAffix.affixCost;
             baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+            Log.Message("1 Affix: " + string.Join("/", firstAffix.defName, firstAffix.affixCost));
 
             // Remaining affixes: rebalance the weight priorities to better reflect the current point total
             for (int curAffixes = 2; curAffixes <= 4; curAffixes++) {
                 if (curAffixes > ttlAffixes) return;
                 int remainAffixes = ttlAffixes - curAffixes + 1;
 
-                float paRatio = remainAffixes > 1 ? affixPoints / remainAffixes : affixPoints * 0.70f;
+                // FIXME: Test
+                //float paRatio = remainAffixes > 1 ? affixPoints / remainAffixes : affixPoints * 0.70f;
+                float paRatio = affixPoints / remainAffixes;
+                paRatio = Mathf.Clamp(paRatio, 1, 6);
                 
                 filteredAffixDefs     = baseAffixDefs.FindAll(lad => lad.affixCost <= affixPoints);
                 LootAffixDef newAffix = filteredAffixDefs.RandomElementByWeightWithFallback(lad =>
-                    // eg: p=2 for cost right at the average, p=1/3 for one that's 3 away from the average, including negatives
-                    1 / Mathf.Max(Mathf.Abs(lad.affixCost - paRatio), 0.5f)
+                    // 6 / max(abs(ac-pa)³, 0.25)
+                    // eg: p=24 for cost right at the average (with a ±0.6 swing)
+                    //     p= 1 for one that's 1.78 away from the average, including negatives
+                    6 / Mathf.Max(
+                        Mathf.Pow(Mathf.Abs(lad.affixCost - paRatio), 3),
+                    0.25f)
                 );
                 if (newAffix == null) return;
 
                 affixes.Add(newAffix);
                 affixPoints -= newAffix.affixCost;
-                baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+                baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != newAffix.groupName);
+                Log.Message(curAffixes + " Affix: " + string.Join("/", newAffix.defName, newAffix.affixCost));
             }
         }
 
@@ -192,8 +218,6 @@ namespace RimLoot {
 
             // Normal = 1, Good = 2, Excellent = 4, Masterwork = 6, Legendary = 8
             ptsF += Mathf.Pow((int)qc, 2f) / 4.5f;
-
-            Log.Message("Affix Points: " + string.Join("/", wealth, qc, (int)qc, (float)qc));
 
             return Mathf.RoundToInt(ptsF);
         }
@@ -218,13 +242,12 @@ namespace RimLoot {
             if (fullStuffLabel != null) return preExtra + fullStuffLabel + postExtra;
             
             // Need the calculate the label then...
+            var namerDef = DefDatabase<LootAffixNamerRulePackDef>.GetNamed("RimLoot_LootAffixNamer");
             GrammarRequest request = new GrammarRequest();
-            request.Includes.Add( DefDatabase<RulePackDef>.GetNamed("RimLoot_LootAffixNamer") );
-
-            var namerConfigDef = DefDatabase<LootAffixNamerConfigDef>.GetNamed("RimLoot_LootAffixNamer_Config");
+            request.Includes.Add(namerDef);
 
             // Word class counter set-up
-            Dictionary<string, int> maxWordClasses = namerConfigDef.maxWordClasses;
+            Dictionary<string, int> maxWordClasses = namerDef.maxWordClasses;
             Dictionary<string, int> curWordClasses = new Dictionary<string, int> ();
             for (int i = 0; i < 5; i++) {
                 curWordClasses = maxWordClasses.ToDictionary( k => k.Key, v => 0 );  // shallow clone to k=0
@@ -232,7 +255,6 @@ namespace RimLoot {
                 // Add in the affixes
                 foreach (LootAffixDef affix in affixes) {
                     foreach (Rule rule in affix.PickAffixRulesForLabeling(curWordClasses, maxWordClasses)) {
-                        Log.Message("affix rule: " + rule);
                         if (rule.keyword.StartsWith("AFFIX_")) affixRules.Add(rule);
                         request.Rules.Add(rule);
                         if (rule.keyword.StartsWith("AFFIXPROP_")) request.Constants.Add(rule.keyword, rule.Generate());
@@ -240,7 +262,7 @@ namespace RimLoot {
                 }
 
                 // Double-check we didn't hit one of those disallowed combinations
-                if (namerConfigDef.IsWordClassComboAllowed(affixRules)) break;
+                if (namerDef.IsWordClassComboAllowed(affixRules)) break;
                 else {
                     affixRules.Clear();
                     continue;
@@ -263,12 +285,29 @@ namespace RimLoot {
             string rootKeyword = "r_affix" + affixes.Count;
             fullStuffLabel = NameGenerator.GenerateName(request, null, false, rootKeyword, rootKeyword);
 
+            Log.Message("Chosen affix words for " + parent + ":\n" + string.Join(
+                "\nand\n", 
+                string.Join(" | ", affixRules), 
+                string.Join(", ", affixes)
+            ));
+
+            // It's possible we might end up hitting this later than we expected, and run into affixes/word
+            // desyncs, so clear the cache, just in case.
+            ClearAffixCaches();
+
             return preExtra + fullStuffLabel + postExtra;
         }
 
         // FIXME: Use these for cursed items?
         public override string CompInspectStringExtra() {
-            // FIXME
+            if (affixes.Count > 0) {
+                return
+                    "RimLoot_Affixes".Translate() + ": " +
+                    GenText.ToCommaList(
+                        AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(kv.Key) ), false
+                    )
+                ;
+            }
             return null;
         }
 
@@ -277,6 +316,8 @@ namespace RimLoot {
             return null;
         }
 
+        // FIXME: Add ModifierTarget.Pawn checks
+        // FIXME: Icons on the affix hyperlinks
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats() {
             StatCategoryDef category =
                 parent.def.IsApparel ? StatCategoryDefOf.Apparel :
@@ -284,22 +325,40 @@ namespace RimLoot {
                 StatCategoryDefOf.BasicsImportant
             ;
 
-            // FIXME: Add description to beginning of report
-            string reportText = "";
+            string reportText = "RimLoot_LootAffixDescription".Translate() + "\n\n";
             var affixDict = AllAffixDefsByAffixes;
             foreach (string affixKey in AffixStrings) {
                 LootAffixDef affix = affixDict[affixKey];
                 reportText += affix.FullStatsReport(affixKey) + "\n";
             }
 
+            if (Prefs.DevMode) {
+                reportText += "[DEV] Affix Rules:\n    " + string.Join("\n    ", affixRules) + "\n\n";
+                reportText += "[DEV] Total Points: " + affixes.Select( lad => lad.affixCost ).Sum() + 
+                    "\n    " +
+                    string.Join("\n    ", affixes.Select( lad => AllAffixesByAffixDefs[lad] + ": " + lad.affixCost )) + 
+                    "\n\n"
+                ;
+            }
+
             yield return new StatDrawEntry(
                 category:    category,
                 label:       "RimLoot_LootAffixModifiers".Translate(),
-                valueString: GenText.ToCommaList(AffixStrings, false),
+                valueString: GenText.ToCommaList(
+                    AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(kv.Key) ), false
+                ),
                 reportText:  reportText,
-                hyperlinks:  affixes.SelectMany(lad => lad.GetModifierHyperlinks(parent)),
+                hyperlinks:  affixes.SelectMany(lad => lad.GetHyperlinks(parent)),
                 displayPriorityWithinCategory: 1
             );
+
+            // Add any additional entries from the defs or modifiers
+            foreach (string affixKey in AffixStrings) {
+                LootAffixDef affix = affixDict[affixKey];
+                foreach (var statDrawEntry in affix.SpecialDisplayStatsForThing(parent, affixKey)) {
+                    yield return statDrawEntry;
+                }
+            }
         }
 
         // FIXME: Change MarketPrice

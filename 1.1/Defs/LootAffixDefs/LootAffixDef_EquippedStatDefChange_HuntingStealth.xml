@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Outdoorsy</defName>
+        <label>Outdoorsy</label>
+        <groupName>EquippedStatDefChange_HuntingStealth</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>HuntingStealth</affectedStat>
+                <addValue>0.5</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnTrapSpringChance</affectedStat>
+                <addValue>-0.5</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <addValue>1</addValue>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Outdoorsman's</li>
+                <li>adjective->Outdoorsy</li>
+                <li>noun->Outdoorsman</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Hunting</defName>
+        <label>Hunting</label>
+        <groupName>EquippedStatDefChange_HuntingStealth</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>HuntingStealth</affectedStat>
+                <addValue>1</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnTrapSpringChance</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <preMinValue>1</preMinValue>
+                <multiplier>2.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Huntress's</li>
+                <li>adjective->Hunting</li>
+                <li>noun->Huntress</li>
+                <li>verb->Hunting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Huntable</defName>
+        <label>Huntable</label>
+        <groupName>EquippedStatDefChange_HuntingStealth</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>HuntingStealth</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnTrapSpringChance</affectedStat>
+                <minValue>1</minValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Hunted's</li>
+                <li>adjective->Huntable</li>
+                <li>noun->Hunted</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

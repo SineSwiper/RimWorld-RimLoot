@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Beautiful</defName>
+        <label>Beautiful</label>
+        <groupName>StatDefChange_Beauty</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Beauty</affectedStat>
+                <preMinValue>3</preMinValue>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>SellPriceFactor</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>RoyalFavorValue</affectedStat>
+                <preMinValue>2</preMinValue>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Beautiful</li>
+                <li>noun->Beauty</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Ugly</defName>
+        <label>Ugly</label>
+        <groupName>StatDefChange_Beauty</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>Beauty</affectedStat>
+                <maxValue>-3</maxValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>SellPriceFactor</affectedStat>
+                <maxValue>0</maxValue>
+                <multiplier>0</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>RoyalFavorValue</affectedStat>
+                <maxValue>0</maxValue>
+                <multiplier>0</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Ugly</li>
+                <li>noun->Unworth</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

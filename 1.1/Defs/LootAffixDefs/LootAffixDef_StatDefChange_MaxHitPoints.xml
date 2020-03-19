@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Defs>
+
     <RimLoot.LootAffixDef>
         <defName>Tough</defName>
-        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <label>Tough</label>
+        <groupName>StatDefChange_MaxHitPoints</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
@@ -18,9 +20,11 @@
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
+
     <RimLoot.LootAffixDef>
         <defName>Unbreakable</defName>
-        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <label>Unbreakable</label>
+        <groupName>StatDefChange_MaxHitPoints</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
@@ -45,9 +49,11 @@
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
+
     <RimLoot.LootAffixDef>
         <defName>Brittle</defName>
-        <groupName>LootAffixes_MaxHitPoints</groupName>
+        <label>Brittle</label>
+        <groupName>StatDefChange_MaxHitPoints</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
@@ -68,8 +74,8 @@
             <rulesStrings>
                 <li>adjective->Brittle</li>
                 <li>verb->Breaking</li>
-                <li>noun_is_singular->False</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
+
 </Defs>

@@ -17,30 +17,37 @@ namespace RimLoot {
             DebugThingPlaceHelper.DebugSpawn(thingDef, UI.MouseCell());
         }
 
-        [DebugAction("RimLoot", "Try place random affixable...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("RimLoot", "Try place random affixable...", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void TryPlaceRandomAffixableWithOptions() {
-            List<FloatMenuOption> options = new List<FloatMenuOption>();
+            List<DebugMenuOption> options = new List<DebugMenuOption>();
             for (int i = 1; i <= 4; i++) {
-                options.Add(new FloatMenuOption(i + " Affix", () => {
-                    List<FloatMenuOption> options2 = new List<FloatMenuOption>();
+                int ttlAffixes = i;  // local for closures
+                options.Add(new DebugMenuOption(i + " Affix", DebugMenuOptionMode.Action, () => {
+                    List<DebugMenuOption> options2 = new List<DebugMenuOption>();
                     for (int j = 0; j <= 12; j++) {
-                        options2.Add(new FloatMenuOption(j + " points", () => {
+                        float affixPoints = j;  // local for closures
+                        options2.Add(new DebugMenuOption(j + " points", DebugMenuOptionMode.Tool, () => {
                             ThingDef thingDef = DefDatabase<ThingDef>.AllDefs.RandomElementByWeight(t =>
                                 DebugThingPlaceHelper.IsDebugSpawnable(t, false) && t.HasComp(typeof(CompLootAffixableThing)) ? 1 : 0
                             );
-                            IntVec3 pos = UI.MouseCell();
-                            DebugThingPlaceHelper.DebugSpawn(thingDef, pos);
-
-                            ThingWithComps twc = Find.CurrentMap.thingGrid.ThingsAt(pos).Where(t => t is ThingWithComps).Cast<ThingWithComps>().FirstOrDefault();
-                            if (twc == null) return;
-                            var comp = twc.TryGetComp<CompLootAffixableThing>();
-                            if (comp == null) return;
-                            comp.InitializeAffixes(j, i);
+                            DebugSpawnWithAffixes(thingDef, UI.MouseCell(), affixPoints, ttlAffixes);
                         }));
                     }
+                    Find.WindowStack.Add(new Dialog_DebugOptionListLister(options2));
                 }));
             }
-            Find.WindowStack.Add(new FloatMenu(options));
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
+        public static void DebugSpawnWithAffixes(ThingDef def, IntVec3 c, float affixPoints = 0, int ttlAffixes = 0) {
+            ThingDef stuff = GenStuff.RandomStuffFor(def);
+            Thing thing = ThingMaker.MakeThing(def, stuff);
+
+            thing.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityRandomEqualChance(), ArtGenerationContext.Colony);
+            if (thing.def.Minifiable) thing = thing.MakeMinified();
+            thing.TryGetComp<CompLootAffixableThing>()?.InitializeAffixes(affixPoints, ttlAffixes);
+
+            GenPlace.TryPlaceThing(thing, c, Find.CurrentMap, ThingPlaceMode.Near);
         }
 
         [DebugAction("RimLoot", "Add affix...", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Planting</defName>
+        <label>Planting</label>
+        <groupName>EquippedStatDefChange_PlantWorkSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantWorkSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantHarvestYield</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <addValue>1</addValue>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Planter's</li>
+                <li>adjective->Planting</li>
+                <li>noun->Planter</li>
+                <li>verb->Planting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Gardening</defName>
+        <label>Gardening</label>
+        <groupName>EquippedStatDefChange_PlantWorkSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantWorkSpeed</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantHarvestYield</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <preMinValue>1</preMinValue>
+                <multiplier>2.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Gardener's</li>
+                <li>adjective->Gardening</li>
+                <li>noun->Gardener</li>
+                <li>verb->Gardening</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Brown-thumbed</defName>
+        <label>Brown-thumbed</label>
+        <groupName>EquippedStatDefChange_PlantWorkSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantWorkSpeed</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PlantHarvestYield</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ForagedNutritionPerDay</affectedStat>
+                <multiplier>0</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Brown Thumb's</li>
+                <li>adjective->Brown-thumbed</li>
+                <li>noun->Brown Thumb</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

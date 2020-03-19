@@ -46,6 +46,9 @@ namespace RimLoot {
                 thingDef.comps.Add( new CompProperties_LootAffixableThing() );
             }
 
+            // Add a special MarketValue StatPart for affix point multipliers
+            StatDefOf.MarketValue.parts.Add(new StatPart_LootAffix_MarketValue { parentStat = StatDefOf.MarketValue });
+
             // FIXME: Add sanity checks for LootAffixDefs, like CanBeAppliedToThing
         }
 

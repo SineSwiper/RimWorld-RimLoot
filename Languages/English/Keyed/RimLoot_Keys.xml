@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+    <RimLoot_Affixes>Affixes</RimLoot_Affixes>
     <RimLoot_LootAffixModifiers>Loot Affix Modifiers</RimLoot_LootAffixModifiers>
+    <RimLoot_AffixesInThisGroup>Affixes in this Group</RimLoot_AffixesInThisGroup>
+    <RimLoot_LootAffixDescription>The different extra properties applied to an item. Many items have a random chance of receiving an "affix" to its label, changing its properties. The effects can be positive or negative, and some are quite powerful.</RimLoot_LootAffixDescription>
     <RimLoot_AffixStatExplanationPart>{0} affix</RimLoot_AffixStatExplanationPart>
+    <RimLoot_AffixStatOnGearExplanationPart>{0} affix from {1}</RimLoot_AffixStatOnGearExplanationPart>
 </LanguageData>
