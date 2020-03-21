@@ -15,7 +15,10 @@ namespace RimLoot {
 
     public abstract class LootAffixModifier : Editable {
         public float chance = 1f;
-        public ModifierTarget appliesTo;
+
+        public abstract ModifierTarget AppliesTo {
+            get;
+        }
 
         public abstract string ModifierChangeStat {
             get;
@@ -53,6 +56,10 @@ namespace RimLoot {
         }
 
         public virtual void PostApplyAffix (ThingWithComps parentThing, LootAffixDef parentDef) {
+
+        }
+
+        public virtual void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef) {
 
         }
 

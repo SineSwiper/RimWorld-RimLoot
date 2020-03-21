@@ -104,8 +104,15 @@ namespace RimLoot {
             }
             
             // Recurse through the modifiers
-            foreach (LootAffixModifier modifier in modifiers) {
-                foreach (string configError in modifier.ConfigErrors(this)) yield return modifier.ModifierChangeStat + ": " + configError;
+            for (int i = 0; i < modifiers.Count; i++) {
+                LootAffixModifier modifier = modifiers[i];
+                
+                // ModifierChangeStat might be bugged, due to missing XML properties
+                string modifierName;
+                try   { modifierName = modifier.ModifierChangeStat; }
+                catch { modifierName = string.Format("Modifier {0} ({1})", i+1, modifier.ToStringSafe()); }
+
+                foreach (string configError in modifier.ConfigErrors(this)) yield return modifierName + ": " + configError;
             }
         }
 
@@ -124,6 +131,12 @@ namespace RimLoot {
         public void PostApplyAffix (ThingWithComps parentThing) {
             foreach (LootAffixModifier modifier in modifiers) {
                 modifier.PostApplyAffix(parentThing, this);
+            }
+        }
+
+        public void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties) {
+            foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.VerbProperties)) {
+                modifier.ModifyVerbProperties(parentThing, verbProperties, this);
             }
         }
 
@@ -174,7 +187,7 @@ namespace RimLoot {
         public string FullStatsReport (string preLabel) {
             // Specify where the effect is applied
             string str = (
-                modifiers.All(lam => lam.appliesTo == ModifierTarget.Pawn) ?
+                modifiers.All(lam => lam.AppliesTo == ModifierTarget.Pawn) ?
                     (string)"RimLoot_AffixWhileEquipped".Translate( LabelWithStyle(preLabel) ) :
                     LabelWithStyle(preLabel)
             ) + ":\n";

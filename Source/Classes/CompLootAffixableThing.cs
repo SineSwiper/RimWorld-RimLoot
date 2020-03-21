@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -16,10 +18,11 @@ namespace RimLoot {
         private List<string>                     affixStringsCached;
         private Dictionary<string, LootAffixDef> affixDefDictCached;
         private Dictionary<LootAffixDef, string> affixStringsDictCached;
-
         private HashSet<LootAffixModifier>       modifiersCached;
-
         private float?                           ttlAffixPoints;
+
+        // Cached modified copies
+        private List<VerbProperties>             verbProperties;
 
         public List<LootAffixDef> AllAffixDefs {
             get { return affixes; }
@@ -65,6 +68,14 @@ namespace RimLoot {
             }
         }
 
+        public List<VerbProperties> VerbProperties {
+            get {
+                if (verbProperties != null) return verbProperties;
+                MakeAffixCaches();
+                return verbProperties;
+            }
+        }
+
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
@@ -79,6 +90,35 @@ namespace RimLoot {
                 modifiersCached.AddRange(affixes[i].modifiers);
                 ttlAffixPoints += affixes[i].affixCost;
             }
+
+            // Add new modified VerbProperties, if necessary
+            var verbModifierDefs = affixes.Where(
+                lad => lad.modifiers.Any( lam => lam.AppliesTo == ModifierTarget.VerbProperties )
+            ).ToList();
+            Log.Message(string.Format("Building cache for {0}, VP.Count={1}", parent, verbModifierDefs.Count));
+            Log.Message("Modifiers: " + string.Join(", ", modifiersCached));
+            Log.Message("Modifier appliesTo: " + string.Join(", ", modifiersCached.Select(lam => lam.AppliesTo)));
+
+            if (verbModifierDefs.Count > 0) {
+                verbProperties = parent.def.Verbs.Select(vp => vp.MemberwiseClone()).ToList();
+                foreach (LootAffixDef lad in verbModifierDefs) {
+                    foreach (var vp in verbProperties) {
+                        lad.ModifyVerbProperties(parent, vp);
+                        Log.Message(string.Format("Modifying VP: {0} {1} for {2}", lad, vp, parent));
+                    }
+                }
+            }
+            else {
+                verbProperties = parent.def.Verbs;
+            }
+
+            // Refresh the VerbTracker cache
+            var equippable = parent.TryGetComp<CompEquippable>();
+            if (equippable != null) {
+                // [Reflection] equippable.VerbTracker.InitVerbsFromZero()
+                MethodInfo InitVerbsFromZero = AccessTools.Method(typeof(VerbTracker), "InitVerbsFromZero");
+                InitVerbsFromZero.Invoke(equippable.VerbTracker, new object[] {});
+            }
         }
 
         private void ClearAffixCaches() {
@@ -87,6 +127,15 @@ namespace RimLoot {
             affixStringsDictCached?.Clear();
             modifiersCached?.Clear();
             ttlAffixPoints = null;
+            verbProperties = null;
+
+            // Clear the VerbTracker cache
+            var equippable = parent.TryGetComp<CompEquippable>();
+            if (equippable != null) {
+                // [Reflection] equippable.VerbTracker.verbs = null
+                FieldInfo verbsField = AccessTools.Field(typeof(VerbTracker), "verbs");
+                verbsField.SetValue(equippable.VerbTracker, null);
+            }
         }
 
         public override void PostExposeData() {
@@ -151,8 +200,6 @@ namespace RimLoot {
                 }
             }
 
-            Log.Message("Affix/Points: " + string.Join("/", ttlAffixes, affixPoints));
-
             if (ttlAffixes == 0) return;
 
             // Baseline of affixes that can be used (since affixPoints could change upward or downward)
@@ -169,15 +216,12 @@ namespace RimLoot {
             affixes.Add(firstAffix);
             affixPoints -= firstAffix.affixCost;
             baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
-            Log.Message("1 Affix: " + string.Join("/", firstAffix.defName, firstAffix.affixCost));
 
             // Remaining affixes: rebalance the weight priorities to better reflect the current point total
             for (int curAffixes = 2; curAffixes <= 4; curAffixes++) {
                 if (curAffixes > ttlAffixes) return;
                 int remainAffixes = ttlAffixes - curAffixes + 1;
 
-                // FIXME: Test
-                //float paRatio = remainAffixes > 1 ? affixPoints / remainAffixes : affixPoints * 0.70f;
                 float paRatio = affixPoints / remainAffixes;
                 paRatio = Mathf.Clamp(paRatio, 1, 6);
                 
@@ -195,7 +239,6 @@ namespace RimLoot {
                 affixes.Add(newAffix);
                 affixPoints -= newAffix.affixCost;
                 baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != newAffix.groupName);
-                Log.Message(curAffixes + " Affix: " + string.Join("/", newAffix.defName, newAffix.affixCost));
             }
         }
 
@@ -284,12 +327,6 @@ namespace RimLoot {
 
             string rootKeyword = "r_affix" + affixes.Count;
             fullStuffLabel = NameGenerator.GenerateName(request, null, false, rootKeyword, rootKeyword);
-
-            Log.Message("Chosen affix words for " + parent + ":\n" + string.Join(
-                "\nand\n", 
-                string.Join(" | ", affixRules), 
-                string.Join(", ", affixes)
-            ));
 
             // It's possible we might end up hitting this later than we expected, and run into affixes/word
             // desyncs, so clear the cache, just in case.

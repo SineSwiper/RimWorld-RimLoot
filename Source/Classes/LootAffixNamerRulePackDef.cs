@@ -25,7 +25,6 @@ namespace RimLoot {
 
             foreach (List<string> combo in disallowedAffixCombos) {
                 string comboString = string.Join( ",", combo.OrderBy( s => s ).ToArray() );
-                Log.Message("Combo check: " + rulesString + " == " + comboString);
                 if (rulesString == comboString) return false;
             }
 

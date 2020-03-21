@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Classes\DebugToolsLootAffixes.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_EquippedStatDefChange.cs" />
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_VerbPropertiesChange.cs" />
     <Compile Include="Classes\LootAffixNamerRulePackDef.cs" />
     <Compile Include="Classes\StatPart_LootAffix_Equipped.cs" />
     <Compile Include="Classes\StatPart_LootAffix_MarketValue.cs" />

@@ -12,7 +12,9 @@ namespace RimLoot {
         public float   minValue    = -9999999f;
         public float   maxValue    =  9999999f;
 
-        public new ModifierTarget appliesTo = ModifierTarget.Item;  // default
+        public override ModifierTarget AppliesTo {
+            get { return ModifierTarget.Item; }
+        }
 
         public override string ModifierChangeStat {
             get {
@@ -57,6 +59,10 @@ namespace RimLoot {
                 yield return configError;
 
             // affectedStat sanity checks
+            if (affectedStat == null) {
+                yield return "The affectedStat is not set!";
+                yield break;
+            }
             if (affectedStat.forInformationOnly) yield return "The affectedStat is for information purposes only";
             if (affectedStat.alwaysHide)         yield return "The affectedStat is always hidden";
             // FIXME: showOnPawns, showOnHumanlikes checks for subclasses

@@ -8,7 +8,9 @@ using Verse;
 namespace RimLoot {
     public class LootAffixModifier_EquippedStatDefChange : LootAffixModifier_StatDefChange {
 
-        public new ModifierTarget appliesTo = ModifierTarget.Pawn;
+        public override ModifierTarget AppliesTo {
+            get { return ModifierTarget.Pawn; }
+        }
 
         public override void ResolveReferences (LootAffixDef parentDef) {
             // Force these on
