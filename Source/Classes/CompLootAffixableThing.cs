@@ -316,7 +316,6 @@ namespace RimLoot {
             return null;
         }
 
-        // FIXME: Add ModifierTarget.Pawn checks
         // FIXME: Icons on the affix hyperlinks
         public override IEnumerable<StatDrawEntry> SpecialDisplayStats() {
             StatCategoryDef category =
@@ -360,7 +359,5 @@ namespace RimLoot {
                 }
             }
         }
-
-        // FIXME: Change MarketPrice
     }
 }

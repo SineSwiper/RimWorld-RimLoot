@@ -8,7 +8,9 @@ namespace RimLoot {
     public enum ModifierTarget : byte {
         Item,
         Pawn,
-        VerbTarget
+        VerbProperties,
+        VerbTarget,
+        Projectile
     };
 
     public abstract class LootAffixModifier : Editable {

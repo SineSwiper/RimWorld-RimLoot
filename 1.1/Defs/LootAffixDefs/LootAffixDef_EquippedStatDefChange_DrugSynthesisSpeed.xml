@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Dealing</defName>
+        <label>Dealing</label>
+        <groupName>EquippedStatDefChange_DrugSynthesisSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugSynthesisSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugCookingSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Dealer's</li>
+                <li>adjective->Dealing</li>
+                <li>noun->Dealer</li>
+                <li>verb->Dealing</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Pharmalogical</defName>
+        <label>Pharmalogical</label>
+        <groupName>EquippedStatDefChange_DrugSynthesisSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugSynthesisSpeed</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugCookingSpeed</affectedStat>
+                <multiplier>3</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Pharmacist's</li>
+                <li>adjective->Pharmalogical</li>
+                <li>noun->Pharmacist</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Addicting</defName>
+        <label>Addicting</label>
+        <groupName>EquippedStatDefChange_DrugSynthesisSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugSynthesisSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>DrugCookingSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Addict's</li>
+                <li>adjective->Addicting</li>
+                <li>noun->Addict</li>
+                <li>verb->Addicting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

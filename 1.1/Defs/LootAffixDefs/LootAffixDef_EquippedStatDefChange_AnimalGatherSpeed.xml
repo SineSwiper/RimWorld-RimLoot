@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Handling</defName>
+        <label>Handling</label>
+        <groupName>EquippedStatDefChange_AnimalGatherSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherSpeed</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherYield</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TameAnimalChance</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TrainAnimalChance</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Handler's</li>
+                <li>adjective->Handling</li>
+                <li>noun->Handler</li>
+                <li>verb->Handling</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Zoological</defName>
+        <label>Zoological</label>
+        <groupName>EquippedStatDefChange_AnimalGatherSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherYield</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TameAnimalChance</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TrainAnimalChance</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Zoologist's</li>
+                <li>adjective->Zoological</li>
+                <li>noun->Zoologist</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Beastly</defName>
+        <label>Beastly</label>
+        <groupName>EquippedStatDefChange_AnimalGatherSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherSpeed</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AnimalGatherYield</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TameAnimalChance</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>TrainAnimalChance</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Beast's</li>
+                <li>adjective->Beastly</li>
+                <li>noun->Beast</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

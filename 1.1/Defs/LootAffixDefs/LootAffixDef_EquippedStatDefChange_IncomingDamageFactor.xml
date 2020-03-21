@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Stout</defName>
+        <label>Stout</label>
+        <groupName>EquippedStatDefChange_IncomingDamageFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>IncomingDamageFactor</affectedStat>
+                <addValue>-0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Stout</li>
+                <li>noun->Stout</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Hearty</defName>
+        <label>Hearty</label>
+        <groupName>EquippedStatDefChange_IncomingDamageFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>IncomingDamageFactor</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Hearty</li>
+                <li>noun->Hearty</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Weakly</defName>
+        <label>Weakly</label>
+        <groupName>EquippedStatDefChange_IncomingDamageFactor</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>IncomingDamageFactor</affectedStat>
+                <addValue>0.15</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Weak's</li>
+                <li>adjective->Weakly</li>
+                <li>noun->Weak</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

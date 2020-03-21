@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Legion</defName>
+        <label>Legion</label>
+        <groupName>EquippedStatDefChange_ShootingAccuracyPawn</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ShootingAccuracyPawn</affectedStat>
+                <preMinValue>2</preMinValue>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AimingDelayFactor</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Legionary's</li>
+                <li>adjective->Legion</li>
+                <li>noun->Legionary</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Soldiering</defName>
+        <label>Soldiering</label>
+        <groupName>EquippedStatDefChange_ShootingAccuracyPawn</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ShootingAccuracyPawn</affectedStat>
+                <preMinValue>2</preMinValue>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AimingDelayFactor</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Soldier's</li>
+                <li>adjective->Soldiering</li>
+                <li>noun->Soldier</li>
+                <li>verb->Soldiering</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Stormtrooping</defName>
+        <label>Stormtrooping</label>
+        <groupName>EquippedStatDefChange_ShootingAccuracyPawn</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ShootingAccuracyPawn</affectedStat>
+                <addValue>-15</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>AimingDelayFactor</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Stormtrooper's</li>
+                <li>adjective->Stormtrooping</li>
+                <li>noun->Stormtrooper</li>
+                <li>verb->Stormtrooping</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

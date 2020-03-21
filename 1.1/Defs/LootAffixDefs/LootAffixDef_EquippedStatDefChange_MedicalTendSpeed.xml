@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Doctoring</defName>
+        <label>Doctoring</label>
+        <groupName>EquippedStatDefChange_MedicalTendSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendSpeed</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendQuality</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalOperationSpeed</affectedStat>
+                <multiplier>1.25</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalSurgerySuccessChance</affectedStat>
+                <multiplier>1.1</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Doctor's</li>
+                <li>adjective->Doctoring</li>
+                <li>noun->Doctor</li>
+                <li>verb->Doctoring</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Surgical</defName>
+        <label>Surgical</label>
+        <groupName>EquippedStatDefChange_MedicalTendSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendQuality</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalOperationSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalSurgerySuccessChance</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Surgeon's</li>
+                <li>adjective->Surgical</li>
+                <li>noun->Surgeon</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Coronial</defName>
+        <label>Coronial</label>
+        <groupName>EquippedStatDefChange_MedicalTendSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalTendQuality</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalOperationSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MedicalSurgerySuccessChance</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Coroner's</li>
+                <li>adjective->Coronial</li>
+                <li>noun->Coroner</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

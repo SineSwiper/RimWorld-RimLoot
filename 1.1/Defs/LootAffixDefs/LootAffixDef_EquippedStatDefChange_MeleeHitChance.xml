@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Fighting</defName>
+        <label>Fighting</label>
+        <groupName>EquippedStatDefChange_MeleeHitChance</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeHitChance</affectedStat>
+                <preMinValue>2</preMinValue>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeDodgeChance</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Fighter's</li>
+                <li>adjective->Fighting</li>
+                <li>noun->Fighter</li>
+                <li>verb->Fighting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Gladiating</defName>
+        <label>Gladiating</label>
+        <groupName>EquippedStatDefChange_MeleeHitChance</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeHitChance</affectedStat>
+                <preMinValue>2</preMinValue>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeDodgeChance</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Gladiator's</li>
+                <li>adjective->Gladiating</li>
+                <li>noun->Gladiator</li>
+                <li>verb->Gladiating</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Pacifying</defName>
+        <label>Pacifying</label>
+        <groupName>EquippedStatDefChange_MeleeHitChance</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeHitChance</affectedStat>
+                <addValue>-15</addValue>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>MeleeDodgeChance</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Pacifist's</li>
+                <li>adjective->Pacifying</li>
+                <li>noun->Pacifist</li>
+                <li>verb->Pacifying</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

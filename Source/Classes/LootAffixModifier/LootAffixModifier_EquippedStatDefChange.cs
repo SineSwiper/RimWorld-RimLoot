@@ -11,6 +11,10 @@ namespace RimLoot {
         public new ModifierTarget appliesTo = ModifierTarget.Pawn;
 
         public override void ResolveReferences (LootAffixDef parentDef) {
+            // Force these on
+            affectedStat.showOnPawns      = true;
+            affectedStat.showOnHumanlikes = true;
+        
             var statPart = new StatPart_LootAffix_Equipped {
                 parentStat        = affectedStat,
                 parentStatChanger = this,
@@ -30,10 +34,6 @@ namespace RimLoot {
         public override IEnumerable<string> ConfigErrors (LootAffixDef parentDef) {
             foreach (string configError in base.ConfigErrors(parentDef))
                 yield return configError;
-
-            // Other affectedStat sanity checks
-            if (!affectedStat.showOnPawns)      yield return "The affectedStat won't show up on pawns";
-            if (!affectedStat.showOnHumanlikes) yield return "The affectedStat won't show up on humanlikes";
 
             StatCategoryDef category = affectedStat.category;
             List<StatCategoryDef> acceptableCategories = new List<StatCategoryDef>() {

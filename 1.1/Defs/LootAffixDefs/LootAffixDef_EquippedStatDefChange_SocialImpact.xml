@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Acting</defName>
+        <label>Acting</label>
+        <groupName>EquippedStatDefChange_SocialImpact</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SocialImpact</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnBeauty</affectedStat>
+                <addValue>0.5</addValue>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Actor's</li>
+                <li>adjective->Acting</li>
+                <li>noun->Actor</li>
+                <li>verb->Acting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Modeling</defName>
+        <label>Modeling</label>
+        <groupName>EquippedStatDefChange_SocialImpact</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SocialImpact</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnBeauty</affectedStat>
+                <addValue>1</addValue>
+            </li>
+        </modifiers>
+        <affixCost>2.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Model's</li>
+                <li>adjective->Modeling</li>
+                <li>noun->Model</li>
+                <li>verb->Modeling</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Plebian</defName>
+        <label>Plebian</label>
+        <groupName>EquippedStatDefChange_SocialImpact</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>SocialImpact</affectedStat>
+                <multiplier>0.75</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>PawnBeauty</affectedStat>
+                <addValue>-0.5</addValue>
+            </li>
+        </modifiers>
+        <affixCost>-1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Pleb's</li>
+                <li>adjective->Plebian</li>
+                <li>noun->Pleb</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Butchering</defName>
+        <label>Butchering</label>
+        <groupName>EquippedStatDefChange_ButcheryFleshSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidSpeed</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshEfficiency</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidEfficiency</affectedStat>
+                <multiplier>1.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>1.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Butcher's</li>
+                <li>adjective->Butchering</li>
+                <li>noun->Butcher</li>
+                <li>verb->Butchering</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Processing</defName>
+        <label>Processing</label>
+        <groupName>EquippedStatDefChange_ButcheryFleshSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshSpeed</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidSpeed</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshEfficiency</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidEfficiency</affectedStat>
+                <multiplier>2</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Processor's</li>
+                <li>adjective->Processing</li>
+                <li>noun->Processor</li>
+                <li>verb->Processing</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Wasting</defName>
+        <label>Wasting</label>
+        <groupName>EquippedStatDefChange_ButcheryFleshSpeed</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidSpeed</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryFleshEfficiency</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ButcheryMechanoidEfficiency</affectedStat>
+                <multiplier>0.5</multiplier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Wastrel's</li>
+                <li>adjective->Wasting</li>
+                <li>noun->Wastrel</li>
+                <li>verb->Wasting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

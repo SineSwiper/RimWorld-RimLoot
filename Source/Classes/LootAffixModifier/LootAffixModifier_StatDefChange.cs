@@ -115,7 +115,7 @@ namespace RimLoot {
             newVal = Mathf.Clamp(newVal, minValue, maxValue);
 
             // Just in case we're exceeding normal StatDef bounds
-            newVal = Mathf.Clamp(newVal, affectedStat.minValue, affectedStat.maxValue);
+            if (affectedStat.postProcessCurve == null) newVal = Mathf.Clamp(newVal, affectedStat.minValue, affectedStat.maxValue);
 
             return newVal;
         }

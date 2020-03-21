@@ -172,7 +172,13 @@ namespace RimLoot {
         public string FullStatsReport () { return FullStatsReport(null); }
 
         public string FullStatsReport (string preLabel) {
-            string str = LabelWithStyle(preLabel) + ":\n";
+            // Specify where the effect is applied
+            string str = (
+                modifiers.All(lam => lam.appliesTo == ModifierTarget.Pawn) ?
+                    (string)"RimLoot_AffixWhileEquipped".Translate( LabelWithStyle(preLabel) ) :
+                    LabelWithStyle(preLabel)
+            ) + ":\n";
+
             foreach (LootAffixModifier modifier in modifiers) {
                 str += "    " + modifier.ModifierChangeLabel + "\n";
             }

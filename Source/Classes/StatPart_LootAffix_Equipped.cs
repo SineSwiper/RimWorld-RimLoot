@@ -9,14 +9,12 @@ namespace RimLoot {
     class StatPart_LootAffix_Equipped : StatPart_LootAffix {
         public new LootAffixModifier_EquippedStatDefChange parentStatChanger;
 
-        // FIXME: Fix this!  Not actually applying at Pawn.
         public override void TransformValue (StatRequest req, ref float val) {
             // Typical Pawn stat request
             List<CompLootAffixableThing> comps = parentStatChanger.AppliedOnGearFrom(req).ToList();
             if (comps.Count > 0) {
                 foreach (CompLootAffixableThing comp in comps) {
                     val = parentStatChanger.ChangeValue(val);
-                    Log.Message("TransformValue: " + string.Join(", ", comp.parent, val));
                 }
             }
             // Thing stat request for the EquippedStatOffsets section; works off of a base value
@@ -25,6 +23,7 @@ namespace RimLoot {
             }
         }
 
+        // FIXME: Seems to get confused with both Firefighting & Fireproofing, even though they have different targets
         public override string ExplanationPart (StatRequest req) {
             // Typical Pawn stat request
             List<CompLootAffixableThing> comps = parentStatChanger.AppliedOnGearFrom(req).ToList();
@@ -56,6 +55,7 @@ namespace RimLoot {
             return null;
         }
 
+        // FIXME: Try to fix dupes
         public override IEnumerable<Dialog_InfoCard.Hyperlink> GetInfoCardHyperlinks(StatRequest req) {
             // Typical Pawn stat request; should have hyperlinks back to gear
             List<CompLootAffixableThing> comps = parentStatChanger.AppliedOnGearFrom(req).ToList();
