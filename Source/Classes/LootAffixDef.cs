@@ -20,6 +20,7 @@ namespace RimLoot {
                 if (affixWords != null) return affixWords;
 
                 var namerDef = DefDatabase<LootAffixNamerRulePackDef>.GetNamed("RimLoot_LootAffixNamer");
+                if (namerDef == null) return new List<string>();
                 var maxWordClasses = namerDef.maxWordClasses;
 
                 affixWords = new List<string> ();
@@ -39,9 +40,7 @@ namespace RimLoot {
         }
 
         // FIXME: Make this configurable, especially for the color-blind
-        public string LabelWithStyle () { return LabelWithStyle(null); }
-
-        public string LabelWithStyle (string preLabel) {
+        public string LabelWithStyle (string preLabel = null) {
             if (preLabel == null) preLabel = FullAffixLabel;  // fallback
 
             string styledLabel = preLabel;
@@ -177,9 +176,7 @@ namespace RimLoot {
             ) ) yield return rule;
         }
 
-        public string FullStatsReport () { return FullStatsReport(null); }
-
-        public string FullStatsReport (string preLabel) {
+        public string FullStatsReport (string preLabel = null) {
             // Specify where the effect is applied
             string str = (
                 modifiers.All(lam => lam.AppliesTo == ModifierTarget.Pawn) ?

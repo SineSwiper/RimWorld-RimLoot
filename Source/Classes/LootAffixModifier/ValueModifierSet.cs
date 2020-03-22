@@ -14,9 +14,7 @@ namespace RimLoot {
         public float   minValue    = -9999999f;
         public float   maxValue    =  9999999f;
 
-        public string ModifierChangeString () { return ModifierChangeString(ToStringStyle.FloatTwoOrThree); }
-        
-        public string ModifierChangeString (ToStringStyle toStringStyle) {
+        public string ModifierChangeString (ToStringStyle toStringStyle = ToStringStyle.FloatTwoOrThree) {
             string str = "";
 
             if (preMinValue != -9999999f) str += string.Format("{0}={1} ", "min".Translate(), preMinValue.ToStringByStyle(toStringStyle, ToStringNumberSense.Absolute));
