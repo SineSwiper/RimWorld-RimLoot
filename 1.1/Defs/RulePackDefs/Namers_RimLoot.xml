@@ -3,40 +3,15 @@
   <RimLoot.LootAffixNamerRulePackDef>
     <defName>RimLoot_LootAffixNamer</defName>
     <maxWordClasses>
-      <li>
-        <key>possessive</key>
-        <value>1</value>
-      </li>
-      <li>
-        <key>adjective</key>
-        <value>3</value>
-      </li>
-      <li>
-        <key>noun</key>
-        <value>1</value>
-      </li>
-      <li>
-        <key>verb</key>
-        <value>1</value>
-      </li>
+        <possessive>1</possessive>
+        <adjective>3</adjective>
+        <noun>1</noun>
+        <verb>1</verb>
     </maxWordClasses>
     <disallowedAffixCombos>
-        <li>
-            <li>possessive</li>
-            <li>adjective</li>
-            <li>adjective</li>
-        </li>
-        <li>
-            <li>adjective</li>
-            <li>adjective</li>
-            <li>adjective</li>
-        </li>
-        <li>
-            <li>possessive</li>
-            <li>adjective</li>
-            <li>adjective</li>
-            <li>adjective</li>
-        </li>
+        <li>possessive, adjective, adjective</li>
+        <li>adjective, adjective, adjective</li>
+        <li>possessive, adjective, adjective, adjective</li>
     </disallowedAffixCombos>
     <rulePack>
       <rulesStrings>
