@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("RimLoot")]
-[assembly: AssemblyCopyright("Copyright © SineSwiper, CC BY-SA 4.0")]
+[assembly: AssemblyCopyright("Copyright © SineSwiper, Artistic 2.0")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
