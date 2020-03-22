@@ -8,11 +8,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Mass</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>EquipDelay</affectedStat>
-                <multiplier>0.3</multiplier>
+                <valueModifier>
+                    <multiplier>0.3</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1</affixCost>
@@ -32,11 +36,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Mass</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>EquipDelay</affectedStat>
-                <multiplier>3</multiplier>
+                <valueModifier>
+                    <multiplier>3</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1</affixCost>

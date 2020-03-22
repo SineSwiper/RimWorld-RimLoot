@@ -8,7 +8,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MeleeWeapon_DamageMultiplier</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1.5</affixCost>
@@ -28,7 +30,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MeleeWeapon_DamageMultiplier</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>3</affixCost>
@@ -50,7 +54,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MeleeWeapon_DamageMultiplier</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1.5</affixCost>

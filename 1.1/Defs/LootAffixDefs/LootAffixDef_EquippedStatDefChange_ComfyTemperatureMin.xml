@@ -8,15 +8,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMin</affectedStat>
-                <addValue>-5</addValue>
+                <valueModifier>
+                    <addValue>-5</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMax</affectedStat>
-                <addValue>5</addValue>
+                <valueModifier>
+                    <addValue>5</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>Flammability</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -37,15 +43,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMin</affectedStat>
-                <addValue>-10</addValue>
+                <valueModifier>
+                    <addValue>-10</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMax</affectedStat>
-                <addValue>10</addValue>
+                <valueModifier>
+                    <addValue>10</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>Flammability</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>3</affixCost>
@@ -67,15 +79,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMin</affectedStat>
-                <addValue>10</addValue>
+                <valueModifier>
+                    <addValue>10</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ComfyTemperatureMax</affectedStat>
-                <addValue>-10</addValue>
+                <valueModifier>
+                    <addValue>-10</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>Flammability</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-3</affixCost>

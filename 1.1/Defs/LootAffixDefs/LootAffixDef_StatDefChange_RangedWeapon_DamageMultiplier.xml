@@ -8,7 +8,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RangedWeapon_DamageMultiplier</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -28,7 +30,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RangedWeapon_DamageMultiplier</affectedStat>
-                <multiplier>1.6</multiplier>
+                <valueModifier>
+                    <multiplier>1.6</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>4</affixCost>
@@ -49,7 +53,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RangedWeapon_DamageMultiplier</affectedStat>
-                <multiplier>0.65</multiplier>
+                <valueModifier>
+                    <multiplier>0.65</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-3</affixCost>

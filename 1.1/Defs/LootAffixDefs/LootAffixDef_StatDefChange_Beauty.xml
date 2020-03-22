@@ -8,17 +8,23 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Beauty</affectedStat>
-                <preMinValue>3</preMinValue>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <preMinValue>3</preMinValue>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>SellPriceFactor</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RoyalFavorValue</affectedStat>
-                <preMinValue>2</preMinValue>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <preMinValue>2</preMinValue>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1</affixCost>
@@ -38,17 +44,23 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Beauty</affectedStat>
-                <maxValue>-3</maxValue>
+                <valueModifier>
+                    <maxValue>-3</maxValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>SellPriceFactor</affectedStat>
-                <maxValue>0</maxValue>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <maxValue>0</maxValue>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RoyalFavorValue</affectedStat>
-                <maxValue>0</maxValue>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <maxValue>0</maxValue>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1</affixCost>

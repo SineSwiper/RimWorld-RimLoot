@@ -8,15 +8,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ToxicSensitivity</affectedStat>
-                <addValue>-0.5</addValue>
+                <valueModifier>
+                    <addValue>-0.5</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ImmunityGainSpeed</affectedStat>
-                <addValue>0.25</addValue>
+                <valueModifier>
+                    <addValue>0.25</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PainShockThreshold</affectedStat>
-                <addValue>0.05</addValue>
+                <valueModifier>
+                    <addValue>0.05</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -36,15 +42,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ToxicSensitivity</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ImmunityGainSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PainShockThreshold</affectedStat>
-                <addValue>0.10</addValue>
+                <valueModifier>
+                    <addValue>0.10</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>4</affixCost>
@@ -64,15 +76,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ToxicSensitivity</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ImmunityGainSpeed</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PainShockThreshold</affectedStat>
-                <multiplier>0.25</multiplier>
+                <valueModifier>
+                    <multiplier>0.25</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-4</affixCost>

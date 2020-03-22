@@ -8,11 +8,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugSynthesisSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugCookingSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1</affixCost>
@@ -34,11 +38,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugSynthesisSpeed</affectedStat>
-                <multiplier>3</multiplier>
+                <valueModifier>
+                    <multiplier>3</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugCookingSpeed</affectedStat>
-                <multiplier>3</multiplier>
+                <valueModifier>
+                    <multiplier>3</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -59,11 +67,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugSynthesisSpeed</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>DrugCookingSpeed</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1.5</affixCost>

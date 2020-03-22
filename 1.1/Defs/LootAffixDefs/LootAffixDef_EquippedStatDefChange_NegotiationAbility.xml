@@ -8,12 +8,16 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>NegotiationAbility</affectedStat>
-                <multiplier>1.25</multiplier>
-                <addValue>0.15</addValue>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                    <addValue>0.15</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TradePriceImprovement</affectedStat>
-                <multiplier>1.1</multiplier>
+                <valueModifier>
+                    <multiplier>1.1</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -35,12 +39,16 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>NegotiationAbility</affectedStat>
-                <multiplier>1.5</multiplier>
-                <addValue>0.3</addValue>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                    <addValue>0.3</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TradePriceImprovement</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>4</affixCost>
@@ -62,15 +70,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>NegotiationAbility</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TradePriceImprovement</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ArrestSuccessChance</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-2.5</affixCost>

@@ -8,19 +8,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendSpeed</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendQuality</affectedStat>
-                <multiplier>1.1</multiplier>
+                <valueModifier>
+                    <multiplier>1.1</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalOperationSpeed</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalSurgerySuccessChance</affectedStat>
-                <multiplier>1.1</multiplier>
+                <valueModifier>
+                    <multiplier>1.1</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -42,19 +50,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendQuality</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalOperationSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalSurgerySuccessChance</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>4</affixCost>
@@ -75,19 +91,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendSpeed</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalTendQuality</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalOperationSpeed</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>MedicalSurgerySuccessChance</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-3</affixCost>

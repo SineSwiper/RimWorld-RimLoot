@@ -8,15 +8,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>HuntingStealth</affectedStat>
-                <addValue>0.5</addValue>
+                <valueModifier>
+                    <addValue>0.5</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnTrapSpringChance</affectedStat>
-                <addValue>-0.5</addValue>
+                <valueModifier>
+                    <addValue>-0.5</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <addValue>1</addValue>
+                <valueModifier>
+                    <addValue>1</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1</affixCost>
@@ -37,16 +43,22 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>HuntingStealth</affectedStat>
-                <addValue>1</addValue>
+                <valueModifier>
+                    <addValue>1</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnTrapSpringChance</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <preMinValue>1</preMinValue>
-                <multiplier>2.5</multiplier>
+                <valueModifier>
+                    <preMinValue>1</preMinValue>
+                    <multiplier>2.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -68,15 +80,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>HuntingStealth</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnTrapSpringChance</affectedStat>
-                <minValue>1</minValue>
+                <valueModifier>
+                    <minValue>1</minValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-2</affixCost>

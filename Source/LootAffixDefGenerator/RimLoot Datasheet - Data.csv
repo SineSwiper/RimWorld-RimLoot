@@ -1,0 +1,88 @@
+Basics,,Positive Effects,,,,,,Upgraded Positive Effects,,,,,,Negative Effects,,,,,
+LootAffixModifier,Stat,"Chance/
+Change","Affix
+Cost",Possessive,Adjective,Noun,Verb,"Chance/
+Change","Affix
+Cost",Possessive,Adjective,Noun,Verb,"Chance/
+Change","Affix
+Cost",Possessive,Adjective,Noun,Verb
+StatDefChange,AccuracyTouch / AccuracyShort,addValue: 0.2/0.2,1.5,,Precise,Precision,,addValue: 0.4/0.4,3,Ranger's,Deadeye,the Gunslinger,Gunslinging,multiplier: 0.5/0.5,-1.5,,Imprecise,Imprecision,
+StatDefChange,AccuracyMedium / AccuracyLong,addValue: 0.2/0.2,1.5,,Accurate,Accuracy,,addValue: 0.4/0.4,3,Eagle's,Bulleye,the Sharpshooter,Sharpshooting,multiplier: 0.5/0.5,-1.5,,Inaccurate,Inaccuracy,
+StatDefChange,MeleeWeapon_DamageMultiplier,multiplier: 1.5,1.5,,Violent,Violence,,multiplier: 2,3,Grok's,Brutal,Slaughtery,Slaughtering,multiplier: 0.5,-1.5,,Tame,Harmlessness,
+StatDefChange,RangedWeapon_Cooldown,multiplier: 0.8,2,,Speed-loaded,,Speed-loading,multiplier: 0.5,3,Captain's,Instant-loaded,,Instant-loading,multiplier: 2,-2.5,,Slow-loaded,,Slow-loading
+StatDefChange,RangedWeapon_DamageMultiplier,multiplier: 1.25,2,,Ballistic,Ballistics,,multiplier: 1.6,4,Marine's,Velocious,Velocity,,multiplier: 0.65,-3,,Languid,Languidness,
+StatDefChange,ArmorRating_Sharp / ArmorRating_Blunt,multiplier: 1.5/1.5,2,,Armored,the Shield,Shielding,multiplier: 2/2,3,Titan's,Fortified,the Bulwark,Fortifying,multiplier: 0.5/0.5,-3,,Unshielded,the Unshielded,Unshielding
+StatDefChange,ArmorRating_Heat / Insulation_Heat / Insulation_Cold / Flammability,multiplier: 1.5/1.5/1.5/,2,,Thermal,Thermality,,multiplier: 2/2/2/0,3,Ifrit's,Fireproof,,Fireproofing,multiplier: 0.5/0.5/0.5,-3,,Leaky,,Leaking
+StatDefChange,EnergyShieldEnergyMax / EnergyShieldRechargeRate,multiplier: 2/2,2,,Energizing,Energy,Energizing,multiplier: 3/3,3,Static's,Enfused,Fusion,,multiplier: 0.5/0.5,-2,,Lethargic,Lethargy,
+StatDefChange,SmokepopBeltRadius,multiplier: 2,1,,Smoking,Smoke,Smoking,multiplier: 3,2,Ninja's,Cloaking,Smokescreens,Cloaking,multiplier: 0.5,-1,,Fizzling,Fizzle,Fizzling
+StatDefChange,Mass / EquipDelay,multiplier: 0.5/0.3,1,,Light,Agility,,,,,,,,multiplier: 2/3,-1,,Heavy,Weight,
+StatDefChange,MaxHitPoints / Flammability / DeteriorationRate,multiplier: 2//,1,,Tough,Toughness,,"multiplier: 4, maxValue: /0/0",2,,Unbreakable,Unbreakability,Everlasting,"preMinValue: /0.2/, multiplier: 0.5/4/4",-1.5,,Brittle,,Breaking
+StatDefChange,Beauty / SellPriceFactor / RoyalFavorValue,"preMinValue: 3//2, multiplier: 2/2/2",1,,Beautiful,Beauty,,,,,,,,"maxValue: -3/0/0,
+multiplier: /0/0",-1,,Ugly,Unworth,
+Item Stats (verbProperties),range,addValue: 10,2,,Marksman,Distance,,addValue: 20,4,Spotter's,Spotting,,Sniping,multiplier: 0.5,-2,,Short-sighted,Short-sightedness,
+Item Stats (verbProperties),burstShotCount / ticksBetweenBurstShots,addValue: 1/,3,,Spazzy,Spazziness,Spazzing,addValue: 2/,4,Gunner's,Spitfire,,Spraying,"maxValue: 1/, minValue: /20",-3,,Sluggish,Stagnation,
+Item Stats (verbProperties),requireLineOfSight (special),,,,,,,,6,Heisenberg's,Quantum,,Warping,,,,,,
+Item Stats (verbProperties),meleeDamageBaseAmount,,,,,,,,,,,,,,,,,,
+Item Stats (verbProperties),meleeArmorPenetrationBase,,,,,,,,,,,,,,,,,,
+Item Stats (verbProperties),warmupTime,,,,,,,,,,,,,,,,,,
+Item Stats (verbProperties),forcedMissRadius,,,,,,,,,,,,,,,,,,
+Item Stats (verbProperties),DefaultArmorPenetrationPerDamage,,,,,,,,,,,,,,,,,,
+Item Stats (tool),armorPenetration,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+Item Stats (tool),,,,,,,,,,,,,,,,,,,
+EquippedStatDefChange,SellPriceFactor / RoyalFavorValue,multiplier: 1.5/1.5,2,Duke's,Duchessy,the Duke,,multiplier: 2/2,2,Prince's,Princely,the Prince,,multiplier: 0/0,-2.5,Rebel's,Guerilla,the Rebel,
+EquippedStatDefChange,"ConstructionSpeed, ConstructSuccessChance, SmoothingSpeed, FixBrokenDownBuildingSuccessChance",multiplier: 1.25/1.5/1.5/2,2,Builder's,Building,the Builder,Building,multiplier: 1.5/2/2/4,3,Architect's,Architectural,the Architect,Architecting,multiplier: 0.5/0.25/0.25/0.25,-3.5,Wrecker's,Wreckful,the Wrecker,Wrecking
+EquippedStatDefChange,MoveSpeed,addValue: 0.15,2,Jogger's,Jogging,the Jogger,Jogging,multiplier: 1.1,4,Runner's,Running,the Runner,Running,addValue: -0.15,-2,Walker's,Walking,the Walker,Walking
+EquippedStatDefChange,GlobalLearningFactor,addValue: 0.15,2,Learner's,Learning,the Learner,Learning,multiplier: 1.1,4,Teacher's,Teaching,the Teacher,Teaching,addValue: -0.15,-2,Dunce's,Duncy,the Dunce,
+EquippedStatDefChange,"HungerRateMultiplier, EatingSpeed, CookSpeed, FoodPoisonChance",multiplier: 1.25/1.5/1.25/0.5,2,Gourmet's,Gourmet,the Gourmet,,multiplier: 1.5/3/1.5/0,3,Connoisseur's,Connoisseurial,the Connoisseur,,multiplier: 1.5/0.5/0.5/2,-3,Bland's,Bland,the Bland,
+EquippedStatDefChange,RestRateMultiplier,addValue: 0.15,2,Slumberer's,Slumbering,the Slumberer,Slumbering,multiplier: 1.1,4,Hibernator's,Hibernating,the Hibernator,Hibernating,addValue: -0.15,-2,Insomniac's,Insomnolent,the Insomniac,
+EquippedStatDefChange,"PsychicSensitivity, PsychicEntropyMax, PsychicEntropyRecoveryRate, PsychicEntropyGain",multiplier: 1.25/1.1/1.1/1.1,1.5,Mentalist's,Mental,the Mentalist,,multiplier: 1.5/1.25/1.25/1.25,3,Psychic's,Psychic,the Psychic,,multiplier: 0/0/0/0,-2,Myopic's,Myopic,the Myopic,
+EquippedStatDefChange,"ToxicSensitivity, ImmunityGainSpeed, PainShockThreshold",addValue: -0.5/0.25/0.05,2,,Resistant,the Resistant,,"multiplier: 0/1.5, addValue: //0.10",4,,Resilient,the Resilient,,multiplier: 2/0.75/0.25,-4,,Sickly,the Sickling,
+EquippedStatDefChange,MentalBreakThreshold,addValue: -0.05,2,,Sanely,the Sane,,multiplier: 0.75,4,,Balanced,the Balanced,,addValue: 0.10,-3,,Insanely,the Insane,
+EquippedStatDefChange,"ComfyTemperatureMin, ComfyTemperatureMax, Flammability","addValue: -5/5, multiplier: //0.5",2,Eskimo's,Eskimo,the Eskimo,,"addValue: -10/10, multiplier: //0",3,Firefighter's,Firefighting,the Firefighter,Firefighting,"addValue: 10/-10, multiplier: //2",-3,,Frostbitten,the Frostbitten,
+EquippedStatDefChange,WorkSpeedGlobal,addValue: 0.15,2,Tinker's,Tinkering,the Tinker,Tinkering,multiplier: 1.1,4,Handyman's,Handy,the Handyman,,addValue: -0.15,-2,Neophyte's,Neophyte,the Neophyte,
+EquippedStatDefChange,"MiningSpeed, MiningYield",multiplier: 1.5/1.5,2,Miner's,Mining,the Miner,Mining,multiplier: 2/2,3,Mineralogist's,Mineral,the Mineralogist,,multiplier: 0.75/0.75,-2,Digger's,Digging,the Digger,Digging
+EquippedStatDefChange,ResearchSpeed,addValue: 0.25,2,Researcher's,Researching,the Researcher,Researching,multiplier: 1.5,3,Scientist's,Sciencing,the Scientist,Sciencing,multiplier: 0.75,-2,Ignorant's,Ignorant,the Ignorant,
+EquippedStatDefChange,"HuntingStealth, PawnTrapSpringChance, ForagedNutritionPerDay",addValue: 0.5/-0.5/1,1,Outdoorsman's,Outdoorsy,the Outdoorsman,,"preMinValue: //1, addValue: 1//, multiplier: /0/2.5",2,Huntress's,Hunting,the Huntress,Hunting,"multiplier: 0//0, minValue: /1/",-2,Hunted's,Huntable,the Hunted,
+EquippedStatDefChange,"PlantWorkSpeed, PlantHarvestYield, ForagedNutritionPerDay","multiplier: 1.5/1.5, addValue: //1",1.5,Planter's,Planting,the Planter,Planting,"preMinValue: //1, multiplier: 2/2/2.5",2.5,Gardener's,Gardening,the Gardener,Gardening,multiplier: 0.75/0.75/0,-2,Brown Thumb's,Brown-thumbed,the Brown Thumb,
+EquippedStatDefChange,CarryingCapacity,addValue: 25,2,Backpacker's,Backpacking,the Backpacker,Backpacking,multiplier: 1.5,4,Traveler's,Traveling,the Traveler,Traveling,addValue: -25,-3,Resident's,Resident,the Resident,
+EquippedStatDefChange,GeneralLaborSpeed,addValue: 0.25,2,Proletarian's,Proletarian,the Proletarian,,multiplier: 1.5,3,Industrialist's,Industrial,the Industrialist,,multiplier: 0.75,-2,Unemployer's,Unemployed,the Unemployer,
+EquippedStatDefChange,"MedicalTendSpeed, MedicalTendQuality, MedicalOperationSpeed, MedicalSurgerySuccessChance",multiplier: 1.25/1.1/1.25/1.1,2,Doctor's,Doctoring,the Doctor,Doctoring,multiplier: 1.5/1.5/1.5/1.5,4,Surgeon's,Surgical,the Surgeon,,multiplier: 0.5/0.5/0.5/0.5,-3,Coroner's,Coronial,the Coroner,
+EquippedStatDefChange,"NegotiationAbility, TradePriceImprovement, ArrestSuccessChance","multiplier: 1.25/1.1/, addValue: 0.15",2,Trader's,Trading,the Trader,Trading,"multiplier: 1.5/1.25/, addValue: 0.3",4,Diplomat's,Diplomatizing,the Diplomat,Diplomatizing,multiplier: 0.5/0.5/0.5/0.5,-2.5,Agitator's,Agitating,the Agitator,Agitating
+EquippedStatDefChange,"SocialImpact, PawnBeauty","multiplier: 1.5/, addValue: /0.5",1.5,Actor's,Acting,the Actor,Acting,"multiplier: 2/, addValue: /1",2.5,Model's,Modeling,the Model,Modeling,"multiplier: 0.75/, addValue: /-0.5",-1.5,Pleb's,Plebian,the Pleb,
+EquippedStatDefChange,"AnimalGatherSpeed, AnimalGatherYield, TameAnimalChance, TrainAnimalChance",multiplier: 1.25/1.25/1.25/1.25,1.5,Handler's,Handling,the Handler,Handling,multiplier: 1.5/1.5/1.5/1.5,3,Zoologist's,Zoological,the Zoologist,,multiplier: 0.75/0.75/0.75/0.75,-3,Beast's,Beastly,the Beast,
+EquippedStatDefChange,"ShootingAccuracyPawn, AimingDelayFactor","preMinValue: 2/, multiplier: 1.5/0.75",2,Legionary's,Legion,the Legionary,,"preMinValue: 2/, multiplier: 2/0.5",4,Soldier's,Soldiering,the Soldier,Soldiering,"addValue: -15/, multipler: /2",-4,Stormtrooper's,Stormtrooping,the Stormtrooper,Stormtrooping
+EquippedStatDefChange,"MeleeHitChance, MeleeDodgeChance","preMinValue: 2/, multiplier: 1.5/1.5",2,Fighter's,Fighting,the Fighter,Fighting,"preMinValue: 2/, multiplier: 2/2",4,Gladiator's,Gladiating,the Gladiator,Gladiating,"addValue: -15/, multiplier: /0.5",-4,Pacifist's,Pacifying,the Pacifist,Pacifying
+EquippedStatDefChange,IncomingDamageFactor,addValue: -0.15,2,,Stout,the Stout,,multiplier: 0.75,4,,Hearty,the Hearty,,addValue: 0.15,-2,Weak's,Weakly,the Weak,
+EquippedStatDefChange,"DrugSynthesisSpeed, DrugCookingSpeed",multiplier: 1.5/1.5,1,Dealer's,Dealing,the Dealer,Dealing,multiplier: 3/3,2,Pharmacist's,Pharmalogical,the Pharmacist,,multiplier: 0.5/0.5,-1.5,Addict's,Addicting,the Addict,Addicting
+EquippedStatDefChange,"ButcheryFleshSpeed, ButcheryMechanoidSpeed, ButcheryFleshEfficiency, ButcheryMechanoidEfficiency",multiplier: 1.5/1.5/1.5/1.5,1.5,Butcher's,Butchering,the Butcher,Butchering,multiplier: 2/2/2/2,3,Processor's,Processing,the Processor,Processing,multiplier: 0.5/0.5/0.5/0.5,-3,Wastrel's,Wasting,the Wastrel,Wasting
+Hediffs,"BloodLoss, WoundInfection",,,,Bloody,,Bleeding,,,,Hemorrhagic,,Hemorrhaging,,,,,,
+Hediffs,Anesthetic,,,,Anesthetic,Anaesthesia,Anesthetizing,,,,,,,,,,,,
+Hediffs,CatatonicBreakdown,,,,,,,,,,,,,,,,,,
+Hediffs,"PsychicShock, PsychicHangover, BrainShock",,,,Psychic,Psychics,,,,,,,,,,,,,
+Hediffs,"FoodPoisoning, Malnutrition",,,,,,,,,,,,,,,,,,
+Hediffs,"ToxicBuildup, DrugOverdose",,,,Toxic,,,,,,,,,,,,,,
+Hediffs,HeartAttack,,,,Cardiac,,,,,,,,,,,,,,
+Hediffs,Carcinoma,,,,Cancerous,Carcinogens,,,,,,,,,,,,,
+Hediffs,"GutWorms, MuscleParasites",,,,Parasitic,Parasites,,,,,,,,,,,,,
+Hediffs,"FibrousMechanites, SensoryMechanites",,,,Mechanite,Mechanites,,,,,,,,,,,,,
+Hediffs,"Flu, Animal_Flu, Plague, Animal_Plague, Malaria, SleepingSickness, CryptosleepSickness",,,,Infectious,Infection,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,
+Hediffs,,,,,,,,,,,,,,,,,,,

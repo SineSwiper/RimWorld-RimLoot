@@ -8,7 +8,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>CarryingCapacity</affectedStat>
-                <addValue>25</addValue>
+                <valueModifier>
+                    <addValue>25</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -30,7 +32,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>CarryingCapacity</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>4</affixCost>
@@ -52,7 +56,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>CarryingCapacity</affectedStat>
-                <addValue>-25</addValue>
+                <valueModifier>
+                    <addValue>-25</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-3</affixCost>

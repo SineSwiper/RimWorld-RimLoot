@@ -8,7 +8,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ResearchSpeed</affectedStat>
-                <addValue>0.25</addValue>
+                <valueModifier>
+                    <addValue>0.25</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -30,7 +32,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ResearchSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>3</affixCost>
@@ -52,7 +56,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ResearchSpeed</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-2</affixCost>

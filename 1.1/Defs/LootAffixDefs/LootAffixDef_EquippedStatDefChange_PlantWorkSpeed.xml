@@ -8,15 +8,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantWorkSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantHarvestYield</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <addValue>1</addValue>
+                <valueModifier>
+                    <addValue>1</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1.5</affixCost>
@@ -38,16 +44,22 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantWorkSpeed</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantHarvestYield</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <preMinValue>1</preMinValue>
-                <multiplier>2.5</multiplier>
+                <valueModifier>
+                    <preMinValue>1</preMinValue>
+                    <multiplier>2.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2.5</affixCost>
@@ -69,15 +81,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantWorkSpeed</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PlantHarvestYield</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
-                <multiplier>0</multiplier>
+                <valueModifier>
+                    <multiplier>0</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-2</affixCost>

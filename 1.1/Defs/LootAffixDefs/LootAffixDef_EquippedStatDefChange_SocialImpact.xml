@@ -8,11 +8,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>SocialImpact</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnBeauty</affectedStat>
-                <addValue>0.5</addValue>
+                <valueModifier>
+                    <addValue>0.5</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1.5</affixCost>
@@ -34,11 +38,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>SocialImpact</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnBeauty</affectedStat>
-                <addValue>1</addValue>
+                <valueModifier>
+                    <addValue>1</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2.5</affixCost>
@@ -60,11 +68,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>SocialImpact</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>PawnBeauty</affectedStat>
-                <addValue>-0.5</addValue>
+                <valueModifier>
+                    <addValue>-0.5</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1.5</affixCost>

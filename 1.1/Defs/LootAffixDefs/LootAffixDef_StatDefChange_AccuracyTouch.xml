@@ -8,11 +8,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyTouch</affectedStat>
-                <addValue>0.2</addValue>
+                <valueModifier>
+                    <addValue>0.2</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyShort</affectedStat>
-                <addValue>0.2</addValue>
+                <valueModifier>
+                    <addValue>0.2</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1.5</affixCost>
@@ -32,11 +36,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyTouch</affectedStat>
-                <addValue>0.4</addValue>
+                <valueModifier>
+                    <addValue>0.4</addValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyShort</affectedStat>
-                <addValue>0.4</addValue>
+                <valueModifier>
+                    <addValue>0.4</addValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>3</affixCost>
@@ -58,11 +66,15 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyTouch</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>AccuracyShort</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1.5</affixCost>

@@ -8,7 +8,9 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
-                <multiplier>2</multiplier>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1</affixCost>
@@ -28,15 +30,21 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
-                <multiplier>4</multiplier>
+                <valueModifier>
+                    <multiplier>4</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Flammability</affectedStat>
-                <maxValue>0</maxValue>
+                <valueModifier>
+                    <maxValue>0</maxValue>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>DeteriorationRate</affectedStat>
-                <maxValue>0</maxValue>
+                <valueModifier>
+                    <maxValue>0</maxValue>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
@@ -57,16 +65,22 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>MaxHitPoints</affectedStat>
-                <multiplier>0.5</multiplier>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Flammability</affectedStat>
-                <preMinValue>0.2</preMinValue>
-                <multiplier>4</multiplier>
+                <valueModifier>
+                    <preMinValue>0.2</preMinValue>
+                    <multiplier>4</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>DeteriorationRate</affectedStat>
-                <multiplier>4</multiplier>
+                <valueModifier>
+                    <multiplier>4</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-1.5</affixCost>

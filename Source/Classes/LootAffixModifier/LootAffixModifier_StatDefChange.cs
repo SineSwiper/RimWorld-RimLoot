@@ -5,12 +5,8 @@ using Verse;
 
 namespace RimLoot {
     public class LootAffixModifier_StatDefChange : LootAffixModifier {
-        public StatDef affectedStat;
-        public float   preMinValue = -9999999f;  // mostly used if value was originally zero or too low for multiplication
-        public float   addValue    = 0;
-        public float   multiplier  = 1;
-        public float   minValue    = -9999999f;
-        public float   maxValue    =  9999999f;
+        public StatDef          affectedStat;
+        public ValueModifierSet valueModifier;
 
         public override ModifierTarget AppliesTo {
             get { return ModifierTarget.Item; }
@@ -23,17 +19,7 @@ namespace RimLoot {
         }
         
         public override string ModifierChangeString {
-            get {
-                string str = "";
-                StatWorker worker = affectedStat.Worker;
-
-                if (preMinValue != -9999999f) str += string.Format("{0}={1} ", "min".Translate(), worker.ValueToString(preMinValue, false, ToStringNumberSense.Absolute));
-                if (addValue    != 0)         str += string.Format("{0} ",                        worker.ValueToString(addValue,    false, ToStringNumberSense.Offset));
-                if (multiplier  != 1)         str += string.Format("{0} ",                        worker.ValueToString(multiplier,  false, ToStringNumberSense.Factor));
-                if (minValue    != -9999999f) str += string.Format("{0}={1} ", "min".Translate(), worker.ValueToString(minValue,    false, ToStringNumberSense.Absolute));
-                if (maxValue    !=  9999999f) str += string.Format("{0}={1} ", "max".Translate(), worker.ValueToString(maxValue,    false, ToStringNumberSense.Absolute));
-                return str;
-            }
+            get { return valueModifier.ModifierChangeString(affectedStat.ToStringStyleUnfinalized); }
         }
 
         // FIXME: Some way to combine StatParts for multiple LADs?
@@ -65,28 +51,33 @@ namespace RimLoot {
             }
             if (affectedStat.forInformationOnly) yield return "The affectedStat is for information purposes only";
             if (affectedStat.alwaysHide)         yield return "The affectedStat is always hidden";
-            // FIXME: showOnPawns, showOnHumanlikes checks for subclasses
 
-            // min/max sanity checks
-            if (addValue == 0 && multiplier == 1 && preMinValue == -9999999f && minValue == -9999999f && maxValue == 9999999f)
-                yield return "This modifier doesn't actually change anything";
+            // ValueModifierSet sanity checks
+            if (valueModifier == null) {
+                yield return "The valueModifer is not set!";
+                yield break;
+            }
 
-            if (preMinValue != -9999999f) {
-                if (preMinValue >               maxValue) yield return string.Format("The preMinValue is higher than the maxValue: {0} > {1}",                preMinValue,              maxValue);
-                if (preMinValue >  affectedStat.maxValue) yield return string.Format("The preMinValue is higher than the affectedStat's maxValue: {0} > {1}", preMinValue, affectedStat.maxValue);
-                if (preMinValue <  affectedStat.minValue) yield return string.Format("The preMinValue is lower than the affectedStat's minValue: {0} < {1}",  preMinValue, affectedStat.minValue);
-                if (preMinValue == affectedStat.minValue) yield return string.Format("The preMinValue is equal than the affectedStat's minValue: {0}",        preMinValue);
+            foreach (string configError in valueModifier.ConfigErrors(parentDef, this))
+                yield return configError;
+
+            ValueModifierSet vm = valueModifier;
+            StatDef         ast = affectedStat;
+
+            if (vm.preMinValue != -9999999f) {
+                if (vm.preMinValue >  ast.maxValue) yield return string.Format("The preMinValue is higher than the affectedStat's maxValue: {0} > {1}", vm.preMinValue, ast.maxValue);
+                if (vm.preMinValue <  ast.minValue) yield return string.Format("The preMinValue is lower than the affectedStat's minValue: {0} < {1}",  vm.preMinValue, ast.minValue);
+                if (vm.preMinValue == ast.minValue) yield return string.Format("The preMinValue is equal than the affectedStat's minValue: {0}",        vm.preMinValue);
             }
-            if (minValue    != -9999999f) {
-                if (minValue >               maxValue) yield return string.Format("The minValue is higher than the maxValue: {0} > {1}",                minValue,              maxValue);
-                if (minValue >  affectedStat.maxValue) yield return string.Format("The minValue is higher than the affectedStat's maxValue: {0} > {1}", minValue, affectedStat.maxValue);
-                if (minValue <  affectedStat.minValue) yield return string.Format("The minValue is lower than the affectedStat's minValue: {0} < {1}",  minValue, affectedStat.minValue);
-                if (minValue == affectedStat.minValue) yield return string.Format("The minValue is equal than the affectedStat's minValue: {0}",        minValue);
+            if (vm.minValue    != -9999999f) {
+                if (vm.minValue >  ast.maxValue) yield return string.Format("The minValue is higher than the affectedStat's maxValue: {0} > {1}", vm.minValue, ast.maxValue);
+                if (vm.minValue <  ast.minValue) yield return string.Format("The minValue is lower than the affectedStat's minValue: {0} < {1}",  vm.minValue, ast.minValue);
+                if (vm.minValue == ast.minValue) yield return string.Format("The minValue is equal than the affectedStat's minValue: {0}",        vm.minValue);
             }
-            if (maxValue    !=  9999999f) {
-                if (maxValue >  affectedStat.maxValue) yield return string.Format("The maxValue is higher than the affectedStat's maxValue: {0} > {1}", maxValue, affectedStat.maxValue);
-                if (maxValue <  affectedStat.minValue) yield return string.Format("The maxValue is lower than the affectedStat's minValue: {0} < {1}",  maxValue, affectedStat.minValue);
-                if (maxValue == affectedStat.maxValue) yield return string.Format("The maxValue is equal than the affectedStat's maxValue: {0}",        maxValue);
+            if (vm.maxValue    !=  9999999f) {
+                if (vm.maxValue >  ast.maxValue) yield return string.Format("The maxValue is higher than the affectedStat's maxValue: {0} > {1}", vm.maxValue, ast.maxValue);
+                if (vm.maxValue <  ast.minValue) yield return string.Format("The maxValue is lower than the affectedStat's minValue: {0} < {1}",  vm.maxValue, ast.minValue);
+                if (vm.maxValue == ast.maxValue) yield return string.Format("The maxValue is equal than the affectedStat's maxValue: {0}",        vm.maxValue);
             }
         }
 
@@ -113,12 +104,7 @@ namespace RimLoot {
         }
 
         public float ChangeValue (float oldVal) {
-            float newVal = oldVal;
-
-            newVal = Mathf.Clamp(newVal, preMinValue, maxValue);
-            newVal += addValue;
-            newVal *= multiplier;
-            newVal = Mathf.Clamp(newVal, minValue, maxValue);
+            float newVal = valueModifier.ChangeValue(oldVal);
 
             // Just in case we're exceeding normal StatDef bounds
             if (affectedStat.postProcessCurve == null) newVal = Mathf.Clamp(newVal, affectedStat.minValue, affectedStat.maxValue);

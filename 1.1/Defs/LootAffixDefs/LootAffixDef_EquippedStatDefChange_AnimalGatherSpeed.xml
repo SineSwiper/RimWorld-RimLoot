@@ -8,19 +8,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherSpeed</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherYield</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TameAnimalChance</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TrainAnimalChance</affectedStat>
-                <multiplier>1.25</multiplier>
+                <valueModifier>
+                    <multiplier>1.25</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>1.5</affixCost>
@@ -42,19 +50,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherSpeed</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherYield</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TameAnimalChance</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TrainAnimalChance</affectedStat>
-                <multiplier>1.5</multiplier>
+                <valueModifier>
+                    <multiplier>1.5</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>3</affixCost>
@@ -75,19 +91,27 @@
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherSpeed</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>AnimalGatherYield</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TameAnimalChance</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>TrainAnimalChance</affectedStat>
-                <multiplier>0.75</multiplier>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
             </li>
         </modifiers>
         <affixCost>-3</affixCost>
