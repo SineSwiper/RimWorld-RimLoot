@@ -118,12 +118,7 @@ namespace RimLoot {
 
 
         public bool CanBeAppliedToThing (ThingWithComps thing) {
-            // If any of the modifiers can apply it, then it passes
-            foreach (LootAffixModifier modifier in modifiers) {
-                if (modifier.CanBeAppliedToThing(thing)) return true;
-            }
-
-            return false;
+            return modifiers.All(lam => lam.CanBeAppliedToThing(thing));
         }
 
         // FIXME: CanBeAppliedToThing (ThingDef thing) ?
