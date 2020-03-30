@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using RimWorld;
 using Verse;
@@ -44,7 +45,8 @@ namespace RimLoot {
         [HarmonyPatch(typeof(ThingDef), "SpecialDisplayStats")]
         private static class SpecialDisplayStatsPatches {
             [HarmonyPrefix]
-            static bool Prefix(ThingDef __instance, StatRequest req, ref List<VerbProperties> ___verbs, List<VerbProperties> __state) {
+            static bool Prefix(ThingDef __instance, StatRequest req, ref List<VerbProperties> ___verbs, out List<VerbProperties> __state) {
+                __state = null;
                 if (!(req.Thing is ThingWithComps thing)) return true;
                 var comp = thing.TryGetComp<CompLootAffixableThing>();
                 if (comp == null) return true;  // go to original
@@ -56,21 +58,30 @@ namespace RimLoot {
                 return true;
             }
 
-            [HarmonyFinalizer]
-            static void Finalizer(ThingDef __instance, StatRequest req, ref List<VerbProperties> ___verbs, List<VerbProperties> __state) {
-                // Usual sanity checks
-                if (!(req.Thing is ThingWithComps thing)) return;
-                var comp = thing.TryGetComp<CompLootAffixableThing>();
-                if (comp    == null) return;
-                if (__state == null) return;
-            
-                // Go back to the old set
-                ___verbs = __state;
+            [HarmonyPostfix]
+            static IEnumerable<StatDrawEntry> Postfix(IEnumerable<StatDrawEntry> values, ThingDef __instance, StatRequest req, List<VerbProperties> __state) {
+                CompLootAffixableThing comp = null;
+                if (req.Thing is ThingWithComps thing) comp = thing.TryGetComp<CompLootAffixableThing>();
 
-                return;
+                // Cycle through the entries
+                foreach (StatDrawEntry value in values) {
+                    // Give it to the comp to meddle with
+                    if (comp != null) comp.SpecialDisplayStatsInjectors(value);
+
+                    yield return value;
+                }
+                
+                // Go back to the old set.  Iterators cannot have refs, so we have to replace this with reflection.
+                if (__state == null) {
+                    Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
+                    yield break;
+                }
+
+                // [Reflection] thing.verbs = __state;
+                FieldInfo field = AccessTools.Field(typeof(ThingDef), "verbs");
+                field.SetValue(__instance, __state);
             }
         }
-
 
     }
 }

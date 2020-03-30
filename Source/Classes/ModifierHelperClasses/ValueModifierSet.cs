@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using RimWorld;
@@ -19,8 +20,8 @@ namespace RimLoot {
 
             if (preMinValue != -9999999f) str += string.Format("{0}={1} ", "min".Translate(), preMinValue.ToStringByStyle(toStringStyle, ToStringNumberSense.Absolute));
             if (setValue    != null)      str += string.Format("={0} ",               ((float)setValue)  .ToStringByStyle(toStringStyle, ToStringNumberSense.Absolute));
-            if (addValue    != 0)         str += string.Format("{0} ",                        addValue.   ToStringByStyle(toStringStyle, ToStringNumberSense.Offset));
-            if (multiplier  != 1)         str += string.Format("{0} ",                        multiplier. ToStringByStyle(toStringStyle, ToStringNumberSense.Factor));
+            if (addValue    != 0)         str += string.Format("{0} ",                        addValue.   ToStringByStyle(toStringStyle, ToStringNumberSense.Offset  ));
+            if (multiplier  != 1)         str += string.Format("{0} ",                        multiplier. ToStringByStyle(toStringStyle, ToStringNumberSense.Factor  ));
             if (minValue    != -9999999f) str += string.Format("{0}={1} ", "min".Translate(), minValue.   ToStringByStyle(toStringStyle, ToStringNumberSense.Absolute));
             if (maxValue    !=  9999999f) str += string.Format("{0}={1} ", "max".Translate(), maxValue.   ToStringByStyle(toStringStyle, ToStringNumberSense.Absolute));
 
@@ -60,6 +61,10 @@ namespace RimLoot {
 
         public override string ToString() {
             return ModifierChangeString();
+        }
+
+        public new ValueModifierSet MemberwiseClone() {
+            return (ValueModifierSet) base.MemberwiseClone();
         }
     }
 }

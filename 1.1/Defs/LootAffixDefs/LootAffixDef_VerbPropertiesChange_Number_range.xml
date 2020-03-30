@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Marksman</defName>
+        <label>Marksman</label>
+        <groupName>VerbPropertiesChange_Number_range</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>range</affectedField>
+                <valueModifier>
+                    <addValue>10</addValue>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Marksman</li>
+                <li>noun->Distance</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Sniping</defName>
+        <label>Sniping</label>
+        <groupName>VerbPropertiesChange_Number_range</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>range</affectedField>
+                <valueModifier>
+                    <addValue>20</addValue>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Sniper's</li>
+                <li>adjective->Sniping</li>
+                <li>noun->Sniper</li>
+                <li>verb->Sniping</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Short-sighted</defName>
+        <label>Short-sighted</label>
+        <groupName>VerbPropertiesChange_Number_range</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>range</affectedField>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Short-sighted</li>
+                <li>noun->Short-sightedness</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

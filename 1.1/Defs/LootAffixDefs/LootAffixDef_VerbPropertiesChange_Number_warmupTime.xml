@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Quick-fire</defName>
+        <label>Quick-fire</label>
+        <groupName>VerbPropertiesChange_Number_warmupTime</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>warmupTime</affectedField>
+                <valueModifier>
+                    <addValue>-1</addValue>
+                    <minValue>0</minValue>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Quick-fire</li>
+                <li>verb->Quick-firing</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Rapid-fire</defName>
+        <label>Rapid-fire</label>
+        <groupName>VerbPropertiesChange_Number_warmupTime</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>warmupTime</affectedField>
+                <valueModifier>
+                    <setValue>0</setValue>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>2.5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Rapid-fire</li>
+                <li>verb->Rapid-firing</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Slow-fire</defName>
+        <label>Slow-fire</label>
+        <groupName>VerbPropertiesChange_Number_warmupTime</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>warmupTime</affectedField>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Slow-fire</li>
+                <li>verb->Slow-firing</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

@@ -60,15 +60,24 @@ namespace RimLoot {
             foreach (LootAffixDef affixDef in DefDatabase<LootAffixDef>.AllDefs.OrderBy(lad => lad.affixCost)) {
                 LootAffixDef localDef = affixDef;
                 debugMenuOptionList.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Tool, (Action) (() => {
-                    ThingWithComps twc = Find.CurrentMap.thingGrid.ThingsAt(UI.MouseCell()).Where(t => t is ThingWithComps).Cast<ThingWithComps>().FirstOrDefault();
-                    if (twc == null) return;
-                    var comp = twc.TryGetComp<CompLootAffixableThing>();
-                    if (comp == null) return;
+                    Log.Message("AddAffix_0 = " + localDef);
+                    CompLootAffixableThing comp = Find.CurrentMap.thingGrid.
+                        ThingsAt(UI.MouseCell()).
+                        Where (t => t is ThingWithComps).Cast<ThingWithComps>().
+                        Select(twc => twc.TryGetComp<CompLootAffixableThing>()).
+                        Where (c => c is CompLootAffixableThing).
+                        FirstOrDefault()
+                    ;
 
+                    Log.Message("AddAffix_1 = " + localDef);
                     var lads = comp.AllAffixDefs;
+                    Log.Message("AddAffix_2 = " + localDef + " / " + lads.Count + " / " + lads.Contains(localDef));
                     if (lads.Contains(localDef) || lads.Count >= 4) return;
+                    Log.Message("AddAffix_3 = " + localDef);
                     lads.Add(localDef);
+                    Log.Message("AddAffix_4 = " + localDef);
                     comp.PostAffixCleanup();
+                    Log.Message("AddAffix_5 = " + localDef);
                 })));
             }
             return debugMenuOptionList;

@@ -25,16 +25,12 @@ $Text::Wrap::columns = 1000;
 our $INPUT_CSV = file('./RimLoot Datasheet - Data.csv');
 our $OUTPUT_BASE_DIR = dir('../../1.1/Defs/LootAffixDefs');
 
-our %SUPPORTED_MODIFIERS = (qw<
-    StatDefChange               1
-    EquippedStatDefChange       1
-    VerbPropertiesChange        1
->);
-
 our %STAT_XML_NAME = (qw<
-    StatDefChange               affectedStat
-    EquippedStatDefChange       affectedStat
-    VerbPropertiesChange        affectedField
+    StatDefChange                  affectedStat
+    EquippedStatDefChange          affectedStat
+    VerbPropertiesChange_Number    affectedField
+    VerbPropertiesChange_Boolean   affectedField
+    VerbPropertiesChange_Def       affectedField
 >);
 
 our $DEBUG = 3;
@@ -65,7 +61,7 @@ foreach my $i (0 .. $#$header_row) {
 while (my $row = $csv->getline($fh)) {
     my $modifier_class = $row->[ $header_index{LootAffixModifier}[0] ];
     my @stats          = split m<\s*[/,]\s*>, $row->[ $header_index{Stat}[0] ];
-    next unless $SUPPORTED_MODIFIERS{$modifier_class};
+    next unless $STAT_XML_NAME{$modifier_class};
     next unless @stats;
 
     my $group_name = join('_', $modifier_class, $stats[0]);
@@ -135,10 +131,14 @@ while (my $row = $csv->getline($fh)) {
 
         my $modifiers_xml = XML::Twig::Elt->new('modifiers');
         foreach my $i (0 .. $#stats) {
-            my $modifier_xml = XML::Twig::Elt->new('li');
-            $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$modifier_class" );
+            # Force this to be StatDefChange
+            my $indiv_modifier_class = $modifier_class;
+            if ($stats[$i] =~ /accuracy/) $indiv_modifier_class = 'StatDefChange';
 
-            $modifier_xml->insert_new_elt(last_child => $STAT_XML_NAME{$modifier_class} => $stats[$i]);
+            my $modifier_xml = XML::Twig::Elt->new('li');
+            $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$indiv_modifier_class" );
+
+            $modifier_xml->insert_new_elt(last_child => $STAT_XML_NAME{$indiv_modifier_class} => $stats[$i]);
 
             my $value_modifier_xml = XML::Twig::Elt->new('valueModifier');
             foreach my $property (@change_values) {

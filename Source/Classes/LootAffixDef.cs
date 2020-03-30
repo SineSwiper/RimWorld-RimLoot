@@ -55,10 +55,15 @@ namespace RimLoot {
         }
 
         public override void ResolveReferences() {
+            if (groupName == "Test_Group") Log.Message("LAD_RR");
+
             base.ResolveReferences();
+            if (groupName == "Test_Group") Log.Message("LAD_RR_post_base: " + string.Join(",", modifiers));
             foreach (LootAffixModifier modifier in modifiers) {
                 modifier.ResolveReferences(this);
             }
+
+            if (groupName == "Test_Group") Log.Message("LAD_RR_post_LAM");
 
             description =
                 "RimLoot_LootAffixDescription".Translate() + "\n\n" +
@@ -243,5 +248,12 @@ namespace RimLoot {
                 }
             }
         }
+
+        public void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {
+            foreach (LootAffixModifier modifier in modifiers) {
+                modifier.SpecialDisplayStatsInjectors(statDrawEntry, parentThing, preLabel);
+            }
+        }
+
     }
 }

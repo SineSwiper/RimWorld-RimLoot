@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RimLoot.BasicStatDescDef>
+    <statClass>VerbProperties</statClass>
+    <statField>range</statField>
+    <translationKey>Range</translationKey>
+    <toStringStyle>Integer</toStringStyle>
+  </RimLoot.BasicStatDescDef>
+
+  <RimLoot.BasicStatDescDef>
+    <statClass>VerbProperties</statClass>
+    <statField>burstShotCount</statField>
+    <translationKey>BurstShotCount</translationKey>
+    <toStringStyle>Integer</toStringStyle>
+  </RimLoot.BasicStatDescDef>
+
+  <RimLoot.BasicStatDescDef_RPM>
+    <statClass>VerbProperties</statClass>
+    <statField>ticksBetweenBurstShots</statField>
+    <translationKey>BurstShotFireRate</translationKey>
+    <toStringStyle>FloatTwo</toStringStyle>
+  </RimLoot.BasicStatDescDef_RPM>
+
+  <RimLoot.BasicStatDescDef>
+    <statClass>VerbProperties</statClass>
+    <statField>warmupTime</statField>
+    <translationKey>WarmupTime</translationKey>
+    <toStringStyle>FloatTwo</toStringStyle>
+  </RimLoot.BasicStatDescDef>
+
+  <RimLoot.BasicStatDescDef>
+    <statClass>VerbProperties</statClass>
+    <statField>defaultProjectile</statField>
+    <!-- FIXME: Temporary placeholder -->
+    <translationKey>Damage</translationKey>
+  </RimLoot.BasicStatDescDef>
+
+</Defs>

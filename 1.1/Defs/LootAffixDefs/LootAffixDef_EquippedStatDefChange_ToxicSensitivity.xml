@@ -43,7 +43,7 @@
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ToxicSensitivity</affectedStat>
                 <valueModifier>
-                    <multiplier>0</multiplier>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">

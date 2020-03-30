@@ -20,18 +20,18 @@ namespace RimLoot {
             get;
         }
 
-        public abstract string ModifierChangeStat {
+        public abstract TaggedString ModifierChangeStat {
             get;
         }
         
-        public virtual string ModifierChangeString {
+        public virtual TaggedString ModifierChangeString {
             get {
                 // FIXME: Do other languages perfer something other than "{0} chance"?
                 return string.Format("{0} {1}", GenText.ToStringPercent(chance), "chance".Translate());
             }
         }
 
-        public virtual string ModifierChangeLabel {
+        public virtual TaggedString ModifierChangeLabel {
             get {
                 return ModifierChangeStat + ": " + ModifierChangeString;
             }
@@ -48,7 +48,7 @@ namespace RimLoot {
         }
 
         public virtual void ResolveReferences (LootAffixDef parentDef) {
-        
+            base.ResolveReferences();
         }
 
         public virtual void PostLoadSpecial (LootAffixDef parentDef) {
@@ -103,5 +103,10 @@ namespace RimLoot {
         public virtual IEnumerable<Dialog_InfoCard.Hyperlink> GetHyperlinks (ThingWithComps parentThing, LootAffixDef parentDef) {
             return Enumerable.Empty<Dialog_InfoCard.Hyperlink>();
         }
+
+        public virtual void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {
+
+        }
+
     }
 }

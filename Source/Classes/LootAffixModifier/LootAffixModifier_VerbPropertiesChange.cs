@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using RimWorld;
@@ -6,25 +7,28 @@ using UnityEngine;
 using Verse;
 
 namespace RimLoot {
-    public class LootAffixModifier_VerbPropertiesChange : LootAffixModifier {
-        public string           affectedField;
-        public ToStringStyle    toStringStyle = ToStringStyle.Integer;
-        public ValueModifierSet valueModifier;
+    public abstract class LootAffixModifier_VerbPropertiesChange : LootAffixModifier {
+        public string affectedField;
+
+        private protected BasicStatDescDef basicStatDesc;
 
         public override ModifierTarget AppliesTo {
             get { return ModifierTarget.VerbProperties; }
         }
 
-        public override string ModifierChangeStat {
-            get {
-                // FIXME: Might need some tweaks to look for missing translations
-                string key = GenText.ToTitleCaseSmart(affectedField);
-                return key.Translate();
-            }
+        public override TaggedString ModifierChangeStat {
+            get { return basicStatDesc.GetModifierChangeStat(); }
         }
         
-        public override string ModifierChangeString {
-            get { return valueModifier.ModifierChangeString(toStringStyle); }
+        public abstract override TaggedString ModifierChangeString {
+            get;
+        }
+
+        public override void ResolveReferences (LootAffixDef parentDef)  {
+            basicStatDesc = BasicStatDescDef.Named(typeof(VerbProperties), affectedField);
+
+            // Call this last, to get the resolvedDef before LootAffixDef needs it for ModifierChangeString
+            base.ResolveReferences();
         }
 
         public override IEnumerable<string> ConfigErrors (LootAffixDef parentDef) {
@@ -40,20 +44,8 @@ namespace RimLoot {
             FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
             if (field == null) {
                 yield return "The affectedField doesn't exist in VerbProperties: " + affectedField;
-            }
-            else {
-                System.Type type = field.FieldType;
-                if (type != typeof(float) && type != typeof(int)) yield return "Unsupported type: " + type;
-            }
-
-            // ValueModifierSet sanity checks
-            if (valueModifier == null) {
-                yield return "The valueModifer is not set!";
                 yield break;
             }
-
-            foreach (string configError in valueModifier.ConfigErrors(parentDef, this))
-                yield return configError;
         }
 
         public override bool CanBeAppliedToThing (ThingWithComps thing) {
@@ -61,18 +53,8 @@ namespace RimLoot {
             return thing.def.IsRangedWeapon;
         }
 
-        public override void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef) {
-            /* XXX: Yes, we are dynamically modifying a value here via reflection, based on data some rando
-             * provided via XML.  Is it dangerous?  Sure.  But, this is the best way to change whatever value
-             * we want.
-             */
+        public abstract override void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef);
 
-            FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
-            System.Type type = field.FieldType;
-            float val = (float)field.GetValue(verbProperties);
-            val = valueModifier.ChangeValue(val);
-            field.SetValue(verbProperties, ConvertHelper.Convert(val, type));
-        }
-
+        public abstract override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel);
     }
 }

@@ -51,15 +51,13 @@
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>SellPriceFactor</affectedStat>
                 <valueModifier>
-                    <maxValue>0</maxValue>
-                    <multiplier>0</multiplier>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>RoyalFavorValue</affectedStat>
                 <valueModifier>
-                    <maxValue>0</maxValue>
-                    <multiplier>0</multiplier>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
         </modifiers>

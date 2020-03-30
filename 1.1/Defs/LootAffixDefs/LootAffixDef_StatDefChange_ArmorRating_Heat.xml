@@ -61,7 +61,7 @@
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Flammability</affectedStat>
                 <valueModifier>
-                    <multiplier>0</multiplier>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
         </modifiers>

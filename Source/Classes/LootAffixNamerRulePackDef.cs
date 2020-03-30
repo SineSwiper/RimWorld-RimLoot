@@ -41,7 +41,6 @@ namespace RimLoot {
         public void LoadDataFromXmlCustom(XmlNode xmlRoot) {
             foreach (XmlNode xmlMain in xmlRoot.ChildNodes) {
                 if (xmlMain.NodeType != XmlNodeType.Element) continue;
-                Log.Message("LANRPD: " + xmlMain.Name);
 
                 switch (xmlMain.Name) {
                     case "defName":

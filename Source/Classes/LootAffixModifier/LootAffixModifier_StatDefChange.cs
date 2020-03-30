@@ -12,13 +12,13 @@ namespace RimLoot {
             get { return ModifierTarget.Item; }
         }
 
-        public override string ModifierChangeStat {
+        public override TaggedString ModifierChangeStat {
             get {
                 return affectedStat.LabelForFullStatListCap;
             }
         }
         
-        public override string ModifierChangeString {
+        public override TaggedString ModifierChangeString {
             get { return valueModifier.ModifierChangeString(affectedStat.ToStringStyleUnfinalized); }
         }
 

@@ -94,7 +94,7 @@
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
                 <valueModifier>
-                    <multiplier>0</multiplier>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
         </modifiers>

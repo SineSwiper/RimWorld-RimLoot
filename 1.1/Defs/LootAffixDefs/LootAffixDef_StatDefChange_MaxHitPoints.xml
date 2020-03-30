@@ -37,13 +37,13 @@
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>Flammability</affectedStat>
                 <valueModifier>
-                    <maxValue>0</maxValue>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_StatDefChange">
                 <affectedStat>DeteriorationRate</affectedStat>
                 <valueModifier>
-                    <maxValue>0</maxValue>
+                    <setValue>0</setValue>
                 </valueModifier>
             </li>
         </modifiers>

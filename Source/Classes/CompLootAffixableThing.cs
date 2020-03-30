@@ -21,8 +21,9 @@ namespace RimLoot {
         private HashSet<LootAffixModifier>       modifiersCached;
         private float?                           ttlAffixPoints;
 
-        // Cached modified copies
+        // Cached VerbProperties (modified and otherwise)
         private List<VerbProperties>             verbProperties;
+        private List<VerbProperties>             verbPropertiesFromDef;
 
         public List<LootAffixDef> AllAffixDefs {
             get { return affixes; }
@@ -76,6 +77,15 @@ namespace RimLoot {
             }
         }
 
+        public List<VerbProperties> VerbPropertiesFromDef {
+            get {
+                if (verbPropertiesFromDef != null) return verbPropertiesFromDef;
+                MakeAffixCaches();
+                return verbPropertiesFromDef;
+            }
+        }
+
+
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
@@ -95,21 +105,19 @@ namespace RimLoot {
             var verbModifierDefs = affixes.Where(
                 lad => lad.modifiers.Any( lam => lam.AppliesTo == ModifierTarget.VerbProperties )
             ).ToList();
-            Log.Message(string.Format("Building cache for {0}, VP.Count={1}", parent, verbModifierDefs.Count));
-            Log.Message("Modifiers: " + string.Join(", ", modifiersCached));
-            Log.Message("Modifier appliesTo: " + string.Join(", ", modifiersCached.Select(lam => lam.AppliesTo)));
 
             if (verbModifierDefs.Count > 0) {
-                verbProperties = parent.def.Verbs.Select(vp => vp.MemberwiseClone()).ToList();
+                verbPropertiesFromDef = parent.def.Verbs;
+                verbProperties        = parent.def.Verbs.Select(vp => vp.MemberwiseClone()).ToList();
+
                 foreach (LootAffixDef lad in verbModifierDefs) {
                     foreach (var vp in verbProperties) {
                         lad.ModifyVerbProperties(parent, vp);
-                        Log.Message(string.Format("Modifying VP: {0} {1} for {2}", lad, vp, parent));
                     }
                 }
             }
             else {
-                verbProperties = parent.def.Verbs;
+                verbProperties = verbPropertiesFromDef = parent.def.Verbs;
             }
 
             // Refresh the VerbTracker cache
@@ -122,12 +130,13 @@ namespace RimLoot {
         }
 
         private void ClearAffixCaches() {
-            affixStringsCached?.Clear();
-            affixDefDictCached?.Clear();
+            affixStringsCached?    .Clear();
+            affixDefDictCached?    .Clear();
             affixStringsDictCached?.Clear();
-            modifiersCached?.Clear();
-            ttlAffixPoints = null;
-            verbProperties = null;
+            modifiersCached?       .Clear();
+            ttlAffixPoints         = null;
+            verbProperties         = null;
+            verbPropertiesFromDef  = null;
 
             // Clear the VerbTracker cache
             var equippable = parent.TryGetComp<CompEquippable>();
@@ -187,7 +196,6 @@ namespace RimLoot {
             }
         }
 
-        // FIXME: Test the ratio system
         public void AddNewAffixes(float affixPoints = 0, int ttlAffixes = 0) {  // options for debug only
             affixes.Clear();
             if (affixPoints == 0) affixPoints = CalculateTotalLootAffixPoints();
@@ -394,6 +402,15 @@ namespace RimLoot {
                 foreach (var statDrawEntry in affix.SpecialDisplayStatsForThing(parent, affixKey)) {
                     yield return statDrawEntry;
                 }
+            }
+        }
+
+        // NOTE: This also will get the SpecialDisplayStats entries above
+        public void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry) {
+            var affixDict = AllAffixDefsByAffixes;
+            foreach (string affixKey in AffixStrings) {
+                LootAffixDef affix = affixDict[affixKey];
+                affix.SpecialDisplayStatsInjectors(statDrawEntry, parent, affixKey);
             }
         }
     }

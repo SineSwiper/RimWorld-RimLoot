@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Spazzy</defName>
+        <label>Spazzy</label>
+        <groupName>VerbPropertiesChange_Number_burstShotCount</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>burstShotCount</affectedField>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyTouch</affectedStat>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyShort</affectedStat>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyMedium</affectedStat>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyLong</affectedStat>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Spazzy</li>
+                <li>noun->Spazziness</li>
+                <li>verb->Spazzing</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Spitfire</defName>
+        <label>Spitfire</label>
+        <groupName>VerbPropertiesChange_Number_burstShotCount</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>burstShotCount</affectedField>
+                <valueModifier>
+                    <multiplier>3</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>ticksBetweenBurstShots</affectedField>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyTouch</affectedStat>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyShort</affectedStat>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyMedium</affectedStat>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_StatDefChange">
+                <affectedStat>AccuracyLong</affectedStat>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Gunner's</li>
+                <li>adjective->Spitfire</li>
+                <li>verb->Spraying</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Sluggish</defName>
+        <label>Sluggish</label>
+        <groupName>VerbPropertiesChange_Number_burstShotCount</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>burstShotCount</affectedField>
+                <valueModifier>
+                    <multiplier>0.75</multiplier>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_VerbPropertiesChange_Number">
+                <affectedField>ticksBetweenBurstShots</affectedField>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Sluggish</li>
+                <li>noun->Stagnation</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>
