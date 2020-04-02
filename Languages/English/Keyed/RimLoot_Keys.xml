@@ -7,4 +7,9 @@
     <RimLoot_AffixStatExplanationPart>{0} affix</RimLoot_AffixStatExplanationPart>
     <RimLoot_AffixStatOnGearExplanationPart>{0} affix from {1}</RimLoot_AffixStatOnGearExplanationPart>
     <RimLoot_AffixWhileEquipped>{0} (while equipped)</RimLoot_AffixWhileEquipped>
+
+    <!-- Keys that I can't believe aren't in the base language files... -->
+    <Projectile>Projectile</Projectile>
+    <StatsReport_TotalValue>Total value</StatsReport_TotalValue>
+    <AverageAccuracy>Average Accuracy</AverageAccuracy>
 </LanguageData>

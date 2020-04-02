@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StatWorker_RangedAverageDPS.cs" />
     <Compile Include="Classes\DebugToolsLootAffixes.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_VerbPropertiesChange.cs" />
     <Compile Include="Classes\ModifierHelperClasses\BasicStatDescDef_RPM.cs" />

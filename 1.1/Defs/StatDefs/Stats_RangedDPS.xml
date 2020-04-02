@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <StatDef>
+    <defName>RangedWeapon_AverageDPS</defName>
+    <workerClass>RimLoot.StatWorker_RangedAverageDPS</workerClass>
+    <label>ranged damage per second</label>
+    <description>Average damage dealt per second with a ranged weapon.</description>
+    <category>Weapon</category>
+    <defaultBaseValue>1</defaultBaseValue>
+    <minValue>0</minValue>
+    <toStringStyle>FloatTwo</toStringStyle>
+    <forInformationOnly>true</forInformationOnly>
+    <displayPriorityInCategory>5010</displayPriorityInCategory>
+  </StatDef>
+
+</Defs>

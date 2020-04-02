@@ -76,8 +76,6 @@ namespace RimLoot {
             return DefDatabase<BasicStatDescDef>.GetNamed(namedDefName, true);
         }
 
-        // FINISH/FIXME: Solve for rpm stat on ticksBetweenBurstShots
-
         // Install our own affix stat data 
         public void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, string preLabel, ThingWithComps parentThing, LootAffixModifier parentModifier, string finalString, string baseString = null) {
             if (statDrawEntry.LabelCap == GetModifierChangeStat()) {
