@@ -31,6 +31,7 @@ our %STAT_XML_NAME = (qw<
     VerbPropertiesChange_Number    affectedField
     VerbPropertiesChange_Boolean   affectedField
     VerbPropertiesChange_Def       affectedField
+    ChangeProjectile               newDef
 >);
 
 our $DEBUG = 3;
@@ -58,6 +59,9 @@ foreach my $i (0 .. $#$header_row) {
 }
 
 # CSV Loop
+my $root = XML::Twig::Elt->new('Defs');
+my $prev_group_name = '';
+
 while (my $row = $csv->getline($fh)) {
     my $modifier_class = $row->[ $header_index{LootAffixModifier}[0] ];
     my @stats          = split m<\s*[/,]\s*>, $row->[ $header_index{Stat}[0] ];
@@ -66,10 +70,19 @@ while (my $row = $csv->getline($fh)) {
 
     my $group_name = join('_', $modifier_class, $stats[0]);
 
+    # Force ChangeProjectile into all one group
+    $group_name = $modifier_class if $modifier_class eq 'ChangeProjectile';
+
     say "$modifier_class --> ".join(' / ', @stats) if $DEBUG >= 2;
 
-    # New XML
-    my $root = XML::Twig::Elt->new('Defs');
+    unless ($group_name eq $prev_group_name) {
+        # Save the old file
+        save_xml($root, $prev_group_name) if $root->children_count;
+
+        # New XML
+        $root = XML::Twig::Elt->new('Defs');
+    }
+    $prev_group_name = $group_name;
 
     # Process each column section (positive, upgrade, negative)
     my $has_valid_defs = 0;
@@ -77,6 +90,9 @@ while (my $row = $csv->getline($fh)) {
         my $raw_change_data = $row->[ $header_index{'Chance/Change'}[$s] ];
         my $affix_cost      = $row->[ $header_index{'AffixCost'}[$s]     ];
         my $def_name        = $row->[ $header_index{'Adjective'}[$s]     ];
+
+        my $label = $def_name;
+        $def_name =~ s/[^\w\-]+/_/g;
 
         say "    ".join(' | ', $def_name, $raw_change_data, $affix_cost) if $DEBUG >= 3;
 
@@ -123,7 +139,7 @@ while (my $row = $csv->getline($fh)) {
 
         my $def_xml = XML::Twig::Elt->new('RimLoot.LootAffixDef');
         $def_xml->insert_new_elt(last_child => defName   => $def_name);
-        $def_xml->insert_new_elt(last_child => label     => $def_name);
+        $def_xml->insert_new_elt(last_child => label     => $label);
         $def_xml->insert_new_elt(last_child => groupName => $group_name);
 
         # Parse through the change data
@@ -133,7 +149,7 @@ while (my $row = $csv->getline($fh)) {
         foreach my $i (0 .. $#stats) {
             # Force this to be StatDefChange
             my $indiv_modifier_class = $modifier_class;
-            if ($stats[$i] =~ /accuracy/) $indiv_modifier_class = 'StatDefChange';
+            $indiv_modifier_class = 'StatDefChange' if $stats[$i] =~ /^accuracy(touch|short|medium|long)$/i;
 
             my $modifier_xml = XML::Twig::Elt->new('li');
             $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$indiv_modifier_class" );
@@ -193,12 +209,14 @@ while (my $row = $csv->getline($fh)) {
 
         # Attach the LootAffixDef
         $def_xml->paste_last_child($root);
-
-        $has_valid_defs = 1;
-
     }
+}
 
-    next unless $has_valid_defs;
+close $fh;
+save_xml($root, $prev_group_name) if $root->children_count;
+
+sub save_xml {
+    my ($root, $group_name) = @_;
 
     # Prettify the output
     my $xml = XML::Twig->new(
@@ -224,5 +242,3 @@ while (my $row = $csv->getline($fh)) {
     $out->close;
     $xml->purge;
 }
-
-close $fh;

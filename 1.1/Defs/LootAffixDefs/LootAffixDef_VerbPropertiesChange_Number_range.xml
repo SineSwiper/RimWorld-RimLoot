@@ -59,7 +59,7 @@
                 </valueModifier>
             </li>
         </modifiers>
-        <affixCost>-3</affixCost>
+        <affixCost>-4</affixCost>
         <affixRulePack>
             <rulesStrings>
                 <li>adjective->Short-sighted</li>

@@ -30,9 +30,8 @@ namespace RimLoot {
             if (type != typeof(bool)) yield return "Unsupported type: " + type;
         }
 
-        public override void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef) {
-            FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
-            field.SetValue(verbProperties, (bool)newValue);
+        public override void ModifyVerbProperty (ThingWithComps parentThing, VerbProperties verbProperties) {
+            SetVerbProperty(verbProperties, (bool)newValue);
         }
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {

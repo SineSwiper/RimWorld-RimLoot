@@ -18,8 +18,20 @@ namespace RimLoot {
         [HarmonyPatch(typeof(CompQuality), "SetQuality")]
         private static class SetQualityPatch {
             [HarmonyPostfix]
-            static void Postfix(CompQuality __instance, QualityCategory q) {
+            static void Postfix(CompQuality __instance) {
                 __instance.parent.BroadcastCompSignal("SetQuality");
+            }
+        }
+
+        /*
+         * Broadcast a "AboutToFireShot" signal to the thing and comps before it fires.  This is used by
+         * CompLootAffixableThing for projectile changing.
+         */
+        [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
+        private static class TryCastShotPatch {
+            [HarmonyPrefix]
+            static void Prefix(Verb_LaunchProjectile __instance) {
+                __instance.EquipmentSource?.BroadcastCompSignal("AboutToFireShot");
             }
         }
 
@@ -35,7 +47,6 @@ namespace RimLoot {
                 var comp = __instance.parent.TryGetComp<CompLootAffixableThing>();
                 if (comp == null) return true;  // go to original getter
 
-                Log.Message("Called VerbProperties for " + __instance.parent);
                 __result = comp.VerbProperties;
                 return false;
             }
@@ -73,7 +84,7 @@ namespace RimLoot {
                 
                 // Go back to the old set.  Iterators cannot have refs, so we have to replace this with reflection.
                 if (__state == null) {
-                    Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
+                    if (comp != null) Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
                     yield break;
                 }
 

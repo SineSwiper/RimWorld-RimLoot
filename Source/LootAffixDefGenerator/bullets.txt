@@ -1,0 +1,33 @@
+Machinepistol Bullet            6
+Minigun Bullet                  10
+Autopistol Bullet               10
+Shortbow Arrow                  11
+Assault Rifle Bullet            11
+Heavy SMG Bullet                12
+Charge Blaster Shot             15
+Firefoam Bullet (needs Def)     0
+Charge Shot                     15 + 0.35
+LMG Bullet                      11 + 1
+Revolver Bullet                 12 + 1
+Recurve Bow Arrow               14 + 1
+Needle Shot                     15 + 1.5
+Autocannon Shell                20
+Greatbow Arrow                  17 + 1.5
+Rifle Bullet                    18 + 1.5
+Shotgun Blast                   18 + 3
+Sniper Rifle Bullet             25 + 1.5
+Pilum                           25 + 2.5
+Uranium Slug                    30 + 0.7
+Charge Lance Shot               30 + 1.5
+Frag Grenade                    radius: 1.9
+Incendiary Bolt                 radius: 1.1
+Molotov Cocktail                radius: 1.1
+EMP Grenade                     radius: 3.5
+Inferno Cannon Shell            radius: 2.4
+Smoke Launcher Shell            radius: 2.4
+EMP Shell                       radius: 11.9
+Incendiary Shell                radius: 2.9
+High-Explosive Shell            radius: 2.9
+Firefoam Shell                  radius: 9.9
+Rocket                          radius: 3.9
+Doomsday Rocket                 radius: 7.8

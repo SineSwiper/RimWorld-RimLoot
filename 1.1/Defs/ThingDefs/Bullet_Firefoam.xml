@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <!-- Borrowed some ideas from Pelador's Fire Extinguisher mod -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_Firefoam</defName>
+    <label>firefoam</label>
+    <graphicData>
+      <texPath>Things/Projectile/Firefoam</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Extinguish</damageDef>
+      <speed>30</speed>
+      <explosionRadius>2</explosionRadius>
+      <flyOverhead>false</flyOverhead>
+      <soundExplode>DispensePaste</soundExplode>
+      <postExplosionSpawnThingDef>Filth_FireFoam</postExplosionSpawnThingDef>
+      <postExplosionSpawnChance>1</postExplosionSpawnChance>
+      <postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <explosionEffect></explosionEffect>
+    </projectile>
+  </ThingDef>
+
+</Defs>

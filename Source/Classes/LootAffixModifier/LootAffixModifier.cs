@@ -59,7 +59,23 @@ namespace RimLoot {
 
         }
 
-        public virtual void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef) {
+        public virtual void PreShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
+
+        }
+
+        public virtual void ModifyVerbProperty (ThingWithComps parentThing) {
+
+        }
+
+        public virtual void ResetVerbProperty (ThingWithComps parentThing) {
+
+        }
+
+        public virtual void ModifyVerbProperty (ThingWithComps parentThing, VerbProperties verbProperties) {
+
+        }
+
+        public virtual void ResetVerbProperty (ThingWithComps parentThing, VerbProperties srcVerbProps, VerbProperties destVerbProps) {
 
         }
 
@@ -91,7 +107,7 @@ namespace RimLoot {
             }
         }
 
-        public bool ShouldActivate (ThingWithComps thing) {
+        public virtual bool ShouldActivate (ThingWithComps thing) {
             if (chance < Random.Range(0.0f, 1.0f)) return false;
             return true;
         }

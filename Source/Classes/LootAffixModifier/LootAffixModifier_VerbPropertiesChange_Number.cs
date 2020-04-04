@@ -34,17 +34,15 @@ namespace RimLoot {
                 yield return configError;
         }
 
-        public override void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties, LootAffixDef parentDef) {
-            /* XXX: Yes, we are dynamically modifying a value here via reflection, based on data some rando
-             * provided via XML.  Is it dangerous?  Sure.  But, this is the best way to change whatever value
-             * we want.
-             */
-
-            FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
-            Type type = field.FieldType;
-            float val = ConvertHelper.Convert<float>( field.GetValue(verbProperties) );
+        public override void ModifyVerbProperty (ThingWithComps parentThing, VerbProperties verbProperties) {
+            float val = ConvertHelper.Convert<float>( fieldInfo.GetValue(verbProperties) );
             val = valueModifier.ChangeValue(val);
-            field.SetValue(verbProperties, ConvertHelper.Convert(val, type));
+            SetVerbProperty(verbProperties, ConvertHelper.Convert(val, fieldType));
+        }
+
+        public override void ResetVerbProperty (ThingWithComps parentThing, VerbProperties srcVerbProps, VerbProperties destVerbProps) {
+            float val = ConvertHelper.Convert<float>( fieldInfo.GetValue(srcVerbProps) );
+            SetVerbProperty(destVerbProps, val);
         }
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {

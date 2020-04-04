@@ -6,6 +6,7 @@ using UnityEngine;
 using Verse;
 using Verse.Grammar;
 
+// FIXME: Remove "LootAffixDef parentDef" references where we don't need them
 namespace RimLoot {
     public class LootAffixDef : Def {
         public string groupName;
@@ -55,15 +56,10 @@ namespace RimLoot {
         }
 
         public override void ResolveReferences() {
-            if (groupName == "Test_Group") Log.Message("LAD_RR");
-
             base.ResolveReferences();
-            if (groupName == "Test_Group") Log.Message("LAD_RR_post_base: " + string.Join(",", modifiers));
             foreach (LootAffixModifier modifier in modifiers) {
                 modifier.ResolveReferences(this);
             }
-
-            if (groupName == "Test_Group") Log.Message("LAD_RR_post_LAM");
 
             description =
                 "RimLoot_LootAffixDescription".Translate() + "\n\n" +
@@ -133,9 +129,16 @@ namespace RimLoot {
             }
         }
 
+        public void PreShotFired (ThingWithComps parentThing) {
+            foreach (LootAffixModifier modifier in modifiers) {
+                modifier.PreShotFired(parentThing, this);
+            }
+        }
+
         public void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties) {
             foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.VerbProperties)) {
-                modifier.ModifyVerbProperties(parentThing, verbProperties, this);
+                // Only set permanent changes here.  Otherwise, it gets changed dynamically.
+                if (modifier.chance >= 1) modifier.ModifyVerbProperty(parentThing, verbProperties);
             }
         }
 
@@ -206,14 +209,16 @@ namespace RimLoot {
             ;
             List<LootAffixDef> groupedAffixDefs =
                 affixDefIEnum.
-                Where  (lad => lad.affixCost >= 0).
+                Where  (lad => lad.affixCost > 0).
                 OrderBy(lad => lad.affixCost).
+                ThenByDescending(lad => lad.modifiers.Sum(lam => lam.chance)).
                 ToList()
             ;
             groupedAffixDefs.AddRange( 
                 affixDefIEnum.
                 Where  (lad => lad.affixCost <= 0).
-                OrderByDescending(lad => lad.affixCost)
+                OrderByDescending(lad => lad.affixCost).
+                ThenBy (lad => lad.modifiers.Sum(lam => lam.chance))
             );
 
             string reportText = "";

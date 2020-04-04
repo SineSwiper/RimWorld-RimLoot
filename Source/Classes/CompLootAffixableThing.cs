@@ -167,6 +167,12 @@ namespace RimLoot {
 
         public override void ReceiveCompSignal(string signal) {
             if (signal == "SetQuality") InitializeAffixes();
+            if (signal == "AboutToFireShot") {
+                Log.Message("AboutToFireShot");
+                foreach (LootAffixDef affix in affixes) {
+                    affix.PreShotFired(parent);
+                }
+            }
         }
     
         public override void CompTick() {

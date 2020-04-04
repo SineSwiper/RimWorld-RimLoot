@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>_22_Short</defName>
+        <label>.22 Short</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_MachinePistol</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>-2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->.22 Short</li>
+                <li>noun->Pistols</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>5_56mm</defName>
+        <label>5.56mm</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Minigun</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>-1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->5.56mm</li>
+                <li>noun->Miniguns</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>9mm</defName>
+        <label>9mm</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Autopistol</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>-1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->9mm</li>
+                <li>noun->Autopistols</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Mini-Arrow</defName>
+        <label>Mini-Arrow</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Arrow_Short</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>0</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Mini-Arrow</li>
+                <li>noun->Shortbows</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>_223_Remington</defName>
+        <label>.223 Remington</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_AssaultRifle</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>0</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->.223 Remington</li>
+                <li>noun->Assault Rifles</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>_45_ACP</defName>
+        <label>.45 ACP</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_HeavySMG</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>1</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->.45 ACP</li>
+                <li>noun->SMGs</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>DL-17</defName>
+        <label>DL-17</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_ChargeBlasterHeavy</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->DL-17</li>
+                <li>noun->Charge Blasters</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Firefoam</defName>
+        <label>Firefoam</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Firefoam</newDef>
+                <chance>1</chance>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Firefoam</li>
+                <li>noun->Firefoam</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>DL-44</defName>
+        <label>DL-44</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_ChargeRifle</newDef>
+                <chance>0.95</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->DL-44</li>
+                <li>noun->Charge Rifles</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>5_45mm</defName>
+        <label>5.45mm</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_LMG</newDef>
+                <chance>0.95</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->5.45mm</li>
+                <li>noun->LMGs</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Colt_45</defName>
+        <label>Colt .45</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Revolver</newDef>
+                <chance>0.95</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Colt .45</li>
+                <li>noun->Revolvers</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Carbon-Arrow</defName>
+        <label>Carbon-Arrow</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Arrow_Recurve</newDef>
+                <chance>0.95</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Carbon-Arrow</li>
+                <li>noun->Recurve Bows</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Needle</defName>
+        <label>Needle</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_NeedleGun</newDef>
+                <chance>0.90</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Needle</li>
+                <li>noun->Needles</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>7_62mm</defName>
+        <label>7.62mm</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_AutocannonTurret</newDef>
+                <chance>0.90</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->7.62mm</li>
+                <li>noun->Autocannons</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Long-Arrow</defName>
+        <label>Long-Arrow</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Arrow_Great</newDef>
+                <chance>0.85</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Long-Arrow</li>
+                <li>noun->Greatbows</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>_308_Winchester</defName>
+        <label>.308 Winchester</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_BoltActionRifle</newDef>
+                <chance>0.80</chance>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->.308 Winchester</li>
+                <li>noun->Winchesters</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>12_Gauge</defName>
+        <label>12 Gauge</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Shotgun</newDef>
+                <chance>0.75</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->12 Gauge</li>
+                <li>noun->Shotguns</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>8mm</defName>
+        <label>8mm</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_SniperRifle</newDef>
+                <chance>0.70</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->8mm</li>
+                <li>noun->Sniper Rifles</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Pilum</defName>
+        <label>Pilum</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Pilum_Thrown</newDef>
+                <chance>0.60</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Pilum</li>
+                <li>noun->Pilum</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Uranium</defName>
+        <label>Uranium</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_TurretSniper</newDef>
+                <chance>0.65</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Uranium</li>
+                <li>noun->Sniper Turrets</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>BB-23</defName>
+        <label>BB-23</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_ChargeLance</newDef>
+                <chance>0.60</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->BB-23</li>
+                <li>noun->Charge Lances</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Frag</defName>
+        <label>Frag</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Proj_GrenadeFrag</newDef>
+                <chance>0.50</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Frag</li>
+                <li>noun->Frag Grenades</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Incendiary</defName>
+        <label>Incendiary</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_IncendiaryLauncher</newDef>
+                <chance>0.50</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Incendiary</li>
+                <li>noun->Incendiaries</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Molotov</defName>
+        <label>Molotov</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Proj_GrenadeMolotov</newDef>
+                <chance>0.50</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Molotov</li>
+                <li>noun->Molotovs</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>EMP</defName>
+        <label>EMP</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Proj_GrenadeEMP</newDef>
+                <chance>0.50</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->EMP</li>
+                <li>noun->EMP Grenades</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Inferno</defName>
+        <label>Inferno</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_InfernoCannon</newDef>
+                <chance>0.40</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Inferno</li>
+                <li>noun->Infernos</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Smoke-Launching</defName>
+        <label>Smoke-Launching</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_SmokeLauncher</newDef>
+                <chance>0.30</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Smoke-Launching</li>
+                <li>noun->Smoke Launchers</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>EMP-Launching</defName>
+        <label>EMP-Launching</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Shell_EMP</newDef>
+                <chance>0.30</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->EMP-Launching</li>
+                <li>noun->EMP Shells</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Incendiary-Launching</defName>
+        <label>Incendiary-Launching</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Shell_Incendiary</newDef>
+                <chance>0.20</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Incendiary-Launching</li>
+                <li>noun->Incendiary Shells</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>High-Explosive</defName>
+        <label>High-Explosive</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Shell_HighExplosive</newDef>
+                <chance>0.20</chance>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->High-Explosive</li>
+                <li>noun->Explosive Shells</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Firefoam-Launching</defName>
+        <label>Firefoam-Launching</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Shell_Firefoam</newDef>
+                <chance>0.50</chance>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Firefoam-Launching</li>
+                <li>noun->Firefoam Shells</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Rocketed</defName>
+        <label>Rocketed</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_Rocket</newDef>
+                <chance>0.20</chance>
+            </li>
+        </modifiers>
+        <affixCost>5</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Rocketed</li>
+                <li>noun->Rockets</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Doomsday</defName>
+        <label>Doomsday</label>
+        <groupName>ChangeProjectile</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                <newDef>Bullet_DoomsdayRocket</newDef>
+                <chance>0.10</chance>
+            </li>
+        </modifiers>
+        <affixCost>6</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Doomsday</li>
+                <li>noun->Doomsday</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>
