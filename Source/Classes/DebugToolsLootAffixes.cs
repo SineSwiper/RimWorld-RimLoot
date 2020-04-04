@@ -59,8 +59,7 @@ namespace RimLoot {
             List<DebugMenuOption> debugMenuOptionList = new List<DebugMenuOption>();
             foreach (LootAffixDef affixDef in DefDatabase<LootAffixDef>.AllDefs.OrderBy(lad => lad.affixCost)) {
                 LootAffixDef localDef = affixDef;
-                debugMenuOptionList.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Tool, (Action) (() => {
-                    Log.Message("AddAffix_0 = " + localDef);
+                debugMenuOptionList.Add(new DebugMenuOption(localDef.defName, DebugMenuOptionMode.Tool, () => {
                     CompLootAffixableThing comp = Find.CurrentMap.thingGrid.
                         ThingsAt(UI.MouseCell()).
                         Where (t => t is ThingWithComps).Cast<ThingWithComps>().
@@ -69,16 +68,11 @@ namespace RimLoot {
                         FirstOrDefault()
                     ;
 
-                    Log.Message("AddAffix_1 = " + localDef);
                     var lads = comp.AllAffixDefs;
-                    Log.Message("AddAffix_2 = " + localDef + " / " + lads.Count + " / " + lads.Contains(localDef));
                     if (lads.Contains(localDef) || lads.Count >= 4) return;
-                    Log.Message("AddAffix_3 = " + localDef);
                     lads.Add(localDef);
-                    Log.Message("AddAffix_4 = " + localDef);
                     comp.PostAffixCleanup();
-                    Log.Message("AddAffix_5 = " + localDef);
-                })));
+                }));
             }
             return debugMenuOptionList;
         }
@@ -98,11 +92,11 @@ namespace RimLoot {
             List<DebugMenuOption> debugMenuOptionList = new List<DebugMenuOption>();
             foreach (LootAffixDef affixDef in comp.AllAffixDefs) {
                 LootAffixDef localDef = affixDef;
-                debugMenuOptionList.Add(new DebugMenuOption(comp.AllAffixesByAffixDefs[localDef], DebugMenuOptionMode.Tool, (Action) (() => {
+                debugMenuOptionList.Add(new DebugMenuOption(comp.AllAffixesByAffixDefs[localDef], DebugMenuOptionMode.Action, () => {
                     int i = comp.AllAffixDefs.IndexOf(localDef);
                     comp.AllAffixDefs.RemoveAt(i);
                     comp.PostAffixCleanup();
-                })));
+                }));
             }
             return debugMenuOptionList;
         }
