@@ -37,6 +37,14 @@ namespace RimLoot {
             }
         }
 
+        public virtual TaggedString GetModifierChangeLabel () {
+            return ModifierChangeLabel;
+        }
+
+        public virtual TaggedString GetModifierChangeLabel (ThingWithComps parentThing) {
+            return ModifierChangeLabel;
+        }
+
         public virtual IEnumerable<string> ConfigErrors (LootAffixDef parentDef) {
             foreach (string configError in base.ConfigErrors())
                 yield return configError;
@@ -60,6 +68,10 @@ namespace RimLoot {
         }
 
         public virtual void PreShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
+
+        }
+
+        public virtual void PostShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
 
         }
 
@@ -107,8 +119,12 @@ namespace RimLoot {
             }
         }
 
+        public virtual float GetRealChance (ThingWithComps thing) {
+            return chance;
+        }
+
         public virtual bool ShouldActivate (ThingWithComps thing) {
-            if (chance < Random.Range(0.0f, 1.0f)) return false;
+            if (GetRealChance(thing) < Random.Range(0.0f, 1.0f)) return false;
             return true;
         }
 

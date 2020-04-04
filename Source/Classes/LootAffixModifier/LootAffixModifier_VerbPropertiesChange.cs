@@ -64,15 +64,14 @@ namespace RimLoot {
          * we want.
          */
         public override void ModifyVerbProperty (ThingWithComps parentThing) {
-            var comp = parentThing.TryGetComp<CompLootAffixableThing>();
-            VerbProperties modVerbProps = comp.VerbProperties.First(x => x.isPrimary);
+            VerbProperties modVerbProps = parentThing.TryGetComp<CompLootAffixableThing>().PrimaryVerbProps;
             ModifyVerbProperty(parentThing, modVerbProps);
         }
 
         public override void ResetVerbProperty (ThingWithComps parentThing) {
             var comp = parentThing.TryGetComp<CompLootAffixableThing>();
-            VerbProperties srcVerbProps  = comp.VerbPropertiesFromDef.First(x => x.isPrimary);
-            VerbProperties destVerbProps = comp.VerbProperties       .First(x => x.isPrimary);
+            VerbProperties srcVerbProps  = comp.PrimaryVerbPropsFromDef;
+            VerbProperties destVerbProps = comp.PrimaryVerbProps;
             ResetVerbProperty(parentThing, srcVerbProps, destVerbProps);
         }
 

@@ -47,11 +47,10 @@ namespace RimLoot {
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {
             var comp = parentThing.TryGetComp<CompLootAffixableThing>();
-            VerbProperties  baseVerb = comp.VerbPropertiesFromDef.First(x => x.isPrimary);  // since parentThing.def.verbs is already swapped
-            VerbProperties finalVerb = comp.VerbProperties       .First(x => x.isPrimary);
+            VerbProperties  baseVerb = comp.PrimaryVerbPropsFromDef;  // since parentThing.def.verbs is already swapped
+            VerbProperties finalVerb = comp.PrimaryVerbProps;
 
             FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
-            Type type = field.FieldType;
             float baseValue  = ConvertHelper.Convert<float>( field.GetValue(baseVerb ) );
             float finalValue = ConvertHelper.Convert<float>( field.GetValue(finalVerb) );
 

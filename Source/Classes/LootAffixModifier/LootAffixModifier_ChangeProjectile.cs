@@ -6,6 +6,7 @@ using System.Reflection;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Grammar;
 
 namespace RimLoot {
     public class LootAffixModifier_ChangeProjectile : LootAffixModifier_VerbPropertiesChange_Def {
@@ -25,12 +26,39 @@ namespace RimLoot {
 
         public override TaggedString ModifierChangeLabel {
             get {
-                string pluralProjectiles = Find.ActiveLanguageWorker.Pluralize(resolvedDef.label, -1);
-                return chance >= 1 ?
-                    "RimLoot_ChangeProjectileModifierLabel_Permanent".Translate(pluralProjectiles) :
-                    "RimLoot_ChangeProjectileModifierLabel_Chance"   .Translate(GenText.ToStringPercent(chance), resolvedDef.label)
+                NamedArgument[] args = GetModifierChangeLabelArguments();
+
+                return chance >= 0.95f ?
+                    "RimLoot_ChangeProjectileModifierLabel_Permanent".Translate(args) :
+                    "RimLoot_ChangeProjectileModifierLabel_Chance"   .Translate(args)
                 ;
             }
+        }
+
+        // Enhanced label with per-bullet chances
+        public override TaggedString GetModifierChangeLabel (ThingWithComps thing) {
+            VerbProperties modVerbProps = thing?.TryGetComp<CompLootAffixableThing>()?.PrimaryVerbProps;
+            NamedArgument[] args = GetModifierChangeLabelArguments(thing);
+            
+            int   shotCount  = modVerbProps != null ? modVerbProps.burstShotCount : 0;
+            float realChance = GetRealChance(thing);
+
+            return
+                realChance >= 0.95f ? "RimLoot_ChangeProjectileModifierLabel_Permanent"   .Translate(args) :
+                thing == null       ? "RimLoot_ChangeProjectileModifierLabel_Chance"      .Translate(args) :
+                shotCount> 1        ? "RimLoot_ChangeProjectileModifierLabel_ChanceBurst" .Translate(args) :
+                                      "RimLoot_ChangeProjectileModifierLabel_ChanceSingle".Translate(args)
+            ;
+        }
+
+        private NamedArgument[] GetModifierChangeLabelArguments (ThingWithComps thing = null) {
+            List<NamedArgument> args = new List<NamedArgument> {};
+
+            args.Add( resolvedDef.Named("PROJECTILE") );
+            args.Add( GenText.ToStringPercent(chance).Named("chance") );
+            if (thing != null) args.Add( GenText.ToStringPercent( GetRealChance(thing) ).Named("realChance") );
+
+            return args.ToArray();
         }
 
         public override void ResolveReferences (LootAffixDef parentDef) {
@@ -48,28 +76,27 @@ namespace RimLoot {
 
         // The def's chance is the overall chance against the whole shot period.  The combined probability
         // needs to be separated out for each shot in the burst.
-        public float RealChance (ThingWithComps thing) {
-            var comp = thing.TryGetComp<CompLootAffixableThing>();
-            VerbProperties modVerbProps = comp.VerbProperties.First(x => x.isPrimary);
+        public override float GetRealChance (ThingWithComps thing) {
+            VerbProperties modVerbProps = thing?.TryGetComp<CompLootAffixableThing>()?.PrimaryVerbProps;
+            if (modVerbProps == null) return chance;
 
             // 1 - (1 - chance) to the count-th root 
             return 1f - Mathf.Pow(1f - chance, 1f / modVerbProps.burstShotCount);
         }
 
-        public override bool ShouldActivate (ThingWithComps thing) {
-            Log.Message("Chances: " + string.Join(", ", chance, RealChance(thing)));  // DEBUG
+        public override void PreShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
+            // 95+% chance: This should have already been set by ModifyVerbProperties
+            if (GetRealChance(parentThing) >= 0.95f) return;
 
-            if (RealChance(thing) < UnityEngine.Random.Range(0.0f, 1.0f)) return false;
-            return true;
+            // Switch projectile based on chance hit
+            if (ShouldActivate(parentThing)) ModifyVerbProperty(parentThing);
         }
 
-        public override void PreShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
-            // 100% chance: This should have already been set by ModifyVerbProperties
-            if (chance >= 1) return;
+        public override void PostShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
+            // 95+% chance: This should have already been set by ModifyVerbProperties
+            if (GetRealChance(parentThing) >= 0.95f) return;
 
-            // Less than 100% chance: Switch projectile based on chance hit
-            if (ShouldActivate(parentThing)) ModifyVerbProperty(parentThing);
-            else                             ResetVerbProperty (parentThing);
+            ResetVerbProperty(parentThing);
         }
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {

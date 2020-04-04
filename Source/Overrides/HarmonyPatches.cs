@@ -33,6 +33,12 @@ namespace RimLoot {
             static void Prefix(Verb_LaunchProjectile __instance) {
                 __instance.EquipmentSource?.BroadcastCompSignal("AboutToFireShot");
             }
+
+            [HarmonyPostfix]
+            static void Postfix(Verb_LaunchProjectile __instance) {
+                __instance.EquipmentSource?.BroadcastCompSignal("FiredShot");
+            }
+
         }
 
         /*

@@ -85,6 +85,17 @@ namespace RimLoot {
             }
         }
 
+        public VerbProperties PrimaryVerbProps {
+            get {
+                return VerbProperties.FirstOrFallback(x => x.isPrimary);
+            }
+        }
+
+        public VerbProperties PrimaryVerbPropsFromDef {
+            get {
+                return VerbPropertiesFromDef.FirstOrFallback(x => x.isPrimary);
+            }
+        }
 
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
@@ -168,9 +179,13 @@ namespace RimLoot {
         public override void ReceiveCompSignal(string signal) {
             if (signal == "SetQuality") InitializeAffixes();
             if (signal == "AboutToFireShot") {
-                Log.Message("AboutToFireShot");
                 foreach (LootAffixDef affix in affixes) {
                     affix.PreShotFired(parent);
+                }
+            }
+            if (signal == "FiredShot") {
+                foreach (LootAffixDef affix in affixes) {
+                    affix.PostShotFired(parent);
                 }
             }
         }
@@ -379,7 +394,7 @@ namespace RimLoot {
             var affixDict = AllAffixDefsByAffixes;
             foreach (string affixKey in AffixStrings) {
                 LootAffixDef affix = affixDict[affixKey];
-                reportText += affix.FullStatsReport(affixKey) + "\n";
+                reportText += affix.FullStatsReport(parent, affixKey) + "\n";
             }
 
             if (Prefs.DevMode) {

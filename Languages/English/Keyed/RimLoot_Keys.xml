@@ -8,8 +8,10 @@
     <RimLoot_AffixStatOnGearExplanationPart>{0} affix from {1}</RimLoot_AffixStatOnGearExplanationPart>
     <RimLoot_AffixWhileEquipped>{0} (while equipped)</RimLoot_AffixWhileEquipped>
 
-    <RimLoot_ChangeProjectileModifierLabel_Chance>{0} chance to fire a {1} (per volley)</RimLoot_ChangeProjectileModifierLabel_Chance>
-    <RimLoot_ChangeProjectileModifierLabel_Permanent>Fires {0}</RimLoot_ChangeProjectileModifierLabel_Permanent>
+    <RimLoot_ChangeProjectileModifierLabel_Chance>{chance} chance (per volley) to fire a {PROJECTILE_label}</RimLoot_ChangeProjectileModifierLabel_Chance>
+    <RimLoot_ChangeProjectileModifierLabel_ChanceSingle>{realChance} chance to fire a {PROJECTILE_label}</RimLoot_ChangeProjectileModifierLabel_ChanceSingle>
+    <RimLoot_ChangeProjectileModifierLabel_ChanceBurst>{realChance} chance to fire a {PROJECTILE_label} ({chance} chance per volley)</RimLoot_ChangeProjectileModifierLabel_ChanceBurst>
+    <RimLoot_ChangeProjectileModifierLabel_Permanent>Fires {PROJECTILE_labelPlural}</RimLoot_ChangeProjectileModifierLabel_Permanent>
 
     <!-- Keys that I can't believe aren't in the base language files... -->
     <Projectile>Projectile</Projectile>

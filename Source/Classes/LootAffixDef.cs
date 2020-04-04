@@ -7,6 +7,7 @@ using Verse;
 using Verse.Grammar;
 
 // FIXME: Remove "LootAffixDef parentDef" references where we don't need them
+// FIXME: Stop calling it "parentThing".  We already know it's a parent...
 namespace RimLoot {
     public class LootAffixDef : Def {
         public string groupName;
@@ -135,10 +136,16 @@ namespace RimLoot {
             }
         }
 
+        public void PostShotFired (ThingWithComps parentThing) {
+            foreach (LootAffixModifier modifier in modifiers) {
+                modifier.PostShotFired(parentThing, this);
+            }
+        }
+
         public void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties) {
             foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.VerbProperties)) {
                 // Only set permanent changes here.  Otherwise, it gets changed dynamically.
-                if (modifier.chance >= 1) modifier.ModifyVerbProperty(parentThing, verbProperties);
+                if (modifier.GetRealChance(parentThing) >= 0.95f) modifier.ModifyVerbProperty(parentThing, verbProperties);
             }
         }
 
@@ -184,7 +191,7 @@ namespace RimLoot {
             ) ) yield return rule;
         }
 
-        public string FullStatsReport (string preLabel = null) {
+        public string FullStatsReport (ThingWithComps parentThing = null, string preLabel = null) {
             // Specify where the effect is applied
             string str = (
                 modifiers.All(lam => lam.AppliesTo == ModifierTarget.Pawn) ?
@@ -193,7 +200,7 @@ namespace RimLoot {
             ) + ":\n";
 
             foreach (LootAffixModifier modifier in modifiers) {
-                str += "    " + modifier.ModifierChangeLabel + "\n";
+                str += "    " + modifier.GetModifierChangeLabel(parentThing) + "\n";
             }
             return str;
         }
@@ -229,7 +236,7 @@ namespace RimLoot {
             yield return new StatDrawEntry(
                 category:    StatCategoryDefOf.BasicsImportant,
                 label:       "RimLoot_AffixesInThisGroup".Translate(),
-                valueString: GenText.ToCommaList(groupedAffixDefs.Select(lad => lad.LabelWithStyle(lad.defName)), false),  // FIXME: Change to lad.label
+                valueString: GenText.ToCommaList(groupedAffixDefs.Select(lad => lad.LabelWithStyle(lad.LabelCap)), false),
                 reportText:  reportText,
                 displayPriorityWithinCategory: 1
             );
