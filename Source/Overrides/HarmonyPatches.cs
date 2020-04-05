@@ -90,7 +90,7 @@ namespace RimLoot {
                 
                 // Go back to the old set.  Iterators cannot have refs, so we have to replace this with reflection.
                 if (__state == null) {
-                    if (comp != null) Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
+                    if (comp != null && !req.Thing.def.Verbs.NullOrEmpty()) Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
                     yield break;
                 }
 
