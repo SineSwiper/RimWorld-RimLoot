@@ -81,7 +81,9 @@ namespace RimLoot {
             if (modVerbProps == null) return chance;
 
             // 1 - (1 - chance) to the count-th root 
-            return 1f - Mathf.Pow(1f - chance, 1f / modVerbProps.burstShotCount);
+            float realChance = 1f - Mathf.Pow(1f - chance, 1f / modVerbProps.burstShotCount);
+            if (realChance >= 0.95f) realChance = 1;
+            return realChance;
         }
 
         public override void PreShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
@@ -100,14 +102,7 @@ namespace RimLoot {
         }
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {
-            // FIXME
-            basicStatDesc.SpecialDisplayStatsInjectors(
-                statDrawEntry:  statDrawEntry,
-                preLabel:       preLabel,
-                parentThing:    parentThing,
-                parentModifier: this,
-                curDef:         resolvedDef
-            );
+            // Nothing to inject
         }
 
     }
