@@ -16,6 +16,8 @@ namespace RimLoot {
         public RulePack affixRulePack;
 
         private List<string> affixWords;
+        private Texture2D overlayIcon;
+        private Texture2D defIcon;
 
         public List<string> AffixWords {
             get {
@@ -42,16 +44,50 @@ namespace RimLoot {
         }
 
         // FIXME: Make this configurable, especially for the color-blind
+        public string LabelColor {
+            get {
+                if      (affixCost >   4) return "lime";
+                else if (affixCost >=  1) return "cyan";
+                else if (affixCost <= -1) return "yellow";
+                else if (affixCost <  -4) return "red";
+                return "white";
+            }
+        }
+
+        public Texture2D DefIcon {
+            get {
+                if (defIcon != null) return defIcon;
+                MakeIcons();
+                return defIcon;
+            }
+        }
+
+        public Texture2D OverlayIcon {
+            get {
+                if (overlayIcon != null) return overlayIcon;
+                MakeIcons();
+                return overlayIcon;
+            }
+        }
+
+        public void MakeIcons () {
+            Color color = Color.white;
+            ColorUtility.TryParseHtmlString(LabelColor, out color);
+
+            string texPart = "1Affix";
+            if (Mathf.Abs(affixCost) >= 5) texPart = "Deadly";
+
+            defIcon     = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Large);
+            overlayIcon = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Overlay);
+            return;
+        }
+
         public string LabelWithStyle (string preLabel = null) {
             if (preLabel == null) preLabel = FullAffixLabel;  // fallback
 
             string styledLabel = preLabel;
-            string color = null;
-            if      (affixCost >   4) color = "lime";
-            else if (affixCost >=  1) color = "cyan";
-            else if (affixCost <= -1) color = "yellow";
-            else if (affixCost <  -4) color = "red";
-            if (color != null) styledLabel = string.Format("<color={0}>{1}</color>", color, styledLabel);
+            string color = LabelColor;
+            styledLabel = string.Format("<color={0}>{1}</color>", color, styledLabel);
 
             return styledLabel;
         }

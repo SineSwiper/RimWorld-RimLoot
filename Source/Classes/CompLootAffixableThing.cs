@@ -22,8 +22,12 @@ namespace RimLoot {
         private float?                           ttlAffixPoints;
 
         // Cached VerbProperties (modified and otherwise)
-        private List<VerbProperties>             verbProperties;
-        private List<VerbProperties>             verbPropertiesFromDef;
+        private List<VerbProperties> verbProperties;
+        private List<VerbProperties> verbPropertiesFromDef;
+
+        // Cached graphics
+        private Texture2D overlayIcon;
+        private Texture2D uiIcon;
 
         public List<LootAffixDef> AllAffixDefs {
             get { return affixes; }
@@ -97,6 +101,22 @@ namespace RimLoot {
             }
         }
 
+        public Texture2D OverlayIcon {
+            get {
+                if (overlayIcon != null) return overlayIcon;
+                MakeIcons();
+                return overlayIcon;
+            }
+        }
+
+        public Texture2D UIIcon {
+            get {
+                if (uiIcon != null) return uiIcon;
+                MakeIcons();
+                return uiIcon;
+            }
+        }
+
         private void MakeAffixCaches() {
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
@@ -138,6 +158,8 @@ namespace RimLoot {
                 MethodInfo InitVerbsFromZero = AccessTools.Method(typeof(VerbTracker), "InitVerbsFromZero");
                 InitVerbsFromZero.Invoke(equippable.VerbTracker, new object[] {});
             }
+
+            MakeIcons();
         }
 
         private void ClearAffixCaches() {
@@ -148,6 +170,8 @@ namespace RimLoot {
             ttlAffixPoints         = null;
             verbProperties         = null;
             verbPropertiesFromDef  = null;
+            overlayIcon            = null;
+            uiIcon                 = null;
 
             // Clear the VerbTracker cache
             var equippable = parent.TryGetComp<CompEquippable>();
@@ -380,6 +404,49 @@ namespace RimLoot {
         public override string GetDescriptionPart() {
             // FIXME
             return null;
+        }
+
+        private void MakeIcons () {
+            Texture2D defIcon = parent.def.uiIcon;
+            uiIcon = defIcon;
+
+            if (!UnityData.IsInMainThread) return;  // too early to be fetching this stuff
+            if (affixes.Count == 0)        return;
+
+            // Use the highest affix cost for the color
+            LootAffixDef highestAffix = affixes.FirstOrFallback(
+                lad => Mathf.Abs(lad.affixCost) >= 5,  // deadly overrides others
+                affixes.OrderByDescending(lad => lad.affixCost).First()
+            );
+            Color color = Color.white;
+            ColorUtility.TryParseHtmlString(highestAffix.LabelColor, out color);
+
+            string texPart = affixes.Count + "Affix";
+            if (Mathf.Abs(highestAffix.affixCost) >= 5) texPart = "Deadly";
+
+            // Grab the overlay icon
+            overlayIcon = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Overlay);
+
+            // Apply the overlay onto the Thing icon
+            uiIcon = defIcon.CloneAsReadable();
+            uiIcon.AddOverlayToBLCorner(overlayIcon);
+            uiIcon.Apply(true, true);  // apply and lock
+        }
+
+        public override void PostDraw() {
+            if (affixes.Count == 0) return;
+            
+            // NOTE: Everything in RimWorld treats X=horizonal, Z=vertical, Y=depth
+            Vector3 vector = parent.DrawPos;
+            vector.x -= .40f;
+            vector.z -= .30f;
+            vector.y  = Altitudes.AltitudeFor(AltitudeLayer.MoteOverhead);
+
+            Vector3   scale  = new Vector3(.25f, 1f, .25f);
+            Matrix4x4 matrix = default;
+            matrix.SetTRS(vector, Quaternion.AngleAxis(0f, Vector3.up), scale);
+
+            Graphics.DrawMesh(MeshPool.plane10, matrix, MaterialPool.MatFrom(OverlayIcon), 0);
         }
 
         // FIXME: Icons on the affix hyperlinks

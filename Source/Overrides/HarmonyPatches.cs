@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.Grammar;
 
@@ -24,7 +25,7 @@ namespace RimLoot {
         }
 
         /*
-         * Broadcast a "AboutToFireShot" signal to the thing and comps before it fires.  This is used by
+         * Broadcast a pre/post "FireShot" signals to the thing and comps before/after it fires.  This is used by
          * CompLootAffixableThing for projectile changing.
          */
         [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
@@ -97,6 +98,45 @@ namespace RimLoot {
                 // [Reflection] thing.verbs = __state;
                 FieldInfo field = AccessTools.Field(typeof(ThingDef), "verbs");
                 field.SetValue(__instance, __state);
+            }
+        }
+
+        /*
+         * Use the UIIcon from CompLootAffixableThing, which has the overlay.  This is important to make sure
+         * players can easily identify dangerous weapons from raiders.
+         */
+
+        [HarmonyPatch(typeof(VerbTracker), "CreateVerbTargetCommand")]
+        private static class CreateVerbTargetCommandPatch {
+            [HarmonyPostfix]
+            static void Postfix(Thing ownerThing, Command_VerbTarget __result) {
+                var comp = ownerThing?.TryGetComp<CompLootAffixableThing>();
+                if (comp == null) return;
+
+                if (__result != null) __result.icon = comp.UIIcon;
+            }
+        }
+
+        /*
+         * Widget DefIcon fixes for LootAffixDef.  This allows for hyperlink icons.
+         * 
+         */
+        [HarmonyPatch(typeof(Widgets), "CanDrawIconFor")]
+        private static class CanDrawIconForPatch {
+            [HarmonyPostfix]
+            static void Postfix(Def def, ref bool __result) {
+                if (def is LootAffixDef) __result = true;
+            }
+        }
+
+        [HarmonyPatch(typeof(Widgets), "DefIcon")]
+        private static class DefIconPatch {
+            [HarmonyPrefix]
+            static bool Prefix(Rect rect, Def def, float scale) {
+                if (!(def is LootAffixDef lootAffix)) return true;  // go to original
+
+                Widgets.DrawTextureFitted(rect, lootAffix.DefIcon, scale);
+                return false;
             }
         }
 
