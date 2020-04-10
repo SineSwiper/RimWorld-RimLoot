@@ -28,11 +28,18 @@
     <toStringStyle>FloatTwo</toStringStyle>
   </RimLoot.BasicStatDescDef>
 
+  <!-- Dummy placeholders -->
+
   <RimLoot.BasicStatDescDef>
     <statClass>VerbProperties</statClass>
     <statField>defaultProjectile</statField>
-    <!-- FIXME: Temporary placeholder -->
     <translationKey>Damage</translationKey>
+  </RimLoot.BasicStatDescDef>
+
+  <RimLoot.BasicStatDescDef>
+    <statClass>VerbProperties</statClass>
+    <statField>requireLineOfSight</statField>
+    <translationKey>Projectile</translationKey>
   </RimLoot.BasicStatDescDef>
 
 </Defs>

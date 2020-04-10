@@ -39,7 +39,6 @@ namespace RimLoot {
             static void Postfix(Verb_LaunchProjectile __instance) {
                 __instance.EquipmentSource?.BroadcastCompSignal("FiredShot");
             }
-
         }
 
         /*
@@ -119,7 +118,6 @@ namespace RimLoot {
 
         /*
          * Widget DefIcon fixes for LootAffixDef.  This allows for hyperlink icons.
-         * 
          */
         [HarmonyPatch(typeof(Widgets), "CanDrawIconFor")]
         private static class CanDrawIconForPatch {
@@ -139,6 +137,32 @@ namespace RimLoot {
                 return false;
             }
         }
+
+        /*
+         * Fix HitFlags to make sure ShootThroughWalls works properly.
+         */
+        [HarmonyPatch(typeof(Projectile), "HitFlags", MethodType.Getter)]
+        private static class HitFlagsPatch {
+            [HarmonyPostfix]
+            static void Postfix(Projectile __instance, Thing ___launcher, ref ProjectileHitFlags ___desiredHitFlags, ref ProjectileHitFlags __result) {
+                // Short-circuit
+                if (!__result.HasFlag(ProjectileHitFlags.NonTargetWorld)) return;
+                
+                // Find the Pawn's weapon
+                if (!(___launcher is Pawn pawn)) return;
+                var comp = pawn.equipment.Primary?.TryGetComp<CompLootAffixableThing>();
+                if (comp == null) return;
+
+                // Does the weapon have the ShootThroughWalls modifier?
+                if (!comp.AllModifiers.Any(lam => lam is LootAffixModifier_ShootThroughWalls)) return;
+
+                // Remove the NonTargetWorld flag from both current and future results.  (NonTargetPawns are still
+                // fair game.)
+                __result           &= ~ProjectileHitFlags.NonTargetWorld;
+                ___desiredHitFlags &= ~ProjectileHitFlags.NonTargetWorld;
+            }
+        }
+        
 
     }
 }

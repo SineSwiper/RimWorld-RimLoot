@@ -13,6 +13,8 @@
     <RimLoot_ChangeProjectileModifierLabel_ChanceBurst>{realChance} chance to fire a {PROJECTILE_label} ({chance} chance per volley)</RimLoot_ChangeProjectileModifierLabel_ChanceBurst>
     <RimLoot_ChangeProjectileModifierLabel_Permanent>Fires {PROJECTILE_labelPlural}</RimLoot_ChangeProjectileModifierLabel_Permanent>
 
+    <RimLoot_ShootsThroughWalls>Weapon shoots through walls!</RimLoot_ShootsThroughWalls>
+
     <RimLoot_StatsReport_Projectile>Projectile: {PROJECTILE_label}</RimLoot_StatsReport_Projectile>
     <RimLoot_StatsReport_ProjectileWithChance>Projectile: {PROJECTILE_label} ({chance} chance)</RimLoot_StatsReport_ProjectileWithChance>
 
