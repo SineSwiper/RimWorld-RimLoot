@@ -425,7 +425,8 @@ namespace RimLoot {
             if (Mathf.Abs(highestAffix.affixCost) >= 5) texPart = "Deadly";
 
             // Grab the overlay icon
-            overlayIcon = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Overlay);
+            float scale = Mathf.Sqrt(defIcon.width * defIcon.height) / 256;  // 64x64 -> 16x16 overlays
+            overlayIcon = IconUtility.FetchOrMakeIcon(texPart, color, scale);
 
             // Apply the overlay onto the Thing icon
             uiIcon = defIcon.CloneAsReadable();

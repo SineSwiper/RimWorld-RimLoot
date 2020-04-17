@@ -16,7 +16,6 @@ namespace RimLoot {
         public RulePack affixRulePack;
 
         private List<string> affixWords;
-        private Texture2D overlayIcon;
         private Texture2D defIcon;
 
         public List<string> AffixWords {
@@ -62,14 +61,6 @@ namespace RimLoot {
             }
         }
 
-        public Texture2D OverlayIcon {
-            get {
-                if (overlayIcon != null) return overlayIcon;
-                MakeIcons();
-                return overlayIcon;
-            }
-        }
-
         public void MakeIcons () {
             Color color = Color.white;
             ColorUtility.TryParseHtmlString(LabelColor, out color);
@@ -77,8 +68,7 @@ namespace RimLoot {
             string texPart = "1Affix";
             if (Mathf.Abs(affixCost) >= 5) texPart = "Deadly";
 
-            defIcon     = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Large);
-            overlayIcon = IconUtility.FetchOrMakeIcon(texPart, color, IconType.Overlay);
+            defIcon = IconUtility.FetchOrMakeIcon(texPart, color, 1f);
             return;
         }
 
