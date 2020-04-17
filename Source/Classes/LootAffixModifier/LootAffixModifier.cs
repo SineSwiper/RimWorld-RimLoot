@@ -10,6 +10,7 @@ namespace RimLoot {
         Pawn,
         VerbProperties,
         VerbTarget,
+        Tools,
         Projectile
     };
 
@@ -88,6 +89,22 @@ namespace RimLoot {
         }
 
         public virtual void ResetVerbProperty (ThingWithComps parentThing, VerbProperties srcVerbProps, VerbProperties destVerbProps) {
+
+        }
+
+        public virtual void ModifyTools (ThingWithComps parentThing) {
+
+        }
+
+        public virtual void ResetTools (ThingWithComps parentThing) {
+
+        }
+
+        public virtual void ModifyTool (ThingWithComps parentThing, Tool tool) {
+
+        }
+
+        public virtual void ResetTool (ThingWithComps parentThing, Tool srcTool, Tool destTool) {
 
         }
 

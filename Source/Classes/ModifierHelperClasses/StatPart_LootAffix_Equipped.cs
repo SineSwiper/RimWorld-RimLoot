@@ -33,7 +33,7 @@ namespace RimLoot {
                     partTexts.Add(
                         "RimLoot_AffixStatOnGearExplanationPart".Translate(
                             comp.AllAffixesByAffixDefs[parentLootAffix],
-                            comp.parent.def.LabelCap  // use smaller label from ThingDef
+                            comp.parent.def.Named("THING")  // use smaller label from ThingDef
                         ) + ": " +
                         parentStatChanger.ModifierChangeString
                     );

@@ -8,14 +8,14 @@ using UnityEngine;
 using Verse;
 
 namespace RimLoot {
-    public class LootAffixModifier_VerbPropertiesChange_Def : LootAffixModifier_ObjectChanger {
+    public class LootAffixModifier_ToolsChange_Def : LootAffixModifier_ObjectChanger {
         public string newDef;
         public Def    resolvedDef;
 
         public override ModifierTarget AppliesTo {
-            get { return ModifierTarget.VerbProperties; }
+            get { return ModifierTarget.Tools; }
         }
-
+        
         public override TaggedString ModifierChangeString {
             get { return basicStatDesc.GetModifierChangeString(resolvedDef); }
         }
@@ -23,7 +23,7 @@ namespace RimLoot {
         public override void ResolveReferences (LootAffixDef parentDef) {
             // Set the resolvedDef object, with paranoia checks
             if (affectedField == null || newDef == null) return;
-            FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
+            FieldInfo field = AccessTools.Field(ObjType, affectedField);
             if (field == null) return;
 
             Type type = field.FieldType;
@@ -47,13 +47,13 @@ namespace RimLoot {
             }
 
             // Check for reflection errors
-            FieldInfo field = AccessTools.Field(typeof(VerbProperties), affectedField);
+            FieldInfo field = AccessTools.Field(typeof(Tool), affectedField);
             Type       type = field.FieldType;
             if (!typeof(Def).IsAssignableFrom(type)) yield return "Unsupported type: " + type;
         }
 
-        public override void ModifyVerbProperty (ThingWithComps parentThing, VerbProperties verbProperties) {
-            SetVerbProperty(verbProperties, resolvedDef);
+        public override void ModifyTool (ThingWithComps parentThing, Tool tool) {
+            SetTool(tool, resolvedDef);
         }
 
         public override void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry, ThingWithComps parentThing, string preLabel) {

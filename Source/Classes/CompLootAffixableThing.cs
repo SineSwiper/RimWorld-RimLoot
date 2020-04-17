@@ -21,9 +21,11 @@ namespace RimLoot {
         private HashSet<LootAffixModifier>       modifiersCached;
         private float?                           ttlAffixPoints;
 
-        // Cached VerbProperties (modified and otherwise)
+        // Cached property objects (modified and otherwise)
         private List<VerbProperties> verbProperties;
         private List<VerbProperties> verbPropertiesFromDef;
+        private List<Tool>           tools;
+        private List<Tool>           toolsFromDef;
 
         // Cached graphics
         private Texture2D overlayIcon;
@@ -101,6 +103,22 @@ namespace RimLoot {
             }
         }
 
+        public List<Tool> Tools {
+            get {
+                if (tools != null) return tools;
+                MakeAffixCaches();
+                return tools;
+            }
+        }
+
+        public List<Tool> ToolsFromDef {
+            get {
+                if (toolsFromDef != null) return toolsFromDef;
+                MakeAffixCaches();
+                return toolsFromDef;
+            }
+        }
+
         public Texture2D OverlayIcon {
             get {
                 if (overlayIcon != null) return overlayIcon;
@@ -118,6 +136,7 @@ namespace RimLoot {
         }
 
         private void MakeAffixCaches() {
+            // Affix caches
             affixStringsCached = affixRules.Select(r => r.Generate()).ToList();
 
             affixDefDictCached     = new Dictionary<string, LootAffixDef> {};
@@ -149,6 +168,31 @@ namespace RimLoot {
             }
             else {
                 verbProperties = verbPropertiesFromDef = parent.def.Verbs;
+            }
+
+            // Add new modified Tools, if necessary
+            var toolModifierDefs = affixes.Where(
+                lad => lad.modifiers.Any( lam => lam.AppliesTo == ModifierTarget.Tools )
+            ).ToList();
+
+            toolsFromDef = parent.def.tools;
+            // prevent infinite null check loops from Tools/ToolsFromDef -> InitVerbsFromZero -> CompEquippable.Tools
+            if (toolsFromDef == null) toolsFromDef = new List<Tool> {};
+
+            if (toolModifierDefs.Count > 0) {
+                // [Reflection prep] tool.MemberwiseClone()
+                MethodInfo ToolMemberwiseClone = AccessTools.Method(typeof(Tool), "MemberwiseClone");
+
+                tools = toolsFromDef.Select( t => (Tool)ToolMemberwiseClone.Invoke(t, new object[] {}) ).ToList();
+
+                foreach (LootAffixDef lad in toolModifierDefs) {
+                    foreach (var tool in tools) {
+                        lad.ModifyTool(parent, tool);
+                    }
+                }
+            }
+            else {
+                tools = toolsFromDef;
             }
 
             // Refresh the VerbTracker cache

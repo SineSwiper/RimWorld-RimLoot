@@ -58,7 +58,20 @@ namespace RimLoot {
             }
         }
 
-        // Ditto for ThingDef.SpecialDisplayStats
+        // Ditto for Tools
+        [HarmonyPatch(typeof(CompEquippable), "Tools", MethodType.Getter)]
+        private static class ToolsPatch {
+            [HarmonyPrefix]
+            static bool Prefix(CompEquippable __instance, ref List<Tool> __result) {
+                var comp = __instance.parent.TryGetComp<CompLootAffixableThing>();
+                if (comp == null) return true;  // go to original getter
+
+                __result = comp.Tools;
+                return false;
+            }
+        }
+
+        // Ditto for VerbProperties within ThingDef.SpecialDisplayStats
         [HarmonyPatch(typeof(ThingDef), "SpecialDisplayStats")]
         private static class SpecialDisplayStatsPatches {
             [HarmonyPrefix]

@@ -8,8 +8,12 @@ using UnityEngine;
 using Verse;
 
 namespace RimLoot {
-    public class LootAffixModifier_VerbPropertiesChange_Number : LootAffixModifier_VerbPropertiesChange {
+    public class LootAffixModifier_VerbPropertiesChange_Number : LootAffixModifier_ObjectChanger {
         public ValueModifierSet valueModifier;
+
+        public override ModifierTarget AppliesTo {
+            get { return ModifierTarget.VerbProperties; }
+        }
         
         public override TaggedString ModifierChangeString {
             get { return basicStatDesc.GetModifierChangeString(valueModifier); }

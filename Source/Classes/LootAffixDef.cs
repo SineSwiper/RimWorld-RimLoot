@@ -175,6 +175,12 @@ namespace RimLoot {
             }
         }
 
+        public void ModifyTool (ThingWithComps parentThing, Tool tool) {
+            foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.Tools)) {
+                modifier.ModifyTool(parentThing, tool);
+            }
+        }
+
         public IEnumerable<Rule> PickAffixRulesForLabeling (Dictionary<string, int> curWordClasses, Dictionary<string, int> maxWordClasses) {
             List<Rule> fullRules  = affixRulePack.Rules;
 

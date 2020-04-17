@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Flaming</defName>
+        <label>Flaming</label>
+        <groupName>Flaming</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ToolsChange_ExtraDamage">
+                <extraDamage>
+                    <chance>0.5</chance>
+                    <def>Flame</def>
+                    <amount>5</amount>
+                </extraDamage>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Flaming</li>
+                <li>noun->Flame</li>
+                <li>noun_is_singular->False</li>
+                <li>verb->Flaming</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

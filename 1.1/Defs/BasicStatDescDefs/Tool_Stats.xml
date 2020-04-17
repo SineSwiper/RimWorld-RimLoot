@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <!-- Dummy placeholders -->
+
+  <RimLoot.BasicStatDescDef>
+    <statClass>Tool</statClass>
+    <statField>extraMeleeDamages</statField>
+    <translationKey>ExtraMeleeDamages</translationKey>
+  </RimLoot.BasicStatDescDef>
+
+</Defs>

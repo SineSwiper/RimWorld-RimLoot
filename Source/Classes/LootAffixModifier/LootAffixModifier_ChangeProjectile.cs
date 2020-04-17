@@ -69,7 +69,7 @@ namespace RimLoot {
         public override bool CanBeAppliedToThing (ThingWithComps thing) {
             // Also include checks for tech level and its own bullet
             return
-                thing.def.IsRangedWeapon && thing.def.techLevel >= TechLevel.Industrial &&
+                thing.def.IsWeaponUsingProjectiles && thing.def.techLevel >= TechLevel.Industrial &&
                 thing.def.Verbs.First(x => x.isPrimary) is VerbProperties vp && vp.defaultProjectile != (ThingDef)resolvedDef
             ;
         }
