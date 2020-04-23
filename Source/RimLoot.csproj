@@ -74,6 +74,7 @@
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ObjectChanger.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_ExtraDamage.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_Def.cs" />
+    <Compile Include="Classes\ModifierHelperClasses\StatPart_LootAffix_MeleeAverageDPS.cs" />
     <Compile Include="IconUtility.cs" />
     <Compile Include="TextureExtension.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ChangeProjectile.cs" />

@@ -46,8 +46,12 @@ namespace RimLoot {
                 thingDef.comps.Add( new CompProperties_LootAffixableThing() );
             }
 
-            // Add a special MarketValue StatPart for affix point multipliers
-            StatDefOf.MarketValue.parts.Add(new StatPart_LootAffix_MarketValue { parentStat = StatDefOf.MarketValue });
+            // Add extra StatParts for various affix multipliers
+            StatDefOf.MarketValue           .parts.Add(new StatPart_LootAffix_MarketValue     { parentStat = StatDefOf.MarketValue            });
+
+            StatDef adps = StatDefOf.MeleeWeapon_AverageDPS;
+            if (adps.parts == null) adps.parts = new List<StatPart> {};
+            adps.parts.Add(new StatPart_LootAffix_MeleeAverageDPS { parentStat = adps });
 
             // FIXME: Add sanity checks for LootAffixDefs, like CanBeAppliedToThing
         }
