@@ -145,8 +145,11 @@ namespace RimLoot {
             ttlAffixPoints         = 0;
 
             for (int i = 0; i < affixes.Count; i++) {
-                affixDefDictCached    [ AffixStrings[i] ] = affixes[i];
-                affixStringsDictCached[ affixes[i] ] = AffixStrings[i];
+                // ?!?  Bizarre error from Prepare Carefully...
+                if (affixStringsCached[i] == null) affixStringsCached[i] = affixes[i].LabelCap;
+
+                affixDefDictCached    [ affixStringsCached[i] ] = affixes[i];
+                affixStringsDictCached[ affixes[i] ] = affixStringsCached[i];
                 modifiersCached.AddRange(affixes[i].modifiers);
                 ttlAffixPoints += affixes[i].affixCost;
             }

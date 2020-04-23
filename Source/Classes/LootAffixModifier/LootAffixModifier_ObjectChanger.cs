@@ -122,7 +122,6 @@ namespace RimLoot {
 
         public void SetTool (Tool tool, object value) {
             if (AppliesTo != ModifierTarget.Tools) return;
-            Log.Message("SetTool: " + string.Join(" / ", tool, fieldInfo, fieldType, value));
             fieldInfo.SetValue(tool, ConvertHelper.Convert(value, fieldType));
         }
 
