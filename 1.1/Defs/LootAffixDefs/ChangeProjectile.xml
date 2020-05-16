@@ -482,7 +482,7 @@
     </RimLoot.LootAffixDef>
 
     <RimLoot.LootAffixDef>
-        <defName>EMP</defName>
+        <defName>EMP_ChangeProjectile</defName>
         <label>EMP</label>
         <groupName>ChangeProjectile</groupName>
         <modifiers>

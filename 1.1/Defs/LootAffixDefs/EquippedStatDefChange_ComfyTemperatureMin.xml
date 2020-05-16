@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Eskimo</defName>
+        <label>Eskimo</label>
+        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <valueModifier>
+                    <addValue>-5</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <valueModifier>
+                    <addValue>5</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>Flammability</affectedStat>
+                <valueModifier>
+                    <multiplier>0.5</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Eskimo's</li>
+                <li>adjective->Eskimo</li>
+                <li>noun->Eskimo</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Firefighting</defName>
+        <label>Firefighting</label>
+        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <valueModifier>
+                    <addValue>-10</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <valueModifier>
+                    <addValue>10</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>Flammability</affectedStat>
+                <valueModifier>
+                    <setValue>0</setValue>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Firefighter's</li>
+                <li>adjective->Firefighting</li>
+                <li>noun->Firefighter</li>
+                <li>verb->Firefighting</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Antithermic</defName>
+        <label>Antithermic</label>
+        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <valueModifier>
+                    <addValue>10</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <valueModifier>
+                    <addValue>-10</addValue>
+                </valueModifier>
+            </li>
+            <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
+                <affectedStat>Flammability</affectedStat>
+                <valueModifier>
+                    <multiplier>2</multiplier>
+                </valueModifier>
+            </li>
+        </modifiers>
+        <affixCost>-3</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Antithermic</li>
+                <li>noun->Antithermic</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

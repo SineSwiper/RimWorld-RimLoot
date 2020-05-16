@@ -2,105 +2,108 @@
 <Defs>
 
     <RimLoot.LootAffixDef>
-        <defName>Eskimo</defName>
-        <label>Eskimo</label>
-        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <defName>Trading</defName>
+        <label>Trading</label>
+        <groupName>EquippedStatDefChange_NegotiationAbility</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <affectedStat>NegotiationAbility</affectedStat>
                 <valueModifier>
-                    <addValue>-5</addValue>
+                    <multiplier>1.25</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <affectedStat>TradePriceImprovement</affectedStat>
                 <valueModifier>
-                    <addValue>5</addValue>
+                    <multiplier>1.25</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>Flammability</affectedStat>
+                <affectedStat>ArrestSuccessChance</affectedStat>
                 <valueModifier>
-                    <multiplier>0.5</multiplier>
+                    <addValue>0.15</addValue>
                 </valueModifier>
             </li>
         </modifiers>
         <affixCost>2</affixCost>
         <affixRulePack>
             <rulesStrings>
-                <li>possessive->Eskimo's</li>
-                <li>adjective->Eskimo</li>
-                <li>noun->Eskimo</li>
+                <li>possessive->Trader's</li>
+                <li>adjective->Trading</li>
+                <li>noun->Trader</li>
+                <li>verb->Trading</li>
                 <li>noun_is_singular->True</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
 
     <RimLoot.LootAffixDef>
-        <defName>Firefighting</defName>
-        <label>Firefighting</label>
-        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <defName>Diplomatizing</defName>
+        <label>Diplomatizing</label>
+        <groupName>EquippedStatDefChange_NegotiationAbility</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <affectedStat>NegotiationAbility</affectedStat>
                 <valueModifier>
-                    <addValue>-10</addValue>
+                    <multiplier>1.5</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <affectedStat>TradePriceImprovement</affectedStat>
                 <valueModifier>
-                    <addValue>10</addValue>
+                    <multiplier>1.5</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>Flammability</affectedStat>
+                <affectedStat>ArrestSuccessChance</affectedStat>
                 <valueModifier>
-                    <setValue>0</setValue>
+                    <addValue>0.3</addValue>
                 </valueModifier>
             </li>
         </modifiers>
-        <affixCost>3</affixCost>
+        <affixCost>4</affixCost>
         <affixRulePack>
             <rulesStrings>
-                <li>possessive->Firefighter's</li>
-                <li>adjective->Firefighting</li>
-                <li>noun->Firefighter</li>
-                <li>verb->Firefighting</li>
+                <li>possessive->Diplomat's</li>
+                <li>adjective->Diplomatizing</li>
+                <li>noun->Diplomat</li>
+                <li>verb->Diplomatizing</li>
                 <li>noun_is_singular->True</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
 
     <RimLoot.LootAffixDef>
-        <defName>Frostbitten</defName>
-        <label>Frostbitten</label>
-        <groupName>EquippedStatDefChange_ComfyTemperatureMin</groupName>
+        <defName>Agitating</defName>
+        <label>Agitating</label>
+        <groupName>EquippedStatDefChange_NegotiationAbility</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMin</affectedStat>
+                <affectedStat>NegotiationAbility</affectedStat>
                 <valueModifier>
-                    <addValue>10</addValue>
+                    <multiplier>0.5</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>ComfyTemperatureMax</affectedStat>
+                <affectedStat>TradePriceImprovement</affectedStat>
                 <valueModifier>
-                    <addValue>-10</addValue>
+                    <multiplier>0.5</multiplier>
                 </valueModifier>
             </li>
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
-                <affectedStat>Flammability</affectedStat>
+                <affectedStat>ArrestSuccessChance</affectedStat>
                 <valueModifier>
-                    <multiplier>2</multiplier>
+                    <multiplier>0.5</multiplier>
                 </valueModifier>
             </li>
         </modifiers>
-        <affixCost>-3</affixCost>
+        <affixCost>-2.5</affixCost>
         <affixRulePack>
             <rulesStrings>
-                <li>adjective->Frostbitten</li>
-                <li>noun->Frostbitten</li>
+                <li>possessive->Agitator's</li>
+                <li>adjective->Agitating</li>
+                <li>noun->Agitator</li>
+                <li>verb->Agitating</li>
                 <li>noun_is_singular->True</li>
             </rulesStrings>
         </affixRulePack>

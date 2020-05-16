@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-<!--
     <RimLoot.LootAffixDef>
         <defName>Flaming</defName>
         <label>Flaming</label>
-        <groupName>Flaming</groupName>
+        <groupName>ToolsChange_ExtraDamage_Flame</groupName>
         <modifiers>
             <li Class="RimLoot.LootAffixModifier_ToolsChange_ExtraDamage">
                 <extraDamage>
-                    <chance>0.5</chance>
                     <def>Flame</def>
+                    <chance>.5</chance>
                     <amount>5</amount>
                 </extraDamage>
             </li>
@@ -20,10 +19,10 @@
             <rulesStrings>
                 <li>adjective->Flaming</li>
                 <li>noun->Flame</li>
-                <li>noun_is_singular->False</li>
                 <li>verb->Flaming</li>
+                <li>noun_is_singular->False</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
--->
+
 </Defs>

@@ -32,6 +32,11 @@ our %STAT_XML_NAME = (qw<
     VerbPropertiesChange_Boolean   affectedField
     VerbPropertiesChange_Def       affectedField
     ChangeProjectile               newDef
+    ToolsChange_ExtraDamage        def
+>);
+
+our %EXTRA_SUBTREE = (qw<
+    ToolsChange_ExtraDamage        extraDamage
 >);
 
 our $DEBUG = 3;
@@ -57,6 +62,8 @@ foreach my $i (0 .. $#$header_row) {
     $header_index{$header} //= [];
     push @{ $header_index{$header} }, $i;
 }
+
+my %lootaffixdef_names;
 
 # CSV Loop
 my $root = XML::Twig::Elt->new('Defs');
@@ -94,6 +101,12 @@ while (my $row = $csv->getline($fh)) {
         my $label = $def_name;
         $def_name =~ s/[^\w\-]+/_/g;
 
+        $def_name .= "_$modifier_class" if $lootaffixdef_names{$def_name};
+        if ($lootaffixdef_names{$def_name}) {
+            print STDERR colored(['bold yellow'], "$def_name is already taken, even within the same modifier class!")."\n";
+            next;
+        }
+
         say "    ".join(' | ', $def_name, $raw_change_data, $affix_cost) if $DEBUG >= 3;
 
         next unless $raw_change_data && length $affix_cost;
@@ -102,6 +115,8 @@ while (my $row = $csv->getline($fh)) {
             print STDERR colored(['bold yellow'], "$stats[0] needs an Adjective!")."\n";
             next;
         }
+
+        $lootaffixdef_names{$def_name} = 1;
 
         #<RimLoot.LootAffixDef>
         #    <defName>Unbreakable</defName>
@@ -154,17 +169,29 @@ while (my $row = $csv->getline($fh)) {
             my $modifier_xml = XML::Twig::Elt->new('li');
             $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$indiv_modifier_class" );
 
-            $modifier_xml->insert_new_elt(last_child => $STAT_XML_NAME{$indiv_modifier_class} => $stats[$i]);
-
             my $value_modifier_xml = XML::Twig::Elt->new('valueModifier');
+            my $extra_subtree_xml;
+            $extra_subtree_xml //= XML::Twig::Elt->new($EXTRA_SUBTREE{$indiv_modifier_class}) if $EXTRA_SUBTREE{$indiv_modifier_class};
+
+            if ($extra_subtree_xml) {
+                $extra_subtree_xml->insert_new_elt(last_child => $STAT_XML_NAME{$indiv_modifier_class} => $stats[$i]);
+            }
+            else {
+                $modifier_xml->insert_new_elt(last_child => $STAT_XML_NAME{$indiv_modifier_class} => $stats[$i]);
+            }
+
             foreach my $property (@change_values) {
                 my ($elt_name, $values) = split /\s*:\s*/, $property, 2;
                 my @values = split m<\s*/\s*>, $values;
 
                 # The values are in the order of the stats (eg: A/B/C & setValue: 0/1/2 == A=0, B=1, C=2)
                 if (defined $values[$i] && length $values[$i]) {
+                    # Only number changers have valueModifiers
                     if ($elt_name =~ /^(?: (?:pre)?(min|max|set|add)Value | multiplier )$/ix) {
                         $value_modifier_xml->insert_new_elt(last_child => $elt_name => $values[$i]);
+                    }
+                    elsif ($extra_subtree_xml) {
+                        $extra_subtree_xml->insert_new_elt(last_child => $elt_name => $values[$i]);
                     }
                     else {
                         $modifier_xml->insert_new_elt(last_child => $elt_name => $values[$i]);
@@ -175,7 +202,12 @@ while (my $row = $csv->getline($fh)) {
             if ($value_modifier_xml->children_count > 0) {
                 $value_modifier_xml->paste_last_child($modifier_xml);
             }
-            if ($modifier_xml->children_count > 1) {
+
+            if ($extra_subtree_xml && $extra_subtree_xml->children_count > 0) {
+                $extra_subtree_xml->paste_last_child($modifier_xml);
+                $modifier_xml->paste_last_child($modifiers_xml);
+            }
+            elsif ($modifier_xml->children_count > 1) {
                 $modifier_xml->paste_last_child($modifiers_xml);
             }
         }
@@ -234,7 +266,7 @@ sub save_xml {
     $xml_text =~ s<(\s+</RimLoot.LootAffixDef>)><$1\n>g;
 
     # Save XML
-    my $file = $OUTPUT_BASE_DIR->file( join('_', 'LootAffixDef', $group_name).".xml" );
+    my $file = $OUTPUT_BASE_DIR->file("$group_name.xml");
     say "Writing XML file: $file" if $DEBUG >= 1;
 
     my $out = $file->open('>:encoding(UTF-8)') || die "Can't open $file for writing: $!";

@@ -21,7 +21,7 @@
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
                 <valueModifier>
-                    <addValue>1</addValue>
+                    <addValue>4</addValue>
                 </valueModifier>
             </li>
         </modifiers>
@@ -57,7 +57,7 @@
             <li Class="RimLoot.LootAffixModifier_EquippedStatDefChange">
                 <affectedStat>ForagedNutritionPerDay</affectedStat>
                 <valueModifier>
-                    <preMinValue>1</preMinValue>
+                    <preMinValue>4</preMinValue>
                     <multiplier>2.5</multiplier>
                 </valueModifier>
             </li>
