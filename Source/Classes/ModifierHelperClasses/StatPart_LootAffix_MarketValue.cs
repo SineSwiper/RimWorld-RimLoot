@@ -30,6 +30,11 @@ namespace RimLoot {
             var comp = req.Thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return null;
 
+            /* https://www.desmos.com/calculator/wox5ocylro
+             * 
+             * This should _mostly_ to resolve to a y=x+1 graph, except in cases of x<1, where it does the
+             * proper thing and keeps y positive.
+             */
             double pts = comp.TotalAffixPoints;
             double exp = Math.Sqrt(Math.Abs(pts)) * Math.Sign(pts);
             return Math.Pow(2, exp).ChangeType<float>();

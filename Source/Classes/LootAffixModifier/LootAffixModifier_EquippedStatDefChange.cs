@@ -55,10 +55,6 @@ namespace RimLoot {
             return thing is Apparel;
         }
 
-        public override void PostApplyAffix (ThingWithComps parentThing, LootAffixDef parentDef) {
-
-        }
-
         public virtual IEnumerable<CompLootAffixableThing> AppliedOnGearFrom (StatRequest req) {
             if (!(req.Thing is Pawn pawn)) yield break;
 

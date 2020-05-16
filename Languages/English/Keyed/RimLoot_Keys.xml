@@ -23,6 +23,6 @@
     <!-- Keys that I can't believe aren't in the base language files... -->
     <Projectile>Projectile</Projectile>
     <StatsReport_TotalValue>Total value</StatsReport_TotalValue>
-    <AverageAccuracy>Average Accuracy</AverageAccuracy>
+    <AverageAccuracy>Average accuracy</AverageAccuracy>
     <ExtraMeleeDamages>Extra melee damage</ExtraMeleeDamages>
 </LanguageData>

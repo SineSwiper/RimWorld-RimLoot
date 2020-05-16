@@ -35,6 +35,10 @@ namespace RimLoot {
             get { return affixes; }
         }
 
+        public int AffixCount {
+            get { return affixes.Count; }
+        }
+
         public List<string> AffixStrings {
             get {
                 if (affixStringsCached != null) return affixStringsCached;
@@ -144,9 +148,13 @@ namespace RimLoot {
             modifiersCached        = new HashSet<LootAffixModifier>       {};
             ttlAffixPoints         = 0;
 
-            for (int i = 0; i < affixes.Count; i++) {
-                // ?!?  Bizarre error from Prepare Carefully...
-                if (affixStringsCached[i] == null) affixStringsCached[i] = affixes[i].LabelCap;
+            for (int i = 0; i < AffixCount; i++) {
+                // Null is some bizarre error from Prepare Carefully
+                // The "null_output" was an old save bug which clobbered the rule data
+                if (affixStringsCached[i] == null || affixStringsCached[i] == "null_output") {
+                    affixStringsCached[i] = affixes[i].LabelCap;
+                    affixRules[i] = new Rule_String("unknown->" + affixStringsCached[i]);
+                }
 
                 affixDefDictCached    [ affixStringsCached[i] ] = affixes[i];
                 affixStringsDictCached[ affixes[i] ] = affixStringsCached[i];
@@ -200,10 +208,17 @@ namespace RimLoot {
 
             // Refresh the VerbTracker cache
             var equippable = parent.TryGetComp<CompEquippable>();
-            if (equippable != null) {
-                // [Reflection] equippable.VerbTracker.InitVerbsFromZero()
-                MethodInfo InitVerbsFromZero = AccessTools.Method(typeof(VerbTracker), "InitVerbsFromZero");
-                InitVerbsFromZero.Invoke(equippable.VerbTracker, new object[] {});
+            if (equippable != null && (verbModifierDefs.Count > 0 || toolModifierDefs.Count > 0)) {
+                // [Reflection] verbTracker.verbs
+                FieldInfo verbsField = AccessTools.Field(typeof(VerbTracker), "verbs");
+                List<Verb> verbs = (List<Verb>)verbsField.GetValue(equippable.VerbTracker);
+
+                // Don't call this if it's already empty.  It may already be in the middle of filling it in.
+                if (!verbs.NullOrEmpty()) {
+                    // [Reflection] equippable.VerbTracker.InitVerbsFromZero()
+                    MethodInfo InitVerbsFromZero = AccessTools.Method(typeof(VerbTracker), "InitVerbsFromZero");
+                    InitVerbsFromZero.Invoke(equippable.VerbTracker, new object[] {});
+                }
             }
 
             MakeIcons();
@@ -230,12 +245,11 @@ namespace RimLoot {
         }
 
         public override void PostExposeData() {
-            base.PostExposeData();
             Scribe_Values.Look(ref fullStuffLabel, "fullStuffLabel", null, false);
             Scribe_Collections.Look(ref affixes, false, "affixes", LookMode.Def, (object) this);
 
             if      (Scribe.mode == LoadSaveMode.Saving) {
-                List<string> affixRuleStrings = affixRules.Select(r => r.ToString()).ToList();
+                List<string> affixRuleStrings = affixRules.Select(r => r.ToString().Replace(" → ", "->")).ToList();
                 Scribe_Collections.Look(ref affixRuleStrings, false, "affixRules", LookMode.Value, (object) this);
             }
             else if (Scribe.mode == LoadSaveMode.LoadingVars) {
@@ -327,9 +341,11 @@ namespace RimLoot {
                 
                 filteredAffixDefs     = baseAffixDefs.FindAll(lad => lad.affixCost <= affixPoints);
                 LootAffixDef newAffix = filteredAffixDefs.RandomElementByWeightWithFallback(lad =>
-                    // 6 / max(abs(ac-pa)³, 0.25)
-                    // eg: p=24 for cost right at the average (with a ±0.6 swing)
-                    //     p= 1 for one that's 1.78 away from the average, including negatives
+                    /* https://www.desmos.com/calculator/f7yscp2vyj
+                     * 6 / max(abs(ac-pa)³, 0.25)
+                     * eg: p=24 for cost right at the average (with a ±0.6 swing)
+                     *     p= 1 for one that's 1.78 away from the average, including negatives
+                     */
                     6 / Mathf.Max(
                         Mathf.Pow(Mathf.Abs(lad.affixCost - paRatio), 3),
                     0.25f)
@@ -367,7 +383,7 @@ namespace RimLoot {
 
         public override string TransformLabel(string label) {
             // Short-circuit: No affixes
-            if (affixes.Count == 0) return label;
+            if (AffixCount == 0) return label;
 
             // Short-circuit: Already calculated the full label and no replacement required
             string stuffLabel = GenLabel.ThingLabel(parent.def, parent.Stuff, 1);
@@ -412,7 +428,7 @@ namespace RimLoot {
                 }
             }
 
-            if (affixRules.Count != affixes.Count) {
+            if (affixRules.Count != AffixCount) {
                 Log.Error("Chosen affix words for " + parent + " don't match the number of affixes:\n" + string.Join(
                     "\nvs.\n", 
                     string.Join(" | ", affixRules), 
@@ -425,7 +441,7 @@ namespace RimLoot {
             request.Rules.Add(new Rule_String( "THING_defLabel",   parent.def.label));
             request.Rules.Add(new Rule_String( "THING_stuffLabel", stuffLabel));
 
-            string rootKeyword = "r_affix" + affixes.Count;
+            string rootKeyword = "r_affix" + AffixCount;
             fullStuffLabel = NameGenerator.GenerateName(request, null, false, rootKeyword, rootKeyword);
 
             // It's possible we might end up hitting this later than we expected, and run into affixes/word
@@ -437,7 +453,7 @@ namespace RimLoot {
 
         // FIXME: Use these for cursed items?
         public override string CompInspectStringExtra() {
-            if (affixes.Count > 0) {
+            if (AffixCount > 0) {
                 return
                     "RimLoot_Affixes".Translate() + ": " +
                     GenText.ToCommaList(
@@ -458,7 +474,7 @@ namespace RimLoot {
             uiIcon = defIcon;
 
             if (!UnityData.IsInMainThread) return;  // too early to be fetching this stuff
-            if (affixes.Count == 0)        return;
+            if (AffixCount == 0)           return;
 
             // Use the highest affix cost for the color
             LootAffixDef highestAffix = affixes.FirstOrFallback(
@@ -468,7 +484,7 @@ namespace RimLoot {
             Color color = Color.white;
             ColorUtility.TryParseHtmlString(highestAffix.LabelColor, out color);
 
-            string texPart = affixes.Count + "Affix";
+            string texPart = AffixCount + "Affix";
             if (Mathf.Abs(highestAffix.affixCost) >= 5) texPart = "Deadly";
 
             // Grab the overlay icon
@@ -482,7 +498,7 @@ namespace RimLoot {
         }
 
         public override void PostDraw() {
-            if (affixes.Count == 0) return;
+            if (AffixCount == 0) return;
             
             // NOTE: Everything in RimWorld treats X=horizonal, Z=vertical, Y=depth
             Vector3 vector = parent.DrawPos;

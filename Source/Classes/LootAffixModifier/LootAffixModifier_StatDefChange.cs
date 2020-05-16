@@ -91,6 +91,7 @@ namespace RimLoot {
             return affectedStat.Worker.ShouldShowFor(req);
         }
 
+        // FIXME: Still seems to have problems on drop
         public override void PostApplyAffix (ThingWithComps parentThing, LootAffixDef parentDef) {
             // Make sure any changes in max values fixes the current HPs
             if (affectedStat == StatDefOf.MaxHitPoints) {

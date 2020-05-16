@@ -38,6 +38,8 @@ namespace RimLoot {
                 yield return configError;
         }
 
+        // FIXME: CanBeAppliedToThing restriction for burst damage and thrown weapons
+
         public override void ModifyVerbProperty (ThingWithComps parentThing, VerbProperties verbProperties) {
             float val = ConvertHelper.Convert<float>( fieldInfo.GetValue(verbProperties) );
             val = valueModifier.ChangeValue(val);
