@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Apparel filters -->
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesNoneApparel</defName>
+    <label>allow non-affixed</label>
+    <description>Allow apparel without affixes.</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesNoneApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesNone</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesOneApparel</defName>
+    <label>allow one-affixed</label>
+    <description>Allow apparel with exactly one affix.</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesOneApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesOne</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesMultiApparel</defName>
+    <label>allow multi-affixed</label>
+    <description>Allow apparel with multiple affixes.</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesMultiApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesMulti</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesNegativeApparel</defName>
+    <label>allow negative affixed</label>
+    <description>Allow apparel with any negative affixes.</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesNegativeApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesNegative</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesPositiveApparel</defName>
+    <label>allow positive affixed</label>
+    <description>Allow apparel with any positive affixes.</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesPositiveApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesPositive</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesDeadlyApparel</defName>
+    <label>allow deadly affixed</label>
+    <description>Allow apparel with any deadly affixes (positive or negative).</description>
+    <parentCategory>Apparel</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesDeadlyApparel</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesDeadly</workerClass>
+  </SpecialThingFilterDef>
+
+  <!-- Weapon filters -->
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesNoneWeapons</defName>
+    <label>allow non-affixed</label>
+    <description>Allow weapons without affixes.</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesNoneWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesNone</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesOneWeapons</defName>
+    <label>allow one-affixed</label>
+    <description>Allow weapons with exactly one affix.</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesOneWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesOne</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesMultiWeapons</defName>
+    <label>allow multi-affixed</label>
+    <description>Allow weapons with multiple affixes.</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesMultiWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesMulti</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesNegativeWeapons</defName>
+    <label>allow negative affixed</label>
+    <description>Allow weapons with any negative affixes.</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesNegativeWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesNegative</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesPositiveWeapons</defName>
+    <label>allow positive affixed</label>
+    <description>Allow Weapons with any positive affixes.</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesPositiveWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesPositive</workerClass>
+  </SpecialThingFilterDef>
+
+  <SpecialThingFilterDef>
+    <defName>LootAffixesDeadlyWeapons</defName>
+    <label>allow deadly affixed</label>
+    <description>Allow weapons with any deadly affixes (positive or negative).</description>
+    <parentCategory>Weapons</parentCategory>
+    <allowedByDefault>true</allowedByDefault>
+    <saveKey>LootAffixesDeadlyWeapons</saveKey>
+    <workerClass>RimLoot.SpecialThingFilterWorker_AffixesDeadly</workerClass>
+  </SpecialThingFilterDef>
+
+</Defs>
