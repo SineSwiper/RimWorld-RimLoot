@@ -289,13 +289,15 @@ namespace RimLoot {
             PostAffixCleanup();
         }
 
-        public void PostAffixCleanup() {
+        public void PostAffixCleanup(bool fixLabel = true) {
             ClearAffixCaches();
-            affixRules.Clear();
 
-            fullStuffLabel = null;
-            string name = parent.LabelNoCount;
-            name = TransformLabel(name);
+            if (fixLabel) {
+                affixRules.Clear();
+                fullStuffLabel = null;
+                string name = parent.LabelNoCount;
+                name = TransformLabel(name);
+            }
 
             foreach (LootAffixDef affix in affixes) {
                 affix.PostApplyAffix(parent);
@@ -449,6 +451,31 @@ namespace RimLoot {
             ClearAffixCaches();
 
             return preExtra + fullStuffLabel + postExtra;
+        }
+
+        public override bool AllowStackWith (Thing other) {
+            var otherComp = other.TryGetComp<CompLootAffixableThing>();
+            if (otherComp == null) return false;
+
+            // Count short-circuits
+            if (AffixCount != otherComp.AffixCount) return false;
+            // same counts at this point, so no need to check the other side
+            if (AffixCount == 0)                    return true;
+
+            // Only allow affixes with the same name
+            return affixRules.Except(otherComp.affixRules).Count() == 0;
+        }
+
+        public override void PostSplitOff (Thing piece) {
+            base.PostSplitOff(piece);
+
+            // (ToList = MemberwiseClone)
+            var comp = piece.TryGetComp<CompLootAffixableThing>();
+            comp.affixes        = affixes   .ToList();
+            comp.affixRules     = affixRules.ToList();
+            comp.fullStuffLabel = fullStuffLabel;
+
+            comp.PostAffixCleanup(false);
         }
 
         // FIXME: Use these for cursed items?
