@@ -592,6 +592,16 @@ namespace RimLoot {
 
         // NOTE: This also will get the SpecialDisplayStats entries above
         public void SpecialDisplayStatsInjectors(StatDrawEntry statDrawEntry) {
+            // Fix firefoam damage displays
+            if (
+                statDrawEntry.LabelCap == "Damage".Translate() && parent.def.IsWeaponUsingProjectiles &&
+                PrimaryVerbProps?.defaultProjectile?.projectile.damageDef?.harmsHealth == false
+            ) {
+                // [Reflection] statDrawEntry.value = 0f
+                FieldInfo valueField = AccessTools.Field(typeof(StatDrawEntry), "value");
+                valueField.SetValue(statDrawEntry, 0f);
+            }
+
             var affixDict = AllAffixDefsByAffixes;
             foreach (string affixKey in AffixStrings) {
                 LootAffixDef affix = affixDict[affixKey];
