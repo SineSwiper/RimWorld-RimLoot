@@ -326,15 +326,18 @@ namespace RimLoot {
             List<LootAffixDef> filteredAffixDefs = baseAffixDefs.FindAll( lad => lad.affixCost <= affixPoints );
 
             // First affix: Random pool of anything (within the cost)
-            LootAffixDef firstAffix = filteredAffixDefs.RandomElementWithFallback();
-            if (firstAffix == null) return;
+            // 10% chance it doesn't follow this first rule
+            if (0.10f < Random.Range(0.0f, 1.0f)) {
+                LootAffixDef firstAffix = filteredAffixDefs.RandomElementWithFallback();
+                if (firstAffix == null) return;
 
-            affixes.Add(firstAffix);
-            affixPoints -= firstAffix.affixCost;
-            baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+                affixes.Add(firstAffix);
+                affixPoints -= firstAffix.affixCost;
+                baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
+            }
 
             // Remaining affixes: rebalance the weight priorities to better reflect the current point total
-            for (int curAffixes = 2; curAffixes <= 4; curAffixes++) {
+            for (int curAffixes = affixes.Count + 1; curAffixes <= 4; curAffixes++) {
                 if (curAffixes > ttlAffixes) return;
                 int remainAffixes = ttlAffixes - curAffixes + 1;
 
@@ -363,7 +366,7 @@ namespace RimLoot {
         public int CalculateTotalLootAffixPoints() {
             float ptsF = 0f;
 
-            // Up to 4 points based on total wealth (1M max)
+            // Up to 6 points based on total wealth (1M max)
             float wealth = 0f;
             if (Current.ProgramState == ProgramState.Playing) {  // don't bother while initializing
                 if      (parent.Map      != null && parent.Map.wealthWatcher      != null) wealth = parent.Map.wealthWatcher.WealthTotal;
@@ -371,7 +374,7 @@ namespace RimLoot {
                 else if (Find.World      != null)                                          wealth = Find.World.PlayerWealthForStoryteller;
             }
 
-            ptsF += Mathf.Min(wealth, 1_000_000) / 250_000;
+            ptsF += Mathf.Min(wealth / 166_666, 6);
 
             // Up to 8 points based on item quality
             QualityCategory qc;
@@ -379,6 +382,9 @@ namespace RimLoot {
 
             // Normal = 1, Good = 2, Excellent = 4, Masterwork = 6, Legendary = 8
             ptsF += Mathf.Pow((int)qc, 2f) / 4.5f;
+
+            // Capped at 12
+            ptsF = Mathf.Clamp(ptsF, 0, 12);
 
             return Mathf.RoundToInt(ptsF);
         }
