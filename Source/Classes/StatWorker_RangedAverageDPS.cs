@@ -38,6 +38,7 @@ namespace RimLoot {
             if (chance <= 0.05f) chance = 1f;  // already permanently set to "base" verbProps
 
             float baseDamage = 
+                projProps.damageDef.harmsHealth == false ? 0f :
                 req.HasThing         ? projProps.GetDamageAmount(req.Thing) :
                 req.StuffDef != null ? projProps.GetDamageAmount( def.GetStatValueAbstract(StatDefOf.RangedWeapon_DamageMultiplier, req.StuffDef) ) :
                                        projProps.GetDamageAmount( def.GetStatValueAbstract(StatDefOf.RangedWeapon_DamageMultiplier) )
@@ -46,7 +47,10 @@ namespace RimLoot {
 
             if (chance < 1f) {
                 float  modChance     = 1f - chance;
-                float  modBaseDamage = modProjProps.GetDamageAmount(req.Thing);
+                float  modBaseDamage = 
+                    modProjProps.damageDef.harmsHealth == false ? 0f :
+                    modProjProps.GetDamageAmount(req.Thing)
+                ;
 
                 damage += modBaseDamage * verbProps.burstShotCount * modChance;
             }
@@ -104,6 +108,7 @@ namespace RimLoot {
             string chanceStr = GenText.ToStringPercent(chance);
 
             float baseDamage = 
+                projProps.damageDef.harmsHealth == false ? 0f :
                 req.HasThing         ? projProps.GetDamageAmount(req.Thing) :
                 req.StuffDef != null ? projProps.GetDamageAmount( def.GetStatValueAbstract(StatDefOf.RangedWeapon_DamageMultiplier, req.StuffDef) ) :
                                        projProps.GetDamageAmount( def.GetStatValueAbstract(StatDefOf.RangedWeapon_DamageMultiplier) )
@@ -126,7 +131,10 @@ namespace RimLoot {
                 float  modChance    = 1f - chance;
                 string modChanceStr = GenText.ToStringPercent(modChance);
 
-                float  modBaseDamage = modProjProps.GetDamageAmount(req.Thing);
+                float  modBaseDamage = 
+                    modProjProps.damageDef.harmsHealth == false ? 0f :
+                    modProjProps.GetDamageAmount(req.Thing)
+                ;
                 float  modDamage     = modBaseDamage * verbProps.burstShotCount * modChance;
 
                 reportText += "    " + "RimLoot_StatsReport_ProjectileWithChance".Translate(

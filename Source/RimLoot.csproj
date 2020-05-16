@@ -75,10 +75,11 @@
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_ExtraDamage.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_Def.cs" />
     <Compile Include="Classes\ModifierHelperClasses\StatPart_LootAffix_MeleeAverageDPS.cs" />
+    <Compile Include="Classes\SpecialThingFilterWorker.cs" />
     <Compile Include="IconUtility.cs" />
     <Compile Include="TextureExtension.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ChangeProjectile.cs" />
-    <Compile Include="StatWorker_RangedAverageDPS.cs" />
+    <Compile Include="Classes\StatWorker_RangedAverageDPS.cs" />
     <Compile Include="Classes\DebugToolsLootAffixes.cs" />
     <Compile Include="Classes\ModifierHelperClasses\BasicStatDescDef_RPM.cs" />
     <Compile Include="Classes\ModifierHelperClasses\BasicStatDescDef.cs" />
