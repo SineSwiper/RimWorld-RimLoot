@@ -11,7 +11,8 @@ namespace RimLoot {
         VerbProperties,
         VerbTarget,
         Tools,
-        Projectile
+        Projectile,
+        PawnOverTime,
     };
 
     public abstract class LootAffixModifier : Editable {
@@ -60,7 +61,11 @@ namespace RimLoot {
             base.ResolveReferences();
         }
 
-        public virtual void PostLoadSpecial (LootAffixDef parentDef) {
+        public virtual void PostLoadDef (LootAffixDef parentDef) {
+
+        }
+
+        public virtual void PostExposeData (ThingWithComps parentThing, LootAffixDef parentDef) {
 
         }
 
@@ -73,6 +78,10 @@ namespace RimLoot {
         }
 
         public virtual void PostShotFired (ThingWithComps parentThing, LootAffixDef parentDef) {
+
+        }
+
+        public virtual void PostDestroy (ThingWithComps parentThing, LootAffixDef parentDef) {
 
         }
 
@@ -143,6 +152,10 @@ namespace RimLoot {
         public virtual bool ShouldActivate (ThingWithComps thing) {
             if (GetRealChance(thing) < Random.Range(0.0f, 1.0f)) return false;
             return true;
+        }
+
+        public virtual void DoActivation (ThingWithComps thing) {
+
         }
 
         public virtual IEnumerable<StatDrawEntry> SpecialDisplayStatsForThing(ThingWithComps parentThing, string preLabel) {

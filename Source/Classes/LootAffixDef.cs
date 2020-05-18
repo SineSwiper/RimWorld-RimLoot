@@ -97,7 +97,13 @@ namespace RimLoot {
         public override void PostLoad() {
             base.PostLoad();
             foreach (LootAffixModifier modifier in modifiers) {
-                modifier.PostLoadSpecial(this);
+                modifier.PostLoadDef(this);
+            }
+        }
+
+        public void PostExposeData (ThingWithComps parentThing) {
+            foreach (LootAffixModifier modifier in modifiers) {
+                modifier.PostExposeData(parentThing, this);
             }
         }
 
@@ -168,6 +174,12 @@ namespace RimLoot {
             }
         }
 
+        public void PostDestroy (ThingWithComps parentThing) {
+            foreach (LootAffixModifier modifier in modifiers) {
+                modifier.PostDestroy(parentThing, this);
+            }
+        }
+
         public void ModifyVerbProperties (ThingWithComps parentThing, VerbProperties verbProperties) {
             foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.VerbProperties)) {
                 // Only set permanent changes here.  Otherwise, it gets changed dynamically.
@@ -178,6 +190,12 @@ namespace RimLoot {
         public void ModifyTool (ThingWithComps parentThing, Tool tool) {
             foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.Tools)) {
                 modifier.ModifyTool(parentThing, tool);
+            }
+        }
+
+        public void CheckTick (ThingWithComps parentThing) {
+            foreach (LootAffixModifier modifier in modifiers.Where(lam => lam.AppliesTo == ModifierTarget.PawnOverTime)) {
+                if (modifier.ShouldActivate(parentThing)) modifier.DoActivation(parentThing);
             }
         }
 

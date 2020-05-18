@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_DoOverTime.cs" />
+    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_EquippedRandomLocalTeleport.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ShootThroughWalls.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ObjectChanger.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_ExtraDamage.cs" />

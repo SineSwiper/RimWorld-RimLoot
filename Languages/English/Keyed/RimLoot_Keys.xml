@@ -15,6 +15,8 @@
 
     <RimLoot_ToolExtraDamageModifierLabel>{chance} chance to inflict {amount} {DAMAGE_label} damage</RimLoot_ToolExtraDamageModifierLabel>
 
+    <RimLoot_EquippedRandomLocalTeleportLabel>Pawn randomly teleports elsewhere on the map every {period} (avg)</RimLoot_EquippedRandomLocalTeleportLabel>
+
     <RimLoot_ShootsThroughWalls>Weapon shoots through walls!</RimLoot_ShootsThroughWalls>
 
     <RimLoot_StatsReport_Projectile>Projectile: {PROJECTILE_label}</RimLoot_StatsReport_Projectile>

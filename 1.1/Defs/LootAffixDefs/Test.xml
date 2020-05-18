@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-<!--
     <RimLoot.LootAffixDef>
-        <defName>Flaming</defName>
-        <label>Flaming</label>
-        <groupName>Flaming</groupName>
+        <defName>Disoriented</defName>
+        <label>Disoriented</label>
+        <groupName>Test</groupName>
         <modifiers>
-            <li Class="RimLoot.LootAffixModifier_ToolsChange_ExtraDamage">
-                <extraDamage>
-                    <chance>0.5</chance>
-                    <def>Flame</def>
-                    <amount>5</amount>
-                </extraDamage>
+            <li Class="RimLoot.LootAffixModifier_EquippedRandomLocalTeleport">
+                <mtbDays>0.01</mtbDays>
             </li>
         </modifiers>
-        <affixCost>2</affixCost>
+        <affixCost>-4</affixCost>
         <affixRulePack>
             <rulesStrings>
-                <li>adjective->Flaming</li>
-                <li>noun->Flame</li>
+                <li>adjective->Disoriented</li>
+                <li>noun->Disorientation</li>
                 <li>noun_is_singular->False</li>
-                <li>verb->Flaming</li>
+                <li>verb->Disorienting</li>
             </rulesStrings>
         </affixRulePack>
     </RimLoot.LootAffixDef>
--->
+
 </Defs>

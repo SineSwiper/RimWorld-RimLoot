@@ -258,7 +258,11 @@ namespace RimLoot {
                 affixRules.Clear();
                 affixRules.AddRange( affixRuleStrings.Select(rs => new Rule_String(rs)) );
             }
-            
+
+            // FIXME: Might not need this now...
+            foreach (LootAffixDef affix in affixes) {
+                affix.PostExposeData(parent);
+            }
         }
 
         public override void ReceiveCompSignal(string signal) {
@@ -274,13 +278,23 @@ namespace RimLoot {
                 }
             }
         }
-    
-        public override void CompTick() {
-            // FIXME
+
+        public override void PostDestroy (DestroyMode mode, Map previousMap) {
+            foreach (LootAffixDef affix in affixes) {
+                affix.PostDestroy(parent);
+            }
         }
 
+        public override void CompTick() {
+            foreach (LootAffixDef affix in affixes) {
+                affix.CheckTick(parent);
+            }
+        }
+    
         public override void CompTickRare() {
-            // FIXME
+            foreach (LootAffixDef affix in affixes) {
+                affix.CheckTick(parent);
+            }
         }
 
         public void InitializeAffixes(float affixPoints = 0, int ttlAffixes = 0) {  // options for debug only
