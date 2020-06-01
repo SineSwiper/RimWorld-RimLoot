@@ -70,26 +70,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LootAffixModifier\DoOverTime\LootAffixModifier_EquippedDeath.cs" />
+    <Compile Include="Classes\LootAffixModifier\DoOverTime\LootAffixModifier_EquippedLocalTeleport.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_DoOverTime.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_EquippedRandomLocalTeleport.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ShootThroughWalls.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ObjectChanger.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_ExtraDamage.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ToolsChange_Def.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_ChangeProjectile.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_ShootThroughWalls.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_ToolsChange_Def.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_ToolsChange_ExtraDamage.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_VerbPropertiesChange_Boolean.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_VerbPropertiesChange_Def.cs" />
+    <Compile Include="Classes\LootAffixModifier\ObjectChanger\LootAffixModifier_VerbPropertiesChange_Number.cs" />
     <Compile Include="Classes\ModifierHelperClasses\StatPart_LootAffix_MeleeAverageDPS.cs" />
+    <Compile Include="Classes\HostileDeadlyAffixLetter.cs" />
+    <Compile Include="Classes\NegativeDeadlyAffixLetter.cs" />
     <Compile Include="Classes\SpecialThingFilterWorker.cs" />
     <Compile Include="IconUtility.cs" />
+    <Compile Include="CollectionExtension.cs" />
     <Compile Include="TextureExtension.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_ChangeProjectile.cs" />
     <Compile Include="Classes\StatWorker_RangedAverageDPS.cs" />
     <Compile Include="Classes\DebugToolsLootAffixes.cs" />
     <Compile Include="Classes\ModifierHelperClasses\BasicStatDescDef_RPM.cs" />
     <Compile Include="Classes\ModifierHelperClasses\BasicStatDescDef.cs" />
     <Compile Include="Classes\LootAffixModifier\LootAffixModifier_EquippedStatDefChange.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_VerbPropertiesChange_Boolean.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_VerbPropertiesChange_Def.cs" />
     <Compile Include="Classes\ModifierHelperClasses\ValueModifierSet.cs" />
-    <Compile Include="Classes\LootAffixModifier\LootAffixModifier_VerbPropertiesChange_Number.cs" />
     <Compile Include="Classes\LootAffixNamerRulePackDef.cs" />
     <Compile Include="Classes\ModifierHelperClasses\StatPart_LootAffix_Equipped.cs" />
     <Compile Include="Classes\ModifierHelperClasses\StatPart_LootAffix_MarketValue.cs" />
