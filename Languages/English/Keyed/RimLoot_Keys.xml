@@ -13,9 +13,12 @@
     <RimLoot_ChangeProjectileModifierLabel_ChanceBurst>{realChance} chance to fire a {PROJECTILE_label} ({chance} chance per volley)</RimLoot_ChangeProjectileModifierLabel_ChanceBurst>
     <RimLoot_ChangeProjectileModifierLabel_Permanent>Fires {PROJECTILE_labelPlural}</RimLoot_ChangeProjectileModifierLabel_Permanent>
 
-    <RimLoot_ToolExtraDamageModifierLabel>{chance} chance to inflict {amount} {DAMAGE_label} damage</RimLoot_ToolExtraDamageModifierLabel>
+    <RimLoot_ToolExtraDamageModifierLabel>{chance} chance to inflict extra {amount} {DAMAGE_label} damage</RimLoot_ToolExtraDamageModifierLabel>
 
     <RimLoot_EquippedRandomLocalTeleportLabel>Pawn randomly teleports elsewhere on the map every {period} (avg)</RimLoot_EquippedRandomLocalTeleportLabel>
+    <RimLoot_EquippedLocalTeleportLabel>Pawn randomly teleports to its destination every {period} (avg)</RimLoot_EquippedLocalTeleportLabel>
+
+    <RimLoot_EquippedDeathLabel>Pawn dies after {period} (avg)!</RimLoot_EquippedDeathLabel>
 
     <RimLoot_ShootsThroughWalls>Weapon shoots through walls!</RimLoot_ShootsThroughWalls>
 

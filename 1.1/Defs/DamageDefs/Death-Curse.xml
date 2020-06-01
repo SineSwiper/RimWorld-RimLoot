@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <DamageDef>
+    <defName>RimLoot_DeathCurse</defName>
+    <label>Death curse</label>
+    <workerClass>DamageWorker</workerClass>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been killed by {PAWN_possessive} own equipment!</deathMessage>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <canInterruptJobs>false</canInterruptJobs>
+    <makesBlood>false</makesBlood>
+    <impactSoundType />
+    <armorCategory />
+  </DamageDef>
+
+  <RulePackDef>
+    <defName>RimLoot_Event_DeathCurse</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry(p=2)->The [death_curse][from_object] finally took hold[of_pawn].</li>
+        <li>r_logentry->[SUBJECT_definite]'s possession of [object_or_curse] took its toll.</li>
+        <li>r_logentry->[SUBJECT_definite] used [object_or_curse] for far too long.</li>
+
+        <li>death_curse(p=3)->death curse</li>
+        <li>death_curse->curse</li>
+
+        <li>from_object(p=2)-> from [INITIATOR_definite]</li>
+        <li>from_object-></li>
+
+        <li>of_pawn(p=2)-> of [SUBJECT_definite]</li>
+        <li>of_pawn-></li>
+
+        <li>object_or_curse->[INITIATOR_definite]</li>
+        <li>object_or_curse->a [death_curse]</li>
+
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

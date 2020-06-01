@@ -29,6 +29,12 @@ namespace RimLoot {
             }
         }
 
+        public override TaggedString ModifierChangeLabel {
+            get { return ModifierChangeLabelTranslateKey().Translate( ModifierChangeString.Named("period") ); }
+        }
+
+        public abstract string ModifierChangeLabelTranslateKey();
+
         public override IEnumerable<string> ConfigErrors (LootAffixDef parentDef) {
             foreach (string configError in base.ConfigErrors(parentDef))
                 yield return configError;
