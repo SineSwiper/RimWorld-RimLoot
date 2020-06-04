@@ -25,6 +25,10 @@
     <RimLoot_StatsReport_Projectile>Projectile: {PROJECTILE_label}</RimLoot_StatsReport_Projectile>
     <RimLoot_StatsReport_ProjectileWithChance>Projectile: {PROJECTILE_label} ({chance} chance)</RimLoot_StatsReport_ProjectileWithChance>
 
+    <RimLoot_CursedItem>Cursed item</RimLoot_CursedItem>
+    <RimLoot_NegativeDeadlyAffixLetter_Text>{PAWN_labelShort} equipped something cursed!</RimLoot_NegativeDeadlyAffixLetter_Text>
+    <RimLoot_NegativeDeadlyAffixLetter_Desc>{PAWN_labelShort} equipped {ITEM_indefinite}, which has some serious negative consequences:\n\n{EFFECT}</RimLoot_NegativeDeadlyAffixLetter_Desc>
+
     <!-- Keys that I can't believe aren't in the base language files... -->
     <Projectile>Projectile</Projectile>
     <StatsReport_TotalValue>Total value</StatsReport_TotalValue>

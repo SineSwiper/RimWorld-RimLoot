@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
@@ -297,6 +298,27 @@ namespace RimLoot {
             }
         }
 
+        public override void Notify_Equipped(Pawn pawn) {
+            CheckAndSendNegativeDeadlyAffixLetter(pawn);
+        }
+
+        public void Notify_ApparelAdded(Pawn pawn) {
+            CheckAndSendNegativeDeadlyAffixLetter(pawn);
+        }
+
+        public void CheckAndSendNegativeDeadlyAffixLetter(Pawn pawn) {
+            LootAffixDef deadlyAffix = affixes.FirstOrFallback(lad => lad.IsNegativeDeadly);
+            if (deadlyAffix == null || pawn.Faction != Faction.OfPlayer) return;
+
+            ChoiceLetter choiceLetter = LetterMaker.MakeLetter(
+                label:       "RimLoot_CursedItem".Translate() + ": " + pawn.LabelShortCap + " → " + deadlyAffix.LabelCap,
+                text:        "RimLoot_NegativeDeadlyAffixLetter_Text".Translate(pawn.Named("PAWN")),
+                def:         DefDatabase<LetterDef>.GetNamed("RimLoot_NegativeDeadlyAffix"),
+                lookTargets: new LookTargets( new GlobalTargetInfo(pawn), new GlobalTargetInfo(parent) )
+            );
+            Find.LetterStack.ReceiveLetter(choiceLetter);
+        }
+
         public void InitializeAffixes(float affixPoints = 0, int ttlAffixes = 0) {  // options for debug only
             affixes.Clear();
             AddNewAffixes(affixPoints, ttlAffixes);
@@ -498,7 +520,6 @@ namespace RimLoot {
             comp.PostAffixCleanup(false);
         }
 
-        // FIXME: Use these for cursed items?
         public override string CompInspectStringExtra() {
             if (AffixCount > 0) {
                 return

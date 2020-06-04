@@ -129,6 +129,18 @@ namespace RimLoot {
             }
         }
 
+        // Y U NO NOTIFY APPAREL?
+        [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelAdded")]
+        private static class Notify_ApparelAddedPatch {
+            [HarmonyPostfix]
+            static void Postfix(Pawn_ApparelTracker __instance, Apparel apparel) {
+                var comp = apparel?.TryGetComp<CompLootAffixableThing>();
+                if (comp == null) return;
+
+                comp.Notify_ApparelAdded(__instance.pawn);
+            }
+        }
+
         /*
          * Widget DefIcon fixes for LootAffixDef.  This allows for hyperlink icons.
          */

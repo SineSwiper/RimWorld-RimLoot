@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <LetterDef ParentName="NegativeEvent">
+    <defName>RimLoot_NegativeDeadlyAffix</defName>
+    <letterClass>RimLoot.NegativeDeadlyAffixLetter</letterClass>
+  </LetterDef>
+
+  <LetterDef ParentName="NegativeEvent">
+    <defName>RimLoot_HostileDeadlyAffix</defName>
+    <letterClass>RimLoot.HostileDeadlyAffixLetter</letterClass>
+  </LetterDef>
+
+</Defs>
