@@ -169,8 +169,8 @@ namespace RimLoot {
             ).ToList();
 
             if (verbModifierDefs.Count > 0) {
-                verbPropertiesFromDef = parent.def.Verbs;
-                verbProperties        = parent.def.Verbs.Select(vp => vp.MemberwiseClone()).ToList();
+                verbPropertiesFromDef = Base.origVerbPropertiesCache.GetOrAddIfNotExist(parent.def.defName, parent.def.Verbs);
+                verbProperties        = verbPropertiesFromDef.Select(vp => vp.MemberwiseClone()).ToList();
 
                 foreach (LootAffixDef lad in verbModifierDefs) {
                     foreach (var vp in verbProperties) {
@@ -187,9 +187,11 @@ namespace RimLoot {
                 lad => lad.modifiers.Any( lam => lam.AppliesTo == ModifierTarget.Tools )
             ).ToList();
 
-            toolsFromDef = parent.def.tools;
-            // prevent infinite null check loops from Tools/ToolsFromDef -> InitVerbsFromZero -> CompEquippable.Tools
-            if (toolsFromDef == null) toolsFromDef = new List<Tool> {};
+            toolsFromDef = Base.origToolsCache.GetOrAddIfNotExist(
+                parent.def.defName,
+                // prevent infinite null check loops from Tools/ToolsFromDef -> InitVerbsFromZero -> CompEquippable.Tools
+                parent.def.tools ?? new List<Tool> {}
+            );
 
             if (toolModifierDefs.Count > 0) {
                 // [Reflection prep] tool.MemberwiseClone()
@@ -260,6 +262,8 @@ namespace RimLoot {
                 affixRules.AddRange( affixRuleStrings.Select(rs => new Rule_String(rs)) );
             }
 
+            PostAffixCleanup(false);
+
             // FIXME: Might not need this now...
             foreach (LootAffixDef affix in affixes) {
                 affix.PostExposeData(parent);
@@ -267,7 +271,10 @@ namespace RimLoot {
         }
 
         public override void ReceiveCompSignal(string signal) {
-            if (signal == "SetQuality") InitializeAffixes();
+            if (signal == "SetQuality") {
+                // One of the affixes changes quality, so don't clobber it
+                if (affixes.Count == 0) InitializeAffixes();
+            }
             if (signal == "AboutToFireShot") {
                 foreach (LootAffixDef affix in affixes) {
                     affix.PreShotFired(parent);
@@ -334,6 +341,8 @@ namespace RimLoot {
                 string name = parent.LabelNoCount;
                 name = TransformLabel(name);
             }
+
+            parent.def.SpecialDisplayStats(StatRequest.For(parent));
 
             foreach (LootAffixDef affix in affixes) {
                 affix.PostApplyAffix(parent);

@@ -75,21 +75,23 @@ namespace RimLoot {
         [HarmonyPatch(typeof(ThingDef), "SpecialDisplayStats")]
         private static class SpecialDisplayStatsPatches {
             [HarmonyPrefix]
-            static bool Prefix(ThingDef __instance, StatRequest req, ref List<VerbProperties> ___verbs, out List<VerbProperties> __state) {
-                __state = null;
+            static bool Prefix(ThingDef __instance, StatRequest req) {
                 if (!(req.Thing is ThingWithComps thing)) return true;
                 var comp = thing.TryGetComp<CompLootAffixableThing>();
                 if (comp == null) return true;  // go to original
+
+                // [Reflection prep] thing.verbs
+                FieldInfo verbsField = AccessTools.Field(typeof(ThingDef), "verbs");
             
                 // Store the old set, and replace with the new
-                __state  = ___verbs;
-                ___verbs = comp.VerbProperties;
+                Base.origVerbPropertiesCache.AddIfNotExist(__instance.defName, (List<VerbProperties>)verbsField.GetValue(__instance));
+                verbsField.SetValue(__instance, comp.VerbProperties);
 
                 return true;
             }
 
             [HarmonyPostfix]
-            static IEnumerable<StatDrawEntry> Postfix(IEnumerable<StatDrawEntry> values, ThingDef __instance, StatRequest req, List<VerbProperties> __state) {
+            static IEnumerable<StatDrawEntry> Postfix(IEnumerable<StatDrawEntry> values, ThingDef __instance, StatRequest req) {
                 CompLootAffixableThing comp = null;
                 if (req.Thing is ThingWithComps thing) comp = thing.TryGetComp<CompLootAffixableThing>();
 
@@ -102,14 +104,14 @@ namespace RimLoot {
                 }
                 
                 // Go back to the old set.  Iterators cannot have refs, so we have to replace this with reflection.
-                if (__state == null) {
+                if (!Base.origVerbPropertiesCache.ContainsKey(__instance.defName)) {
                     if (comp != null && !req.Thing.def.Verbs.NullOrEmpty()) Log.Error("Old VerbProperties lost from SpecialDisplayStats swap!");
                     yield break;
                 }
 
-                // [Reflection] thing.verbs = __state;
-                FieldInfo field = AccessTools.Field(typeof(ThingDef), "verbs");
-                field.SetValue(__instance, __state);
+                // [Reflection] thing.verbs = Base.origVerbPropertiesCache[__instance.defName];
+                FieldInfo verbsField = AccessTools.Field(typeof(ThingDef), "verbs");
+                verbsField.SetValue(__instance, Base.origVerbPropertiesCache[__instance.defName]);
             }
         }
 
@@ -175,7 +177,7 @@ namespace RimLoot {
                 
                 // Find the Pawn's weapon
                 if (!(___launcher is Pawn pawn)) return;
-                var comp = pawn.equipment.Primary?.TryGetComp<CompLootAffixableThing>();
+                var comp = pawn.equipment?.Primary?.TryGetComp<CompLootAffixableThing>();
                 if (comp == null) return;
 
                 // Does the weapon have the ShootThroughWalls modifier?

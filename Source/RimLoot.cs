@@ -13,12 +13,19 @@ namespace RimLoot {
         public static Base         Instance    { get; private set; }
         public static bool IsDebug             { get; private set; }
 
+        // Global cache dictionaries for original ThingDef objects
+        public static Dictionary<string, List<VerbProperties>> origVerbPropertiesCache { get; private set; }
+        public static Dictionary<string, List<Tool          >> origToolsCache          { get; private set; }
+
         internal HugsLib.Utils.ModLogger ModLogger { get; private set; }
 
         public Base() {
             Instance    = this;
             ModLogger   = this.Logger;
             IsDebug     = false;
+            
+            origVerbPropertiesCache = new Dictionary<string, List<VerbProperties>> {};
+            origToolsCache          = new Dictionary<string, List<Tool          >> {};
         }
 
         // FIXME
