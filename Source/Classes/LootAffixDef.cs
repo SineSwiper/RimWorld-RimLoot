@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using RimWorld;
@@ -45,10 +46,10 @@ namespace RimLoot {
         // FIXME: Make this configurable, especially for the color-blind
         public string LabelColor {
             get {
-                if      (affixCost >   4) return "lime";
-                else if (affixCost >=  1) return "cyan";
-                else if (affixCost <= -1) return "yellow";
-                else if (affixCost <  -4) return "red";
+                if      (IsPositiveDeadly) return "lime";
+                else if (IsNegativeDeadly) return "red";
+                else if (IsPositive)       return "cyan";
+                else if (IsNegative)       return "yellow";
                 return "white";
             }
         }
@@ -61,12 +62,36 @@ namespace RimLoot {
             }
         }
 
+        public bool IsDeadly {
+            get { return Math.Abs(affixCost) > 4; }
+        }
+
+        public bool IsNegativeDeadly {
+            get { return affixCost < -4; }
+        }
+
+        public bool IsPositiveDeadly {
+            get { return affixCost > 4; }
+        }
+
+        public bool IsPositive {
+            get { return affixCost >= 1; }
+        }
+
+        public bool IsNegative {
+            get { return affixCost <= -1; }
+        }
+
+        public bool IsNeutral {
+            get { return affixCost == 0; }
+        }
+
         public void MakeIcons () {
             Color color = Color.white;
             ColorUtility.TryParseHtmlString(LabelColor, out color);
 
             string texPart = "1Affix";
-            if (Mathf.Abs(affixCost) >= 5) texPart = "Deadly";
+            if (IsDeadly) texPart = "Deadly";
 
             defIcon = IconUtility.FetchOrMakeIcon(texPart, color, 1f);
             return;
@@ -76,8 +101,9 @@ namespace RimLoot {
             if (preLabel == null) preLabel = FullAffixLabel;  // fallback
 
             string styledLabel = preLabel;
-            string color = LabelColor;
-            styledLabel = string.Format("<color={0}>{1}</color>", color, styledLabel);
+            ColorUtility.TryParseHtmlString(LabelColor, out Color color);
+
+            styledLabel = styledLabel.Colorize(color);
 
             return styledLabel;
         }
@@ -266,14 +292,14 @@ namespace RimLoot {
             ;
             List<LootAffixDef> groupedAffixDefs =
                 affixDefIEnum.
-                Where  (lad => lad.affixCost > 0).
+                Where  (lad => lad.IsPositive).
                 OrderBy(lad => lad.affixCost).
                 ThenByDescending(lad => lad.modifiers.Sum(lam => lam.chance)).
                 ToList()
             ;
             groupedAffixDefs.AddRange( 
                 affixDefIEnum.
-                Where  (lad => lad.affixCost <= 0).
+                Where  (lad => lad.IsNegative || lad.IsNeutral).
                 OrderByDescending(lad => lad.affixCost).
                 ThenBy (lad => lad.modifiers.Sum(lam => lam.chance))
             );

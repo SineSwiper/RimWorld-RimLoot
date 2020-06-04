@@ -546,14 +546,14 @@ namespace RimLoot {
 
             // Use the highest affix cost for the color
             LootAffixDef highestAffix = affixes.FirstOrFallback(
-                lad => Mathf.Abs(lad.affixCost) >= 5,  // deadly overrides others
+                lad => lad.IsDeadly,  // deadly overrides others
                 affixes.OrderByDescending(lad => lad.affixCost).First()
             );
             Color color = Color.white;
             ColorUtility.TryParseHtmlString(highestAffix.LabelColor, out color);
 
             string texPart = AffixCount + "Affix";
-            if (Mathf.Abs(highestAffix.affixCost) >= 5) texPart = "Deadly";
+            if (highestAffix.IsDeadly) texPart = "Deadly";
 
             // Grab the overlay icon
             float scale = Mathf.Sqrt(defIcon.width * defIcon.height) / 256;  // 64x64 -> 16x16 overlays

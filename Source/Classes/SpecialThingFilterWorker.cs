@@ -53,7 +53,7 @@ namespace RimLoot {
         public override bool Matches (Thing thing) {
             var comp = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return false;
-            return comp.AllAffixDefs.Any(lad => lad.affixCost >= 5);
+            return comp.AllAffixDefs.Any(lad => lad.IsDeadly);
         }
     }
 
