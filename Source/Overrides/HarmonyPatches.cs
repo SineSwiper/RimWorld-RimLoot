@@ -6,7 +6,7 @@ using System.Reflection;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Grammar;
+using Verse.AI;
 
 namespace RimLoot {
     [StaticConstructorOnStartup]
@@ -176,6 +176,23 @@ namespace RimLoot {
             }
         }
         
+        /*
+         * Fix BestAttackTarget to remove LOS-related TargetScanFlags for ShootThroughWalls
+         */
+        [HarmonyPatch(typeof(AttackTargetFinder), "BestAttackTarget")]
+        private static class BestAttackTargetPatch {
+            [HarmonyPrefix]
+            static void Prefix(IAttackTargetSearcher searcher, ref TargetScanFlags flags) {
+                var comp = searcher.CurrentEffectiveVerb?.EquipmentSource?.TryGetComp<CompLootAffixableThing>();
+                if (comp == null) return;
+
+                // Does the weapon have the ShootThroughWalls modifier?
+                if (!comp.AllModifiers.Any(lam => lam is LootAffixModifier_ShootThroughWalls)) return;
+
+                // We don't need no line-of-sight
+                flags &= ~(TargetScanFlags.NeedLOSToAll | TargetScanFlags.LOSBlockableByGas);
+            }
+        }
 
     }
 }

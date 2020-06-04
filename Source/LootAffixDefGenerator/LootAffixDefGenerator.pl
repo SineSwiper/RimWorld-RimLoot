@@ -35,6 +35,10 @@ our %STAT_XML_NAME = (qw<
     ToolsChange_ExtraDamage        def
 >);
 
+our %STATLESS_MODIFIERS = (qw<
+    ShootThroughWalls              1
+>);
+
 our %EXTRA_SUBTREE = (qw<
     ToolsChange_ExtraDamage        extraDamage
 >);
@@ -72,13 +76,15 @@ my $prev_group_name = '';
 while (my $row = $csv->getline($fh)) {
     my $modifier_class = $row->[ $header_index{LootAffixModifier}[0] ];
     my @stats          = split m<\s*[/,]\s*>, $row->[ $header_index{Stat}[0] ];
-    next unless $STAT_XML_NAME{$modifier_class};
-    next unless @stats;
+    unless ($STATLESS_MODIFIERS{$modifier_class}) {
+        next unless $STAT_XML_NAME{$modifier_class};
+        next unless @stats;
+    }
 
     my $group_name = join('_', $modifier_class, $stats[0]);
 
-    # Force ChangeProjectile into all one group
-    $group_name = $modifier_class if $modifier_class eq 'ChangeProjectile';
+    # Force ChangeProjectile into all one group (or clean up the group if it's only one item)
+    $group_name = $modifier_class if $modifier_class eq 'ChangeProjectile' || $STATLESS_MODIFIERS{$modifier_class};
 
     say "$modifier_class --> ".join(' / ', @stats) if $DEBUG >= 2;
 
@@ -212,7 +218,13 @@ while (my $row = $csv->getline($fh)) {
             }
         }
 
-        ### XXX: Account for special modifier classes in the future...
+        # Stat-less modifiers don't go through this loop, so add barebones modifier XML
+        if ($STATLESS_MODIFIERS{$modifier_class}) {
+            my $modifier_xml = XML::Twig::Elt->new('li');
+            $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$modifier_class" );
+            $modifier_xml->paste_last_child($modifiers_xml);
+        }
+
         next unless $modifiers_xml->children_count;
 
         $modifiers_xml->paste_last_child($def_xml);

@@ -18,7 +18,6 @@ namespace RimLoot {
             get { return ModifierChangeString; }
         }
 
-        // FIXME: Need some other LoS fixes for jobs.  @Garthor had some IL transplier code for it.
         public override void ResolveReferences (LootAffixDef parentDef) {
             // Among other overrides from HarmonyPatches
             affectedField = "requireLineOfSight";

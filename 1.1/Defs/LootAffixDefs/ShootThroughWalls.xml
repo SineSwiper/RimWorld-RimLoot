@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Quantum</defName>
+        <label>Quantum</label>
+        <groupName>ShootThroughWalls</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_ShootThroughWalls"/>
+        </modifiers>
+        <affixCost>6</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>possessive->Heisenburg's</li>
+                <li>adjective->Quantum</li>
+                <li>verb->Warping</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>
