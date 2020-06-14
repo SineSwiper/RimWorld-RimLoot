@@ -37,6 +37,8 @@ our %STAT_XML_NAME = (qw<
 
 our %STATLESS_MODIFIERS = (qw<
     ShootThroughWalls              1
+    EquippedLocalTeleport          1
+    EquippedDeath                  1
 >);
 
 our %EXTRA_SUBTREE = (qw<
@@ -79,6 +81,9 @@ while (my $row = $csv->getline($fh)) {
     unless ($STATLESS_MODIFIERS{$modifier_class}) {
         next unless $STAT_XML_NAME{$modifier_class};
         next unless @stats;
+    }
+    else {
+        @stats = ('');
     }
 
     my $group_name = join('_', $modifier_class, $stats[0]);
@@ -179,7 +184,10 @@ while (my $row = $csv->getline($fh)) {
             my $extra_subtree_xml;
             $extra_subtree_xml //= XML::Twig::Elt->new($EXTRA_SUBTREE{$indiv_modifier_class}) if $EXTRA_SUBTREE{$indiv_modifier_class};
 
-            if ($extra_subtree_xml) {
+            if ($STATLESS_MODIFIERS{$modifier_class}) {
+                # Do nothing
+            }
+            elsif ($extra_subtree_xml) {
                 $extra_subtree_xml->insert_new_elt(last_child => $STAT_XML_NAME{$indiv_modifier_class} => $stats[$i]);
             }
             else {
@@ -213,16 +221,9 @@ while (my $row = $csv->getline($fh)) {
                 $extra_subtree_xml->paste_last_child($modifier_xml);
                 $modifier_xml->paste_last_child($modifiers_xml);
             }
-            elsif ($modifier_xml->children_count > 1) {
+            elsif ($modifier_xml->children_count > 1 || $STATLESS_MODIFIERS{$modifier_class}) {
                 $modifier_xml->paste_last_child($modifiers_xml);
             }
-        }
-
-        # Stat-less modifiers don't go through this loop, so add barebones modifier XML
-        if ($STATLESS_MODIFIERS{$modifier_class}) {
-            my $modifier_xml = XML::Twig::Elt->new('li');
-            $modifier_xml->set_atts( Class => "RimLoot.LootAffixModifier_$modifier_class" );
-            $modifier_xml->paste_last_child($modifiers_xml);
         }
 
         next unless $modifiers_xml->children_count;

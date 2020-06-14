@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Teleporting</defName>
+        <label>Teleporting</label>
+        <groupName>EquippedLocalTeleport</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedLocalTeleport">
+                <mtbDays>0.25</mtbDays>
+                <isRandom>false</isRandom>
+            </li>
+        </modifiers>
+        <affixCost>2</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Teleporting</li>
+                <li>noun->Teleportation</li>
+                <li>verb->Teleporting</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Tessered</defName>
+        <label>Tessered</label>
+        <groupName>EquippedLocalTeleport</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedLocalTeleport">
+                <mtbDays>0.1</mtbDays>
+                <isRandom>false</isRandom>
+            </li>
+        </modifiers>
+        <affixCost>4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Tessered</li>
+                <li>noun->Tesseract</li>
+                <li>verb->Tessering</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+    <RimLoot.LootAffixDef>
+        <defName>Disoriented</defName>
+        <label>Disoriented</label>
+        <groupName>EquippedLocalTeleport</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedLocalTeleport">
+                <mtbDays>1</mtbDays>
+                <isRandom>true</isRandom>
+            </li>
+        </modifiers>
+        <affixCost>-4</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Disoriented</li>
+                <li>noun->Disorientation</li>
+                <li>verb->Disorienting</li>
+                <li>noun_is_singular->False</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

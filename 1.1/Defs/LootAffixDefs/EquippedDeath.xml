@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+    <RimLoot.LootAffixDef>
+        <defName>Death-cursed</defName>
+        <label>Death-cursed</label>
+        <groupName>EquippedDeath</groupName>
+        <modifiers>
+            <li Class="RimLoot.LootAffixModifier_EquippedDeath">
+                <mtbDays>120</mtbDays>
+            </li>
+        </modifiers>
+        <affixCost>-6</affixCost>
+        <affixRulePack>
+            <rulesStrings>
+                <li>adjective->Death-cursed</li>
+                <li>noun->Death-Curse</li>
+                <li>verb->Death-cursing</li>
+                <li>noun_is_singular->True</li>
+            </rulesStrings>
+        </affixRulePack>
+    </RimLoot.LootAffixDef>
+
+</Defs>

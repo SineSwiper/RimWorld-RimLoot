@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-    <RimLoot.LootAffixDef>
-        <defName>Disoriented</defName>
-        <label>Disoriented</label>
-        <groupName>Test</groupName>
-        <modifiers>
-            <li Class="RimLoot.LootAffixModifier_EquippedRandomLocalTeleport">
-                <mtbDays>0.01</mtbDays>
-            </li>
-        </modifiers>
-        <affixCost>-4</affixCost>
-        <affixRulePack>
-            <rulesStrings>
-                <li>adjective->Disoriented</li>
-                <li>noun->Disorientation</li>
-                <li>noun_is_singular->False</li>
-                <li>verb->Disorienting</li>
-            </rulesStrings>
-        </affixRulePack>
-    </RimLoot.LootAffixDef>
-
 </Defs>

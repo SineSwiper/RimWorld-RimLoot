@@ -48,13 +48,15 @@ namespace RimLoot {
             pawn.Notify_Teleported(isRandom, true);
             if (!isRandom && pawn.CurJob != null) pawn.jobs.curDriver.Notify_PatherArrived();
 
-            // SFX for the old location
-            for (float i = 0.5f; i <= 3; i += 0.5f) {
-                Color color = i <= 1.5f ? Color.blue : Color.cyan;
-                if (Rand.Bool) MoteMaker.ThrowTornadoDustPuff(oldDrawPos, map, i, color);
-                else           MoteMaker.ThrowDustPuffThick  (oldDrawPos, map, i, color);
+            // SFX for the old/new location
+            foreach (Vector3 pos in new Vector3[] { oldDrawPos, newCell.ToVector3() } ) {
+                for (float i = 0.5f; i <= 3; i += 0.5f) {
+                    Color color = i <= 1.5f ? Color.blue : Color.cyan;
+                    if (Rand.Bool) MoteMaker.ThrowTornadoDustPuff(pos, map, i, color);
+                    else           MoteMaker.ThrowDustPuffThick  (pos, map, i, color);
+                }
+                MoteMaker.ThrowLightningGlow(pos, map, 3f);
             }
-            MoteMaker.ThrowLightningGlow(oldDrawPos, map, 3f);
 
             // Unfog the new location
             if (map.fogGrid.IsFogged(newCell)) {
