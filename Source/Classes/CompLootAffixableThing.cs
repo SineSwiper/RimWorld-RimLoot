@@ -253,6 +253,9 @@ namespace RimLoot {
                 Scribe_Collections.Look(ref affixRuleStrings, false, "affixRules", LookMode.Value, (object) this);
                 affixRules.Clear();
                 affixRules.AddRange( affixRuleStrings.Select(rs => new Rule_String(rs)) );
+
+                // Clean out any buggy labels with color tags
+                fullStuffLabel.StripTags();
             }
 
             PostAffixCleanup(false);
@@ -429,11 +432,14 @@ namespace RimLoot {
         }
 
         public override string TransformLabel(string label) {
+            // Make sure we're not saving color tag information
+            label = label.StripTags();
+        
             // Short-circuit: No affixes
             if (AffixCount == 0) return label;
 
             // Short-circuit: Already calculated the full label and no replacement required
-            string stuffLabel = GenLabel.ThingLabel(parent.def, parent.Stuff, 1);
+            string stuffLabel = GenLabel.ThingLabel(parent.def, parent.Stuff, 1).StripTags();
             if (fullStuffLabel != null && stuffLabel == label) return fullStuffLabel;
 
             // Short-circuit: Still have the calculated full label
