@@ -112,5 +112,25 @@ namespace RimLoot {
             }
         }
 
+        [DebugAction("RimLoot", "Set all affixes to High Freq", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.Playing)]
+        private static void HighFreqAffixes() {
+            foreach (LootAffixModifier modifier in DefDatabase<LootAffixDef>.AllDefs.SelectMany(lad => lad.modifiers)) {
+                if (modifier is LootAffixModifier_DoOverTime dot) dot.mtbDays     = 0.01f;
+                if (modifier.chance < 0.5f)                       modifier.chance = 0.5f;
+            }
+
+            var tmpList = new List<ThingWithComps> {};
+            ThingOwnerUtility.GetAllThingsRecursively(
+                map:       Find.CurrentMap,
+                request:   ThingRequest.ForGroup(ThingRequestGroup.HaulableEver),
+                outThings: tmpList
+            );
+
+            foreach (CompLootAffixableThing comp in tmpList.Select(twc => twc.TryGetComp<CompLootAffixableThing>()).Where(c => c != null)) {
+                comp.PostAffixCleanup();
+            }
+
+            Messages.Message("All LootAffixModifiers set to high-frequency mode until RimWorld restarts", MessageTypeDefOf.NeutralEvent, false);
+        }
     }
 }
