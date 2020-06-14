@@ -85,6 +85,7 @@
     <Compile Include="Classes\HostileDeadlyAffixLetter.cs" />
     <Compile Include="Classes\NegativeDeadlyAffixLetter.cs" />
     <Compile Include="Classes\SpecialThingFilterWorker.cs" />
+    <Compile Include="AffixExtension.cs" />
     <Compile Include="IconUtility.cs" />
     <Compile Include="CollectionExtension.cs" />
     <Compile Include="TextureExtension.cs" />
