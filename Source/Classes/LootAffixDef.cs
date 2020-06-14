@@ -17,7 +17,8 @@ namespace RimLoot {
         public RulePack affixRulePack;
 
         private List<string> affixWords;
-        private Texture2D defIcon;
+        private Dictionary<string, float>     affixCostCache = new Dictionary<string, float>     {};
+        private Dictionary<string, Texture2D> defIcons       = new Dictionary<string, Texture2D> {};
 
         public List<string> AffixWords {
             get {
@@ -43,67 +44,75 @@ namespace RimLoot {
             }
         }
 
+        public float GetRealAffixCost (ThingWithComps thing = null) {
+            if (thing == null) return affixCost;
+
+            // This can be called quite a few times, so cache the value
+            string keyThing = thing.ToString();
+            if (affixCostCache.ContainsKey(keyThing)) return affixCostCache[keyThing];
+
+            var affixCostModifier = modifiers.FirstOrFallback(lam => lam.dynamicAffixCost);
+            if (affixCostModifier == null) return affixCostCache[keyThing] = affixCost;
+            return affixCostCache[keyThing] = affixCostModifier.GetNewAffixCost(thing, affixCost);
+        }
+
+        public bool IsDeadly (ThingWithComps thing = null) {
+            return Math.Abs(GetRealAffixCost(thing)) > 4;
+        }
+
+        public bool IsNegativeDeadly (ThingWithComps thing = null) {
+            return GetRealAffixCost(thing) < -4;
+        }
+
+        public bool IsPositiveDeadly (ThingWithComps thing = null) {
+            return GetRealAffixCost(thing) > 4;
+        }
+
+        public bool IsPositive (ThingWithComps thing = null) {
+            return GetRealAffixCost(thing) >= 1;
+        }
+
+        public bool IsNegative (ThingWithComps thing = null) {
+            return GetRealAffixCost(thing) <= -1;
+        }
+
+        public bool IsNeutral (ThingWithComps thing = null) {
+            return GetRealAffixCost(thing) == 0;
+        }
+
         // FIXME: Make this configurable, especially for the color-blind
-        public string LabelColor {
-            get {
-                if      (IsPositiveDeadly) return "lime";
-                else if (IsNegativeDeadly) return "red";
-                else if (IsPositive)       return "cyan";
-                else if (IsNegative)       return "yellow";
-                return "white";
-            }
+        public string LabelColor (ThingWithComps thing = null) {
+            if      (IsPositiveDeadly(thing)) return "lime";
+            else if (IsNegativeDeadly(thing)) return "red";
+            else if (IsPositive(thing))       return "cyan";
+            else if (IsNegative(thing))       return "yellow";
+            return "white";
         }
 
-        public Texture2D DefIcon {
-            get {
-                if (defIcon != null) return defIcon;
-                MakeIcons();
-                return defIcon;
-            }
+        public Texture2D DefIcon (ThingWithComps thing = null) {
+            string colorStr = LabelColor(thing);
+            if (!defIcons.ContainsKey(colorStr)) MakeDefIcon(thing);
+            return defIcons[colorStr];
         }
 
-        public bool IsDeadly {
-            get { return Math.Abs(affixCost) > 4; }
-        }
-
-        public bool IsNegativeDeadly {
-            get { return affixCost < -4; }
-        }
-
-        public bool IsPositiveDeadly {
-            get { return affixCost > 4; }
-        }
-
-        public bool IsPositive {
-            get { return affixCost >= 1; }
-        }
-
-        public bool IsNegative {
-            get { return affixCost <= -1; }
-        }
-
-        public bool IsNeutral {
-            get { return affixCost == 0; }
-        }
-
-        public void MakeIcons () {
-            Color color = Color.white;
-            ColorUtility.TryParseHtmlString(LabelColor, out color);
+        public void MakeDefIcon (ThingWithComps thing = null) {
+            string colorStr = LabelColor(thing);
+            ColorUtility.TryParseHtmlString(colorStr, out Color color);
 
             string texPart = "1Affix";
-            if (IsDeadly) texPart = "Deadly";
+            if (IsDeadly(thing)) texPart = "Deadly";
 
-            defIcon = IconUtility.FetchOrMakeIcon(texPart, color, 1f);
+            defIcons[colorStr] = IconUtility.FetchOrMakeIcon(texPart, color, 1f);
             return;
         }
 
-        public string LabelWithStyle (string preLabel = null) {
+        public string LabelWithStyle (ThingWithComps thing = null, string preLabel = null) {
             if (preLabel == null) preLabel = FullAffixLabel;  // fallback
 
             string styledLabel = preLabel;
-            ColorUtility.TryParseHtmlString(LabelColor, out Color color);
+            ColorUtility.TryParseHtmlString(LabelColor(thing), out Color color);
 
-            styledLabel = styledLabel.Colorize(color);
+            styledLabel = styledLabel.StripTags().Colorize(color);
 
             return styledLabel;
         }
@@ -271,8 +280,8 @@ namespace RimLoot {
             // Specify where the effect is applied
             string str = (
                 modifiers.All(lam => lam.AppliesTo == ModifierTarget.Pawn) ?
-                    (string)"RimLoot_AffixWhileEquipped".Translate( LabelWithStyle(preLabel) ) :
-                    LabelWithStyle(preLabel)
+                    (string)"RimLoot_AffixWhileEquipped".Translate( LabelWithStyle(parentThing, preLabel) ) :
+                    LabelWithStyle(parentThing, preLabel)
             ) + ":\n";
 
             foreach (LootAffixModifier modifier in modifiers) {
@@ -285,6 +294,8 @@ namespace RimLoot {
             foreach (StatDrawEntry statDrawEntry in base.SpecialDisplayStats(req))
                 yield return statDrawEntry;
 
+            ThingWithComps thing = req.HasThing ? (ThingWithComps)req.Thing : null;
+
             // Get the grouped affixes in positive-ascending affixCost order, and then negative-descending order
             IEnumerable<LootAffixDef> affixDefIEnum = 
                 DefDatabase<LootAffixDef>.AllDefs.
@@ -292,15 +303,15 @@ namespace RimLoot {
             ;
             List<LootAffixDef> groupedAffixDefs =
                 affixDefIEnum.
-                Where  (lad => lad.IsPositive).
-                OrderBy(lad => lad.affixCost).
+                Where  (lad => lad.IsPositive(thing)).
+                OrderBy(lad => lad.GetRealAffixCost(thing)).
                 ThenByDescending(lad => lad.modifiers.Sum(lam => lam.chance)).
                 ToList()
             ;
             groupedAffixDefs.AddRange( 
                 affixDefIEnum.
-                Where  (lad => lad.IsNegative || lad.IsNeutral).
-                OrderByDescending(lad => lad.affixCost).
+                Where  (lad => lad.IsNegative(thing) || lad.IsNeutral(thing)).
+                OrderByDescending(lad => lad.GetRealAffixCost(thing)).
                 ThenBy (lad => lad.modifiers.Sum(lam => lam.chance))
             );
 
@@ -312,7 +323,7 @@ namespace RimLoot {
             yield return new StatDrawEntry(
                 category:    StatCategoryDefOf.BasicsImportant,
                 label:       "RimLoot_AffixesInThisGroup".Translate(),
-                valueString: GenText.ToCommaList(groupedAffixDefs.Select(lad => lad.LabelWithStyle(lad.LabelCap)), false),
+                valueString: GenText.ToCommaList(groupedAffixDefs.Select(lad => lad.LabelWithStyle(null, lad.LabelCap)), false),
                 reportText:  reportText,
                 displayPriorityWithinCategory: 1
             );

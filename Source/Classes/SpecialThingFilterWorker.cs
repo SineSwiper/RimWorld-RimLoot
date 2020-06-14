@@ -37,7 +37,7 @@ namespace RimLoot {
         public override bool Matches (Thing thing) {
             var comp = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return false;
-            return comp.AllAffixDefs.Any(lad => lad.affixCost < 0);
+            return comp.AllAffixDefs.Any(lad => lad.IsNegative(comp.parent));
         }
     }
 
@@ -45,7 +45,7 @@ namespace RimLoot {
         public override bool Matches (Thing thing) {
             var comp = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return false;
-            return comp.AllAffixDefs.Any(lad => lad.affixCost >= 0);  // include 0 in positive filter
+            return comp.AllAffixDefs.Any(lad => lad.IsPositive(comp.parent) || lad.IsNeutral(comp.parent));  // include 0 in positive filter
         }
     }
 
@@ -53,7 +53,7 @@ namespace RimLoot {
         public override bool Matches (Thing thing) {
             var comp = thing.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return false;
-            return comp.AllAffixDefs.Any(lad => lad.IsDeadly);
+            return comp.AllAffixDefs.Any(lad => lad.IsDeadly(comp.parent));
         }
     }
 

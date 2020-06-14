@@ -17,6 +17,7 @@ namespace RimLoot {
 
     public abstract class LootAffixModifier : Editable {
         public float chance = 1f;
+        public bool  dynamicAffixCost = false;
 
         public abstract ModifierTarget AppliesTo {
             get;
@@ -145,7 +146,11 @@ namespace RimLoot {
             }
         }
 
-        public virtual float GetRealChance (ThingWithComps thing) {
+        public virtual float GetNewAffixCost (ThingWithComps thing, float affixCost) {
+            return affixCost;
+        }
+
+        public virtual float GetRealChance (ThingWithComps thing, bool usePreModProps = false) {
             return chance;
         }
 

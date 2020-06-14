@@ -6,7 +6,9 @@
         <label>Quantum</label>
         <groupName>ShootThroughWalls</groupName>
         <modifiers>
-            <li Class="RimLoot.LootAffixModifier_ShootThroughWalls"/>
+            <li Class="RimLoot.LootAffixModifier_ShootThroughWalls">
+                <chance>1</chance>
+            </li>
         </modifiers>
         <affixCost>6</affixCost>
         <affixRulePack>

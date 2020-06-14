@@ -74,10 +74,35 @@ namespace RimLoot {
             ;
         }
 
+        // Affix cost needs to be based on whether the source projectile actual does more damage than the destination
+        public override float GetNewAffixCost (ThingWithComps thing, float affixCost) {
+            var comp = thing.TryGetComp<CompLootAffixableThing>();
+            VerbProperties verbProps = comp.PrimaryVerbPropsFromDef;
+            var            projProps = verbProps.defaultProjectile.projectile;
+            var         modProjProps = ((ThingDef)resolvedDef).projectile;
+
+            float baseDamage = projProps   .damageDef.harmsHealth == false ? 0f :    projProps.GetDamageAmount(thing);
+            float modDamage  = modProjProps.damageDef.harmsHealth == false ? 0f : modProjProps.GetDamageAmount(thing);
+            
+            float realChance  = GetRealChance(thing, true);  // can't use other affixes to calculate chance while affixes are being applied
+            float totalDamage = baseDamage * (1 - realChance) + modDamage * realChance;
+
+            float factor = baseDamage != 0f ? totalDamage / baseDamage : 100f;  // higher factor = positive effect on weapon
+
+            // https://www.desmos.com/calculator/qbe15qrcpu
+            // affix cost needs to be negative on fractional factors
+            float newAffixCost;
+            newAffixCost = Mathf.Log10(factor) * 10;
+            newAffixCost = Mathf.Clamp(newAffixCost, -4, 4);  // if it's more dangerous, it shouldn't be dynamic
+            return Mathf.RoundToInt(newAffixCost);
+        }
+
         // The def's chance is the overall chance against the whole shot period.  The combined probability
         // needs to be separated out for each shot in the burst.
-        public override float GetRealChance (ThingWithComps thing) {
-            VerbProperties modVerbProps = thing?.TryGetComp<CompLootAffixableThing>()?.PrimaryVerbProps;
+        public override float GetRealChance (ThingWithComps thing, bool usePreModProps = false) {
+            var comp = thing?.TryGetComp<CompLootAffixableThing>();
+            if (comp == null) return chance;
+            VerbProperties modVerbProps = usePreModProps ? comp.PrimaryVerbPropsFromDef : comp.PrimaryVerbProps;
             if (modVerbProps == null) return chance;
 
             // 1 - (1 - chance) to the count-th root 

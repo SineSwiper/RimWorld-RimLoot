@@ -160,7 +160,7 @@ namespace RimLoot {
             static bool Prefix(Rect rect, Def def, float scale) {
                 if (!(def is LootAffixDef lootAffix)) return true;  // go to original
 
-                Widgets.DrawTextureFitted(rect, lootAffix.DefIcon, scale);
+                Widgets.DrawTextureFitted(rect, lootAffix.DefIcon(), scale);
                 return false;
             }
         }

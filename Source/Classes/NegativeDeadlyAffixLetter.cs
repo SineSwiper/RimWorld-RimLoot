@@ -35,7 +35,7 @@ namespace RimLoot {
 
             ThingWithComps deadlyItem = (ThingWithComps)lookTargets.targets.First(gti => gti.HasThing && gti.Thing.TryGetComp<CompLootAffixableThing>() != null).Thing;
             var            comp       = deadlyItem.TryGetComp<CompLootAffixableThing>();
-            LootAffixDef   affix      = comp.AllAffixDefs.First(lad => lad.IsNegativeDeadly);
+            LootAffixDef   affix      = comp.AllAffixDefs.First(lad => lad.IsNegativeDeadly(deadlyItem));
             string         affixLabel = comp.AllAffixesByAffixDefs[affix];
 
             TaggedString text = "RimLoot_NegativeDeadlyAffixLetter_Desc".Translate(

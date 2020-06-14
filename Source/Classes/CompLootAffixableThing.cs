@@ -22,11 +22,9 @@ namespace RimLoot {
         private HashSet<LootAffixModifier>       modifiersCached;
         private float?                           ttlAffixPoints;
 
-        // Cached property objects (modified and otherwise)
+        // Cached modified property objects
         private List<VerbProperties> verbProperties;
-        private List<VerbProperties> verbPropertiesFromDef;
         private List<Tool>           tools;
-        private List<Tool>           toolsFromDef;
 
         // Cached graphics
         private Texture2D overlayIcon;
@@ -89,10 +87,9 @@ namespace RimLoot {
         }
 
         public List<VerbProperties> VerbPropertiesFromDef {
+            // Use the Base cache here, which would prevent MakeAffixCaches loops
             get {
-                if (verbPropertiesFromDef != null) return verbPropertiesFromDef;
-                MakeAffixCaches();
-                return verbPropertiesFromDef;
+                return Base.origVerbPropertiesCache.GetOrAddIfNotExist(parent.def.defName, parent.def.Verbs);
             }
         }
 
@@ -117,10 +114,13 @@ namespace RimLoot {
         }
 
         public List<Tool> ToolsFromDef {
+            // Use the Base cache here, which would prevent MakeAffixCaches loops
             get {
-                if (toolsFromDef != null) return toolsFromDef;
-                MakeAffixCaches();
-                return toolsFromDef;
+                return Base.origToolsCache.GetOrAddIfNotExist(
+                    parent.def.defName,
+                    // tools doesn't have a null safeguard like EmptyVerbPropertiesList
+                    parent.def.tools ?? new List<Tool> {}
+                );
             }
         }
 
@@ -160,7 +160,7 @@ namespace RimLoot {
                 affixDefDictCached    [ affixStringsCached[i] ] = affixes[i];
                 affixStringsDictCached[ affixes[i] ] = affixStringsCached[i];
                 modifiersCached.AddRange(affixes[i].modifiers);
-                ttlAffixPoints += affixes[i].affixCost;
+                ttlAffixPoints += affixes[i].GetRealAffixCost(parent);
             }
 
             // Add new modified VerbProperties, if necessary
@@ -169,8 +169,7 @@ namespace RimLoot {
             ).ToList();
 
             if (verbModifierDefs.Count > 0) {
-                verbPropertiesFromDef = Base.origVerbPropertiesCache.GetOrAddIfNotExist(parent.def.defName, parent.def.Verbs);
-                verbProperties        = verbPropertiesFromDef.Select(vp => vp.MemberwiseClone()).ToList();
+                verbProperties = VerbPropertiesFromDef.Select(vp => vp.MemberwiseClone()).ToList();
 
                 foreach (LootAffixDef lad in verbModifierDefs) {
                     foreach (var vp in verbProperties) {
@@ -179,7 +178,7 @@ namespace RimLoot {
                 }
             }
             else {
-                verbProperties = verbPropertiesFromDef = parent.def.Verbs;
+                verbProperties = VerbPropertiesFromDef;
             }
 
             // Add new modified Tools, if necessary
@@ -187,17 +186,11 @@ namespace RimLoot {
                 lad => lad.modifiers.Any( lam => lam.AppliesTo == ModifierTarget.Tools )
             ).ToList();
 
-            toolsFromDef = Base.origToolsCache.GetOrAddIfNotExist(
-                parent.def.defName,
-                // prevent infinite null check loops from Tools/ToolsFromDef -> InitVerbsFromZero -> CompEquippable.Tools
-                parent.def.tools ?? new List<Tool> {}
-            );
-
             if (toolModifierDefs.Count > 0) {
                 // [Reflection prep] tool.MemberwiseClone()
                 MethodInfo ToolMemberwiseClone = AccessTools.Method(typeof(Tool), "MemberwiseClone");
 
-                tools = toolsFromDef.Select( t => (Tool)ToolMemberwiseClone.Invoke(t, new object[] {}) ).ToList();
+                tools = ToolsFromDef.Select( t => (Tool)ToolMemberwiseClone.Invoke(t, new object[] {}) ).ToList();
 
                 foreach (LootAffixDef lad in toolModifierDefs) {
                     foreach (var tool in tools) {
@@ -206,7 +199,7 @@ namespace RimLoot {
                 }
             }
             else {
-                tools = toolsFromDef;
+                tools = ToolsFromDef;
             }
 
             // Refresh the VerbTracker cache
@@ -234,7 +227,7 @@ namespace RimLoot {
             modifiersCached?       .Clear();
             ttlAffixPoints         = null;
             verbProperties         = null;
-            verbPropertiesFromDef  = null;
+            tools                  = null;
             overlayIcon            = null;
             uiIcon                 = null;
 
@@ -314,7 +307,8 @@ namespace RimLoot {
         }
 
         public void CheckAndSendNegativeDeadlyAffixLetter(Pawn pawn) {
-            LootAffixDef deadlyAffix = affixes.FirstOrFallback(lad => lad.IsNegativeDeadly);
+            if (Current.ProgramState != ProgramState.Playing) return;
+            LootAffixDef deadlyAffix = affixes.FirstOrFallback(lad => lad.IsNegativeDeadly(parent));
             if (deadlyAffix == null || pawn.Faction != Faction.OfPlayer) return;
 
             ChoiceLetter choiceLetter = LetterMaker.MakeLetter(
@@ -368,7 +362,7 @@ namespace RimLoot {
                 DefDatabase<LootAffixDef>.AllDefsListForReading.
                 FindAll( lad => lad.CanBeAppliedToThing(parent) )
             ;
-            List<LootAffixDef> filteredAffixDefs = baseAffixDefs.FindAll( lad => lad.affixCost <= affixPoints );
+            List<LootAffixDef> filteredAffixDefs = baseAffixDefs.FindAll( lad => lad.GetRealAffixCost(parent) <= affixPoints );
 
             // First affix: Random pool of anything (within the cost)
             // 10% chance it doesn't follow this first rule
@@ -377,7 +371,7 @@ namespace RimLoot {
                 if (firstAffix == null) return;
 
                 affixes.Add(firstAffix);
-                affixPoints -= firstAffix.affixCost;
+                affixPoints -= firstAffix.GetRealAffixCost(parent);
                 baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != firstAffix.groupName);
             }
 
@@ -389,7 +383,7 @@ namespace RimLoot {
                 float paRatio = affixPoints / remainAffixes;
                 paRatio = Mathf.Clamp(paRatio, 1, 6);
                 
-                filteredAffixDefs     = baseAffixDefs.FindAll(lad => lad.affixCost <= affixPoints);
+                filteredAffixDefs     = baseAffixDefs.FindAll(lad => lad.GetRealAffixCost(parent) <= affixPoints);
                 LootAffixDef newAffix = filteredAffixDefs.RandomElementByWeightWithFallback(lad =>
                     /* https://www.desmos.com/calculator/f7yscp2vyj
                      * 6 / max(abs(ac-pa)³, 0.25)
@@ -397,13 +391,13 @@ namespace RimLoot {
                      *     p= 1 for one that's 1.78 away from the average, including negatives
                      */
                     6 / Mathf.Max(
-                        Mathf.Pow(Mathf.Abs(lad.affixCost - paRatio), 3),
+                        Mathf.Pow(Mathf.Abs(lad.GetRealAffixCost(parent) - paRatio), 3),
                     0.25f)
                 );
                 if (newAffix == null) return;
 
                 affixes.Add(newAffix);
-                affixPoints -= newAffix.affixCost;
+                affixPoints -= newAffix.GetRealAffixCost(parent);
                 baseAffixDefs = baseAffixDefs.FindAll(lad => lad.groupName != newAffix.groupName);
             }
         }
@@ -534,7 +528,7 @@ namespace RimLoot {
                 return
                     "RimLoot_Affixes".Translate() + ": " +
                     GenText.ToCommaList(
-                        AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(kv.Key) ), false
+                        AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(parent, kv.Key) ), false
                     )
                 ;
             }
@@ -555,14 +549,13 @@ namespace RimLoot {
 
             // Use the highest affix cost for the color
             LootAffixDef highestAffix = affixes.FirstOrFallback(
-                lad => lad.IsDeadly,  // deadly overrides others
-                affixes.OrderByDescending(lad => lad.affixCost).First()
+                lad => lad.IsDeadly(parent),  // deadly overrides others
+                affixes.OrderByDescending(lad => lad.GetRealAffixCost(parent)).First()
             );
-            Color color = Color.white;
-            ColorUtility.TryParseHtmlString(highestAffix.LabelColor, out color);
+            ColorUtility.TryParseHtmlString(highestAffix.LabelColor(parent), out Color color);
 
             string texPart = AffixCount + "Affix";
-            if (highestAffix.IsDeadly) texPart = "Deadly";
+            if (highestAffix.IsDeadly(parent)) texPart = "Deadly";
 
             // Grab the overlay icon
             float scale = Mathf.Sqrt(defIcon.width * defIcon.height) / 256;  // 64x64 -> 16x16 overlays
@@ -607,9 +600,9 @@ namespace RimLoot {
 
             if (Prefs.DevMode) {
                 reportText += "[DEV] Affix Rules:\n    " + string.Join("\n    ", affixRules) + "\n\n";
-                reportText += "[DEV] Total Points: " + affixes.Select( lad => lad.affixCost ).Sum() + 
+                reportText += "[DEV] Total Points: " + affixes.Select( lad => lad.GetRealAffixCost(parent) ).Sum() + 
                     "\n    " +
-                    string.Join("\n    ", affixes.Select( lad => AllAffixesByAffixDefs[lad] + ": " + lad.affixCost )) + 
+                    string.Join("\n    ", affixes.Select( lad => AllAffixesByAffixDefs[lad] + ": " + lad.GetRealAffixCost(parent) )) + 
                     "\n\n"
                 ;
             }
@@ -618,7 +611,7 @@ namespace RimLoot {
                 category:    category,
                 label:       "RimLoot_LootAffixModifiers".Translate(),
                 valueString: GenText.ToCommaList(
-                    AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(kv.Key) ), false
+                    AllAffixDefsByAffixes.Select( kv => kv.Value.LabelWithStyle(parent, kv.Key) ), false
                 ),
                 reportText:  reportText,
                 hyperlinks:  affixes.SelectMany(lad => lad.GetHyperlinks(parent)),
