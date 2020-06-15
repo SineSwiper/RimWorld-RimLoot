@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods><li>Genetic Rim</li></mods>
+        <success>Always</success>
+        <match Class="PatchOperationAdd">
+            <xpath>Defs</xpath>
+            <value>
+
+        <RimLoot.LootAffixDef>
+            <defName>PlasmaBursting</defName>
+            <label>Plasma-Bursting</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_PlasmaBurst</newDef>
+                    <chance>0.20</chance>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Plasma-Bursting</li>
+                    <li>noun->Plasma Bursts</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>DL-17F</defName>
+            <label>DL-17F</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_Laser</newDef>
+                    <chance>1</chance>
+                    <dynamicAffixCost>true</dynamicAffixCost>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->DH-17F</li>
+                    <li>noun->Laser Beams</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>Disintegrating</defName>
+            <label>Disintegrating</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_Disintegrator</newDef>
+                    <chance>0.05</chance>
+                </li>
+            </modifiers>
+            <affixCost>6</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Disintegrating</li>
+                    <li>noun->Disintegrator</li>
+                    <li>noun_is_singular->True</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>Stunner</defName>
+            <label>Stunner</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_StunBolt</newDef>
+                    <chance>0.50</chance>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Stunner</li>
+                    <li>noun->Stun Bolts</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>Poisoning</defName>
+            <label>Poisoning</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_PoisonBlast</newDef>
+                    <chance>0.10</chance>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Poisoning</li>
+                    <li>noun->Poison Blasts</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>Hairy</defName>
+            <label>Hairy</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_GreatHairballProjectile</newDef>
+                    <chance>1</chance>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Hairy</li>
+                    <li>noun->Hairballs</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+        <RimLoot.LootAffixDef>
+            <defName>Cryo</defName>
+            <label>Cryo</label>
+            <groupName>ChangeProjectile</groupName>
+            <modifiers>
+                <li Class="RimLoot.LootAffixModifier_ChangeProjectile">
+                    <newDef>GR_CryoBlast</newDef>
+                    <chance>1</chance>
+                </li>
+            </modifiers>
+            <affixCost>4</affixCost>
+            <affixRulePack>
+                <rulesStrings>
+                    <li>adjective->Cryo</li>
+                    <li>noun->Cryo Blasts</li>
+                    <li>noun_is_singular->False</li>
+                </rulesStrings>
+            </affixRulePack>
+        </RimLoot.LootAffixDef>
+
+            </value>
+        </match>
+    </Operation>
+</Patch>
