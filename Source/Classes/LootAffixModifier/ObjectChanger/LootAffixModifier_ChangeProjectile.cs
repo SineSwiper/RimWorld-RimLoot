@@ -102,8 +102,12 @@ namespace RimLoot {
         public override float GetRealChance (ThingWithComps thing, bool usePreModProps = false) {
             var comp = thing?.TryGetComp<CompLootAffixableThing>();
             if (comp == null) return chance;
+
             VerbProperties modVerbProps = usePreModProps ? comp.PrimaryVerbPropsFromDef : comp.PrimaryVerbProps;
             if (modVerbProps == null) return chance;
+
+            // Give one-use items a 100% chance
+            if (modVerbProps.verbClass == typeof(Verb_ShootOneUse)) return 1;
 
             // 1 - (1 - chance) to the count-th root 
             float realChance = 1f - Mathf.Pow(1f - chance, 1f / modVerbProps.burstShotCount);
